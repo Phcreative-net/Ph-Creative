@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PH Creative | Loja e Sites Profissionais</title>
+  <meta name="description" content="PH Creative - loja de logos, artes publicitárias, banners, capas, pacotes de identidade visual e criação de sites profissionais." />
+  <meta name="theme-color" content="#050507" />
+  <link rel="stylesheet" href="./style.css" />
+  <style>
+    /* Fallback crítico para GitHub Pages: impede que as fotos laterais virem imagens gigantes se o CSS externo atrasar ou falhar. */
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #050507; color: #f5f5f5; font-family: Arial, Helvetica, sans-serif; }
+    .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 80px; isolation: isolate; }
+    .nav-principal { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); z-index: 20; width: min(1120px, calc(100% - 32px)); display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 12px 14px; border: 1px solid rgba(212,175,55,.18); border-radius: 999px; background: rgba(5,5,7,.72); backdrop-filter: blur(16px); }
+    .nav-principal a { color: #f5f5f5; text-decoration: none; }
+    .links-nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
+    .links-nav a { padding: 9px 12px; border-radius: 999px; color: #d0d0d0; }
+    .hero-media { position: absolute; top: 0; bottom: 0; width: min(34vw, 520px); z-index: 1; pointer-events: none; overflow: hidden; background-image: var(--hero-img); background-size: cover; background-repeat: no-repeat; opacity: .95; filter: brightness(.50) contrast(1.15) saturate(.95); transform: scale(1.02); }
+    .hero-media-left { left: 0; background-position: 26% center; -webkit-mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,.72) 68%, transparent 100%); mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,.72) 68%, transparent 100%); }
+    .hero-media-right { right: 0; background-position: 52% center; -webkit-mask-image: linear-gradient(to left, #000 0%, #000 50%, rgba(0,0,0,.72) 70%, transparent 100%); mask-image: linear-gradient(to left, #000 0%, #000 50%, rgba(0,0,0,.72) 70%, transparent 100%); }
+    .hero-vinheta { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(circle at center, rgba(5,5,7,.05) 0%, rgba(5,5,7,.26) 58%, rgba(5,5,7,.78) 100%); }
+    .hero-conteudo { position: relative; z-index: 4; max-width: 900px; display: flex; flex-direction: column; align-items: center; gap: 26px; }
+    @media (max-width: 768px) { .hero-media, .hero-vinheta { display: none; } .nav-principal { position: relative; top: auto; left: auto; transform: none; margin: 14px auto 0; flex-direction: column; border-radius: 24px; } .hero { padding-top: 60px; } }
+  </style>
+</head>
+<body>
+  <header class="hero" id="inicio">
+    <nav class="nav-principal" aria-label="Navegação principal">
+      <a href="./index.html" class="marca-nav"><span>PH</span> Creative</a>
+      <div class="links-nav">
+        <a href="./loja.html">Loja</a>
+        <a href="./orcamento.html#servicosSites">Peça seu site</a>
+        <a href="#contato">Contato</a>
+      </div>
+    </nav>
+
+    <div class="hero-media hero-media-left" style="--hero-img: url('./img/capa-lateral-esquerda.png');" aria-hidden="true"></div>
+
+    <div class="hero-media hero-media-right" style="--hero-img: url('./img/capa-lateral-direita.png');" aria-hidden="true"></div>
+
+    <div class="hero-vinheta" aria-hidden="true"></div>
+
+    <div class="hero-conteudo">
+      <div class="logo-cinematica">
+      <div class="efeito-luz"></div>
+      <div class="simbolo-logo">
+        <span class="anel"></span>
+        <span class="corte"></span>
+        <h1>PH</h1>
+      </div>
+      <div class="texto-logo">
+        <h2>PH Creative</h2>
+        <p>Visuais que inspiram</p>
+      </div>
+    </div>
+
+    <p class="descricao-hero">
+      Catálogo de artes, logos, banners e capas por R$ 30, além de criação de sites para marcas que querem parecer maiores.
+    </p>
+
+    <div class="hero-actions">
+      <a href="./loja.html" class="botao-hero">Loja</a>
+      <a href="./orcamento.html#servicosSites" class="botao-hero botao-secundario">Peça seu site</a>
+    </div>
+
+    </div>
+  </header>
+
+  <main>
+    <section id="loja" class="secao-destaque">
+      <div class="cabecalho-secao">
+        <span class="tag-mini">Loja</span>
+        <h2>Catálogo da loja</h2>
+        <p>Veja as categorias da loja e solicite modelos pelo WhatsApp. Qualquer serviço do catálogo custa R$ 30 e pode ser personalizado com nome, texto, cor, fundo e informações principais.</p>
+      </div>
+
+      <div class="grade-produtos-home manutencao-home-grid">
+        <article class="produto-home destaque-produto">
+          <span class="produto-tag">R$ 30</span>
+          <h3>Artes Publicitárias</h3>
+          <p>Modelos para propaganda, divulgação, anúncio, campanha e apresentação de marca.</p>
+          <strong>R$ 30</strong>
+        </article>
+        <article class="produto-home">
+          <h3>Logos</h3>
+          <p>Modelos de logo para personalizar nome, cor, fundo e estilo visual.</p>
+          <strong>R$ 30</strong>
+        </article>
+        <article class="produto-home">
+          <h3>Banners</h3>
+          <p>Banners comerciais, promocionais e modelos para divulgação de produtos ou serviços.</p>
+          <strong>R$ 30</strong>
+        </article>
+        <article class="produto-home">
+          <h3>Capas</h3>
+          <p>Capas para redes sociais, perfis, WhatsApp, YouTube, lojas e páginas profissionais.</p>
+          <strong>R$ 30</strong>
+        </article>
+      </div>
+
+      <a href="./loja.html" class="botao-orcamento" >Abrir loja</a>
+    </section>
+
+    <section id="caminhos">
+      <div class="cabecalho-secao">
+        <span class="tag-mini">Escolha o caminho</span>
+        <h2>O cliente decide como quer começar</h2>
+        <p>Escolha entre abrir o catálogo da loja, solicitar criação de site ou falar diretamente pelo WhatsApp.</p>
+      </div>
+
+      <div class="cards-caminhos">
+        <article class="caminho-card">
+          <span class="numero-card">01</span>
+          <h3>Catálogo da loja</h3>
+          <p>Artes, logos, banners e capas por R$ 30, com personalização pelo WhatsApp.</p>
+          <a href="./loja.html" >Abrir loja</a>
+        </article>
+
+        <article class="caminho-card">
+          <span class="numero-card">02</span>
+          <h3>Peça seu site</h3>
+          <p>Para quem precisa de página, landing page, visual premium, carrinho, avaliações ou automações.</p>
+          <a href="./orcamento.html#servicosSites">Pedir site</a>
+        </article>
+
+        <article class="caminho-card">
+          <span class="numero-card">03</span>
+          <h3>Serviços personalizados</h3>
+          <p>Serviços de design, logos, banners e capas podem ser solicitados pela loja ou pelo WhatsApp.</p>
+          <a href="./loja.html" >Abrir loja</a>
+        </article>
+      </div>
+    </section>
+
+    <section id="sobre">
+      <h2>Sobre</h2>
+      <p>
+        A PH Creative é um projeto criativo independente, desenvolvido por Paulo Henrique, com foco em criação de sites profissionais,
+        design visual, identidade para marcas, automações com Inteligência Artificial e soluções digitais com estética moderna e cinematográfica.
+      </p>
+    </section>
+
+    <section id="servicos">
+      <h2>Serviços principais</h2>
+      <div class="categorias-servicos">
+        <div class="categoria-card">
+          <h3>Sites e soluções digitais</h3>
+          <ul>
+            <li>Criação de sites profissionais</li>
+            <li>Landing pages para vendas</li>
+            <li>Sites em HTML, CSS e JavaScript</li>
+            <li>Sistema de avaliações e comentários</li>
+            <li>Botão e pedido automático pelo WhatsApp</li>
+            <li>Design responsivo para celular</li>
+          </ul>
+          <a href="./orcamento.html#servicosSites" class="link-card">Montar meu site</a>
+        </div>
+
+        <div class="categoria-card">
+          <h3>Design sob atendimento</h3>
+          <ul>
+            <li>Logos 2D, 3D e cinematográficas</li>
+            <li>Artes publicitárias prontas por plano</li>
+            <li>Banners personalizados</li>
+            <li>Capas para plataformas diferentes</li>
+            <li>Pacotes de identidade visual</li>
+            <li>Atendimento pelo WhatsApp para modelos da loja</li>
+          </ul>
+          <a href="./loja.html" class="link-card" >Abrir loja</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <h2>Como funciona</h2>
+      <div class="passos">
+        <div><span>1</span><h3>Escolha</h3><p>O cliente escolhe um produto da loja ou solicita um site personalizado.</p></div>
+        <div><span>2</span><h3>Preencha</h3><p>Ele informa nome da marca, cores, referências e detalhes do pedido.</p></div>
+        <div><span>3</span><h3>Envie</h3><p>O site monta a mensagem e envia tudo organizado pelo WhatsApp.</p></div>
+      </div>
+    </section>
+
+    <section id="avaliacoes">
+      <h2>Avaliações</h2>
+      <div class="resumo-avaliacoes-section">
+        <div class="nota-avaliacoes-section">
+          <span class="numero-avaliacao-section" id="mediaAvaliacoes">0.0</span>
+          <span class="estrelas-avaliacao-section" id="estrelasMedia">☆☆☆☆☆</span>
+        </div>
+        <p id="textoAvaliacoes">Carregando avaliações da PH Creative...</p>
+      </div>
+      <p>Veja comentários de clientes ou deixe sua opinião sobre os serviços da PH Creative.</p>
+      <a href="./comentarios.html" class="botao-orcamento">Ver ou deixar comentário</a>
+    </section>
+
+    <section id="contato">
+      <h2>Contato</h2>
+      <p>Entre em contato para criar um site, comprar um modelo da loja, montar um pacote ou solicitar uma solução digital personalizada.</p>
+      <p>WhatsApp: <a href="https://wa.me/5521984150295" target="_blank" rel="noopener noreferrer">21 98415-0295</a></p>
+      <p>Instagram: <a href="https://instagram.com/phcreative.ofc" target="_blank" rel="noopener noreferrer">@phcreative.ofc</a></p>
+      <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61590120778292" target="_blank" rel="noopener noreferrer">PH Creative</a></p>
+      <p>E-mail: <a href="mailto:contato@phcreativenet.org">contato@phcreativenet.org</a></p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 PH Creative. Loja e sites sob medida.</p>
+  </footer>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGaAMXH6JZvkxTjOQswClherBNpO8OlyY",
+      authDomain: "ph-creative.firebaseapp.com",
+      projectId: "ph-creative",
+      storageBucket: "ph-creative.firebasestorage.app",
+      messagingSenderId: "838725389820",
+      appId: "1:838725389820:web:e361e5c021ae6593277679"
+    };
+
+    try {
+      const app = initializeApp(firebaseConfig);
+      const db = getFirestore(app);
+      const mediaAvaliacoes = document.getElementById("mediaAvaliacoes");
+      const estrelasMedia = document.getElementById("estrelasMedia");
+      const textoAvaliacoes = document.getElementById("textoAvaliacoes");
+
+      function montarEstrelas(media) {
+        const estrelasCheias = Math.round(media);
+        return "★".repeat(estrelasCheias) + "☆".repeat(5 - estrelasCheias);
+      }
+
+      onSnapshot(collection(db, "comentarios"), (snapshot) => {
+        const avaliacoes = [];
+        snapshot.forEach((doc) => {
+          const nota = Number(doc.data().avaliacao);
+          if (nota >= 1 && nota <= 5) avaliacoes.push(nota);
+        });
+
+        if (!avaliacoes.length) {
+          mediaAvaliacoes.innerText = "0.0";
+          estrelasMedia.innerText = "☆☆☆☆☆";
+          textoAvaliacoes.innerText = "Ainda não há avaliações com estrelas. Seja o primeiro a avaliar.";
+          return;
+        }
+
+        const media = avaliacoes.reduce((total, nota) => total + nota, 0) / avaliacoes.length;
+        mediaAvaliacoes.innerText = media.toFixed(1);
+        estrelasMedia.innerText = montarEstrelas(media);
+        textoAvaliacoes.innerText = avaliacoes.length === 1 ? "1 avaliação de cliente da PH Creative." : `${avaliacoes.length} avaliações de clientes da PH Creative.`;
+      }, () => {
+        textoAvaliacoes.innerText = "Não foi possível carregar as avaliações agora.";
+      });
+    } catch (erro) {
+      console.warn("Avaliações não carregadas:", erro);
+    }
+  </script>
+  <script src="./script.js"></script>
+</body>
+</html>

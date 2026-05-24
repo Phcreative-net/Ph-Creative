@@ -1,0 +1,21 @@
+PASTA DA LOJA - PH CREATIVE
+
+Esta informação é apenas para organização interna.
+Não aparece para o público no site.
+
+Coloque suas imagens assim:
+
+img/loja/artes/01.jpg
+img/loja/artes/02.jpg
+
+img/loja/logos/01.jpg
+img/loja/logos/02.jpg
+
+img/loja/banners/01.jpg
+img/loja/banners/02.jpg
+
+img/loja/capas/01.jpg
+img/loja/capas/02.jpg
+
+Formatos aceitos: jpg, jpeg, png, webp.
+Use nomes : 01, 02, 03, até 20.

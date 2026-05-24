@@ -1,0 +1,2022 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Monte seu Site ou Design | PH Creative</title>
+  <meta name="description" content="Monte seu site, design, identidade visual ou pedido personalizado com a PH Creative e envie tudo pelo WhatsApp." />
+  <meta name="theme-color" content="#050507" />
+
+  <style>
+    /* =========================
+       PH CREATIVE — ORÇAMENTO PREMIUM
+       Arquivo único: HTML + CSS + JS
+       ========================= */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold: #d4af37;
+      --gold-light: #ffe89a;
+      --gold-soft: #f5d76e;
+      --gold-dark: #9f7c18;
+      --bg: #050507;
+      --bg-2: #09090d;
+      --panel: rgba(20, 20, 28, 0.72);
+      --panel-2: rgba(11, 11, 15, 0.84);
+      --card: rgba(24, 24, 33, 0.78);
+      --card-hover: rgba(31, 31, 43, 0.92);
+      --line: rgba(212, 175, 55, 0.18);
+      --line-strong: rgba(245, 215, 110, 0.42);
+      --text: #f7f7f7;
+      --muted: #b9b9c4;
+      --muted-2: #8e8e99;
+      --danger: #ff5c5c;
+      --ok: #60ffa7;
+      --radius-xl: 28px;
+      --radius-lg: 22px;
+      --radius-md: 16px;
+      --shadow: 0 24px 70px rgba(0, 0, 0, 0.48);
+      --shadow-gold: 0 0 34px rgba(212, 175, 55, 0.14);
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      min-height: 100vh;
+      color: var(--text);
+      font-family: Arial, Helvetica, sans-serif;
+      line-height: 1.6;
+      overflow-x: hidden;
+      background:
+        radial-gradient(circle at 12% 8%, rgba(245, 215, 110, 0.17), transparent 30%),
+        radial-gradient(circle at 88% 18%, rgba(212, 175, 55, 0.10), transparent 32%),
+        radial-gradient(circle at 55% 92%, rgba(245, 215, 110, 0.08), transparent 35%),
+        linear-gradient(180deg, #050507 0%, #0b0b0f 44%, #050507 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -3;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.022) 1px, transparent 1px);
+      background-size: 72px 72px;
+      mask-image: linear-gradient(to bottom, black 0%, transparent 92%);
+      -webkit-mask-image: linear-gradient(to bottom, black 0%, transparent 92%);
+      opacity: 0.72;
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      inset: -20%;
+      z-index: -4;
+      pointer-events: none;
+      background:
+        conic-gradient(from 210deg at 50% 50%,
+          transparent 0deg,
+          rgba(212, 175, 55, 0.10) 62deg,
+          transparent 120deg,
+          rgba(245, 215, 110, 0.075) 220deg,
+          transparent 320deg);
+      filter: blur(68px);
+      animation: luzAmbiente 18s ease-in-out infinite alternate;
+      opacity: 0.9;
+    }
+
+    ::selection {
+      color: #050507;
+      background: var(--gold-light);
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button,
+    input,
+    textarea,
+    select {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+    }
+
+    .page {
+      width: min(1220px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 28px 0 36px;
+    }
+
+    /* =========================
+       TOPO
+       ========================= */
+
+    .hero-orcamento {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(212, 175, 55, 0.20);
+      border-radius: 34px;
+      padding: clamp(28px, 5vw, 58px);
+      background:
+        radial-gradient(circle at 16% 18%, rgba(245, 215, 110, 0.16), transparent 34%),
+        radial-gradient(circle at 85% 30%, rgba(212, 175, 55, 0.11), transparent 34%),
+        linear-gradient(135deg, rgba(21, 21, 28, 0.90), rgba(7, 7, 10, 0.96));
+      box-shadow: var(--shadow), var(--shadow-gold);
+      margin-bottom: 28px;
+      isolation: isolate;
+    }
+
+    .hero-orcamento::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(120deg, transparent 0%, rgba(255, 232, 154, 0.06) 46%, transparent 58%),
+        radial-gradient(circle at 50% 0%, rgba(255, 255, 255, 0.07), transparent 46%);
+      pointer-events: none;
+      opacity: 0.85;
+    }
+
+    .hero-orcamento::after {
+      content: "PH";
+      position: absolute;
+      right: -24px;
+      bottom: -62px;
+      z-index: -1;
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      font-size: clamp(8rem, 22vw, 18rem);
+      letter-spacing: -0.16em;
+      color: rgba(245, 215, 110, 0.035);
+      text-shadow: 0 0 52px rgba(212, 175, 55, 0.14);
+      pointer-events: none;
+    }
+
+    .nav-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 42px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .brand-mini {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      color: var(--gold-light);
+      font-family: Georgia, "Times New Roman", serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -2px;
+      background:
+        linear-gradient(#09090d, #09090d) padding-box,
+        linear-gradient(135deg, var(--gold-dark), #fff3bd, var(--gold)) border-box;
+      border: 1px solid transparent;
+      box-shadow: 0 0 24px rgba(212, 175, 55, 0.22);
+    }
+
+    .brand-mini strong {
+      display: block;
+      font-size: 1.02rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .brand-mini span {
+      display: block;
+      color: var(--muted);
+      font-size: 0.83rem;
+      margin-top: -2px;
+    }
+
+    .link-voltar {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 16px;
+      border-radius: 999px;
+      color: var(--gold-light);
+      text-decoration: none;
+      border: 1px solid rgba(212, 175, 55, 0.24);
+      background: rgba(255, 255, 255, 0.04);
+      transition: 0.28s ease;
+      white-space: nowrap;
+    }
+
+    .link-voltar:hover {
+      transform: translateY(-2px);
+      border-color: var(--line-strong);
+      background: rgba(245, 215, 110, 0.075);
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 360px;
+      gap: clamp(22px, 4vw, 48px);
+      align-items: end;
+      position: relative;
+      z-index: 1;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      width: fit-content;
+      margin-bottom: 16px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--gold-light);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      background: rgba(212, 175, 55, 0.06);
+    }
+
+    .eyebrow::before {
+      content: "";
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold-light);
+      box-shadow: 0 0 18px rgba(245, 215, 110, 0.75);
+    }
+
+    .hero-orcamento h1 {
+      max-width: 780px;
+      font-size: clamp(2.55rem, 7vw, 5.2rem);
+      line-height: 0.95;
+      letter-spacing: -0.055em;
+      margin-bottom: 20px;
+    }
+
+    .hero-orcamento h1 span {
+      background: linear-gradient(90deg, #fff 0%, var(--gold-light) 48%, var(--gold) 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 40px rgba(212, 175, 55, 0.18);
+    }
+
+    .hero-copy {
+      max-width: 730px;
+      color: #d7d7dd;
+      font-size: clamp(1rem, 2vw, 1.18rem);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 26px;
+    }
+
+    .hero-resumo {
+      position: relative;
+      padding: 24px;
+      border-radius: 26px;
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      background:
+        radial-gradient(circle at top right, rgba(245, 215, 110, 0.12), transparent 42%),
+        rgba(5, 5, 7, 0.48);
+      box-shadow:
+        0 18px 40px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
+    }
+
+    .hero-resumo p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      margin-bottom: 15px;
+    }
+
+    .metricas {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .metrica {
+      padding: 13px 10px;
+      border-radius: 18px;
+      text-align: center;
+      background: rgba(255, 255, 255, 0.045);
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    .metrica strong {
+      display: block;
+      color: var(--gold-light);
+      font-size: 1.2rem;
+      line-height: 1.1;
+    }
+
+    .metrica span {
+      display: block;
+      color: var(--muted-2);
+      font-size: 0.76rem;
+      margin-top: 3px;
+    }
+
+    /* =========================
+       BOTÕES
+       ========================= */
+
+    .btn {
+      position: relative;
+      overflow: hidden;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      gap: 9px;
+      min-height: 44px;
+      padding: 12px 18px;
+      border-radius: 999px;
+      cursor: pointer;
+      text-decoration: none;
+      color: #050507;
+      font-weight: 800;
+      letter-spacing: 0.01em;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+      box-shadow:
+        0 12px 26px rgba(212, 175, 55, 0.24),
+        0 0 28px rgba(245, 215, 110, 0.18);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, opacity 0.25s ease;
+    }
+
+    .btn::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      transform: translateX(-120%);
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.42), transparent);
+      transition: transform 0.6s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow:
+        0 18px 32px rgba(212, 175, 55, 0.30),
+        0 0 44px rgba(245, 215, 110, 0.24);
+    }
+
+    .btn:hover::after {
+      transform: translateX(120%);
+    }
+
+    .btn:disabled {
+      cursor: not-allowed;
+      opacity: 0.58;
+      transform: none;
+      box-shadow: none;
+    }
+
+    .btn-secundario {
+      color: var(--gold-light);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(212, 175, 55, 0.22);
+      box-shadow: none;
+    }
+
+    .btn-secundario:hover {
+      background: rgba(245, 215, 110, 0.08);
+      box-shadow: 0 0 28px rgba(212, 175, 55, 0.10);
+    }
+
+    .btn-perigo {
+      color: #fff;
+      background: rgba(255, 92, 92, 0.10);
+      border: 1px solid rgba(255, 92, 92, 0.22);
+      box-shadow: none;
+    }
+
+    .btn-perigo:hover {
+      background: rgba(255, 92, 92, 0.16);
+      box-shadow: 0 0 26px rgba(255, 92, 92, 0.08);
+    }
+
+    .btn-whatsapp {
+      width: 100%;
+      min-height: 52px;
+    }
+
+    /* =========================
+       LAYOUT
+       ========================= */
+
+    .grid-principal {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 380px;
+      gap: 28px;
+      align-items: start;
+    }
+
+    .coluna-servicos,
+    .coluna-carrinho {
+      min-width: 0;
+    }
+
+    .painel {
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 24px;
+      padding: clamp(20px, 3vw, 28px);
+      border-radius: var(--radius-xl);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      background:
+        linear-gradient(180deg, rgba(24, 24, 33, 0.82), rgba(11, 11, 16, 0.88));
+      box-shadow: var(--shadow);
+    }
+
+    .painel::before {
+      content: "";
+      position: absolute;
+      width: 260px;
+      height: 260px;
+      top: -120px;
+      right: -120px;
+      background: radial-gradient(circle, rgba(245, 215, 110, 0.14), transparent 67%);
+      pointer-events: none;
+    }
+
+    .painel::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: linear-gradient(120deg, transparent, rgba(255, 232, 154, 0.035), transparent);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .painel:hover::after {
+      opacity: 1;
+    }
+
+    .painel > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cabecalho-painel {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      align-items: flex-end;
+      margin-bottom: 20px;
+    }
+
+    .cabecalho-painel h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      line-height: 1.05;
+      margin-bottom: 8px;
+      letter-spacing: -0.03em;
+    }
+
+    .cabecalho-painel p {
+      color: var(--muted);
+      font-size: 0.96rem;
+      max-width: 620px;
+    }
+
+    .tag-secao {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      color: var(--gold-light);
+      font-size: 0.77rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.19);
+      white-space: nowrap;
+    }
+
+    .tag-secao::before {
+      content: "";
+      width: 28px;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      box-shadow: 0 0 14px rgba(245, 215, 110, 0.4);
+    }
+
+    .servicos {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .servico {
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      min-height: 245px;
+      padding: 20px;
+      border-radius: 22px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      background:
+        radial-gradient(circle at top left, rgba(245, 215, 110, 0.10), transparent 38%),
+        linear-gradient(180deg, rgba(31, 31, 42, 0.78), rgba(14, 14, 20, 0.90));
+      box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.04),
+        0 16px 34px rgba(0, 0, 0, 0.26);
+      transition: 0.28s ease;
+    }
+
+    .servico::before {
+      content: "";
+      position: absolute;
+      inset: 0 auto 0 0;
+      width: 4px;
+      background: linear-gradient(180deg, var(--gold-light), var(--gold), var(--gold-dark));
+      opacity: 0.92;
+    }
+
+    .servico::after {
+      content: "";
+      position: absolute;
+      top: -60%;
+      left: -55%;
+      width: 72%;
+      height: 180%;
+      transform: rotate(20deg);
+      background: linear-gradient(90deg, transparent, rgba(255, 232, 154, 0.08), transparent);
+      transition: left 0.7s ease;
+      pointer-events: none;
+    }
+
+    .servico:hover {
+      transform: translateY(-6px);
+      border-color: rgba(245, 215, 110, 0.36);
+      background:
+        radial-gradient(circle at top left, rgba(245, 215, 110, 0.14), transparent 38%),
+        linear-gradient(180deg, rgba(35, 35, 48, 0.88), rgba(15, 15, 22, 0.96));
+      box-shadow:
+        0 22px 45px rgba(0, 0, 0, 0.36),
+        0 0 34px rgba(212, 175, 55, 0.10);
+    }
+
+    .servico:hover::after {
+      left: 115%;
+    }
+
+    .servico-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .servico h3 {
+      font-size: 1.12rem;
+      line-height: 1.2;
+      letter-spacing: -0.01em;
+      color: #ffffff;
+    }
+
+    .servico p {
+      color: #c7c7d0;
+      font-size: 0.93rem;
+      margin-bottom: 16px;
+    }
+
+    .servico .icone {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 38px;
+      height: 38px;
+      border-radius: 14px;
+      color: var(--gold-light);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      background: rgba(5, 5, 7, 0.36);
+      box-shadow: inset 0 0 14px rgba(245, 215, 110, 0.035);
+    }
+
+    .preco {
+      margin-top: auto;
+      font-size: 1.65rem;
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: -0.04em;
+      color: var(--gold-light);
+      text-shadow: 0 0 18px rgba(212, 175, 55, 0.18);
+    }
+
+    .prazo {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      width: fit-content;
+      margin: 13px 0 16px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      color: var(--gold-light);
+      font-size: 0.82rem;
+      font-weight: 800;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+    }
+
+    .prazo::before {
+      content: "⏱";
+      font-size: 0.92rem;
+    }
+
+    .servico .btn {
+      width: fit-content;
+      min-width: 118px;
+      padding: 10px 15px;
+      min-height: 40px;
+      font-size: 0.9rem;
+    }
+
+    .servico.destaque {
+      border-color: rgba(245, 215, 110, 0.34);
+      background:
+        radial-gradient(circle at top left, rgba(255, 232, 154, 0.18), transparent 44%),
+        radial-gradient(circle at bottom right, rgba(212, 175, 55, 0.09), transparent 42%),
+        linear-gradient(180deg, rgba(37, 34, 27, 0.76), rgba(12, 12, 17, 0.94));
+      box-shadow:
+        0 22px 48px rgba(0, 0, 0, 0.42),
+        0 0 38px rgba(212, 175, 55, 0.12);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 9px;
+      border-radius: 999px;
+      color: #050507;
+      font-size: 0.68rem;
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      white-space: nowrap;
+    }
+
+    /* =========================
+       BRIEFING
+       ========================= */
+
+    .briefing {
+      margin-top: 22px;
+      padding: 24px;
+      border-radius: 24px;
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      background:
+        radial-gradient(circle at top left, rgba(245, 215, 110, 0.10), transparent 42%),
+        rgba(255, 255, 255, 0.045);
+    }
+
+    .briefing h3 {
+      font-size: 1.42rem;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+
+    .texto-apoio {
+      color: var(--muted);
+      font-size: 0.95rem;
+      margin-bottom: 18px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .campo-form {
+      margin-bottom: 16px;
+    }
+
+    .campo-form.full {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: #ffffff;
+      font-weight: 800;
+      font-size: 0.94rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      outline: none;
+      border-radius: 16px;
+      padding: 14px 15px;
+      color: #ffffff;
+      background: rgba(5, 5, 7, 0.58);
+      transition: 0.25s ease;
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+    }
+
+    textarea {
+      min-height: 134px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus,
+    select:focus {
+      border-color: rgba(245, 215, 110, 0.58);
+      box-shadow:
+        0 0 0 4px rgba(212, 175, 55, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.04);
+    }
+
+    .cores-container {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .cor-linha {
+      border-radius: 16px;
+      padding: 12px;
+      border: 1px solid rgba(212, 175, 55, 0.14);
+      background: rgba(5, 5, 7, 0.36);
+    }
+
+    .cor-linha label {
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-bottom: 7px;
+    }
+
+    .cor-linha input[type="color"] {
+      width: 100%;
+      height: 44px;
+      border: 0;
+      padding: 0;
+      border-radius: 12px;
+      cursor: pointer;
+      background: transparent;
+    }
+
+    .botoes-cores {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+
+    .botoes-cores .btn {
+      min-height: 40px;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+    }
+
+    .cores-salvas {
+      padding: 13px 14px;
+      min-height: 48px;
+      border-radius: 16px;
+      border: 1px solid rgba(212, 175, 55, 0.14);
+      color: #d6d6df;
+      background: rgba(212, 175, 55, 0.06);
+      word-break: break-word;
+    }
+
+    .amostra-cor {
+      display: inline-block;
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      margin: 0 7px -4px 0;
+      border: 1px solid rgba(255, 255, 255, 0.56);
+      box-shadow: 0 0 12px rgba(255, 255, 255, 0.08);
+    }
+
+    .envio-arquivos {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      margin-top: 4px;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      background:
+        radial-gradient(circle at top left, rgba(245, 215, 110, 0.10), transparent 48%),
+        rgba(212, 175, 55, 0.055);
+    }
+
+    .envio-arquivos strong {
+      display: block;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .envio-arquivos p {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    /* =========================
+       CARRINHO
+       ========================= */
+
+    .carrinho {
+      position: sticky;
+      top: 18px;
+      padding: 0;
+      background:
+        linear-gradient(180deg, rgba(20, 20, 28, 0.92), rgba(8, 8, 12, 0.96));
+    }
+
+    .carrinho-header {
+      padding: 24px 24px 18px;
+      border-bottom: 1px solid rgba(212, 175, 55, 0.13);
+    }
+
+    .carrinho-header h2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      font-size: 1.55rem;
+      letter-spacing: -0.03em;
+    }
+
+    .contador {
+      display: inline-grid;
+      place-items: center;
+      min-width: 34px;
+      height: 34px;
+      padding: 0 9px;
+      border-radius: 999px;
+      color: #050507;
+      font-size: 0.9rem;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.22);
+    }
+
+    .carrinho-body {
+      padding: 20px 24px 24px;
+    }
+
+    .lista-carrinho {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+
+    .vazio {
+      padding: 16px;
+      border-radius: 18px;
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px dashed rgba(212, 175, 55, 0.18);
+      text-align: center;
+    }
+
+    .item-carrinho {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(212, 175, 55, 0.13);
+      background: rgba(31, 31, 42, 0.72);
+      transition: 0.25s ease;
+    }
+
+    .item-carrinho:hover {
+      border-color: rgba(245, 215, 110, 0.28);
+      transform: translateX(2px);
+    }
+
+    .item-carrinho strong {
+      display: block;
+      font-size: 0.93rem;
+      color: #ffffff;
+      line-height: 1.25;
+      margin-bottom: 3px;
+    }
+
+    .item-carrinho span {
+      color: var(--gold-light);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    .remover {
+      display: grid;
+      place-items: center;
+      flex: 0 0 auto;
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      color: #ffffff;
+      cursor: pointer;
+      background: rgba(255, 92, 92, 0.12);
+      border: 1px solid rgba(255, 92, 92, 0.22);
+      transition: 0.2s ease;
+    }
+
+    .remover:hover {
+      transform: scale(1.06);
+      background: rgba(255, 92, 92, 0.20);
+    }
+
+    .resumos {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .resumo-box {
+      padding: 16px;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      background:
+        radial-gradient(circle at top right, rgba(245, 215, 110, 0.10), transparent 48%),
+        rgba(255, 255, 255, 0.045);
+    }
+
+    .resumo-box p {
+      color: var(--muted);
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .resumo-box h3 {
+      color: var(--gold-light);
+      font-size: 1.9rem;
+      line-height: 1.1;
+      letter-spacing: -0.05em;
+    }
+
+    .resumo-box.prazo-box h3 {
+      font-size: 1.45rem;
+    }
+
+    .pagamento-box,
+    .pix-box {
+      margin: 18px 0;
+      padding: 17px;
+      border-radius: 20px;
+      border: 1px solid rgba(212, 175, 55, 0.15);
+      background: rgba(255, 255, 255, 0.04);
+    }
+
+    .pagamento-box {
+      background:
+        radial-gradient(circle at top right, rgba(245, 215, 110, 0.10), transparent 48%),
+        rgba(255, 255, 255, 0.04);
+    }
+
+    .pagamento-box p,
+    .pix-box p {
+      color: var(--muted);
+      font-size: 0.93rem;
+      margin-bottom: 10px;
+    }
+
+    .pagamento-box label {
+      margin-bottom: 10px;
+    }
+
+    .pagamento-box select,
+    .pagamento-box textarea {
+      margin-bottom: 10px;
+    }
+
+    .pagamento-box textarea {
+      min-height: 92px;
+      resize: vertical;
+    }
+
+    .chave-pix {
+      margin-bottom: 12px;
+      padding: 13px;
+      border-radius: 15px;
+      color: var(--gold-light);
+      font-weight: 900;
+      text-align: center;
+      letter-spacing: 0.02em;
+      word-break: break-all;
+      background: rgba(5, 5, 7, 0.60);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+    }
+
+    .botoes-final {
+      display: grid;
+      gap: 10px;
+    }
+
+    .aviso {
+      margin-top: 14px;
+      color: var(--muted-2);
+      font-size: 0.86rem;
+    }
+
+    .nota-importante {
+      margin-top: 18px;
+      padding: 14px;
+      border-radius: 17px;
+      color: #d8d8df;
+      background: rgba(245, 215, 110, 0.055);
+      border: 1px solid rgba(212, 175, 55, 0.14);
+      font-size: 0.88rem;
+    }
+
+    /* =========================
+       TOAST
+       ========================= */
+
+    .toast {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 50;
+      width: min(360px, calc(100% - 36px));
+      padding: 14px 16px;
+      border-radius: 18px;
+      color: #ffffff;
+      border: 1px solid rgba(245, 215, 110, 0.26);
+      background:
+        radial-gradient(circle at top left, rgba(245, 215, 110, 0.14), transparent 48%),
+        rgba(9, 9, 13, 0.96);
+      box-shadow: 0 20px 45px rgba(0, 0, 0, 0.42), 0 0 28px rgba(212, 175, 55, 0.12);
+      transform: translateY(24px);
+      opacity: 0;
+      pointer-events: none;
+      transition: 0.28s ease;
+    }
+
+    .toast.visivel {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* =========================
+       RODAPÉ
+       ========================= */
+
+    .rodape {
+      margin-top: 28px;
+      padding: 22px;
+      text-align: center;
+      color: var(--muted-2);
+      font-size: 0.9rem;
+    }
+
+    /* =========================
+       RESPONSIVO
+       ========================= */
+
+    @media (max-width: 1060px) {
+      .hero-grid,
+      .grid-principal {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-resumo {
+        max-width: 520px;
+      }
+
+      .carrinho {
+        position: static;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        width: min(100% - 24px, 1220px);
+        padding-top: 14px;
+      }
+
+      .nav-topo,
+      .cabecalho-painel,
+      .envio-arquivos {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .link-voltar {
+        width: 100%;
+        justify-content: center;
+      }
+
+      .metricas {
+        grid-template-columns: 1fr;
+      }
+
+      .servicos,
+      .form-grid,
+      .cores-container {
+        grid-template-columns: 1fr;
+      }
+
+      .servico {
+        min-height: auto;
+      }
+
+      .hero-actions .btn {
+        width: 100%;
+      }
+    }
+
+    @media (max-width: 430px) {
+      .hero-orcamento,
+      .painel {
+        border-radius: 24px;
+      }
+
+      .brand-mini span {
+        display: none;
+      }
+
+      .carrinho-header,
+      .carrinho-body {
+        padding-left: 18px;
+        padding-right: 18px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+
+    @keyframes luzAmbiente {
+      from {
+        transform: rotate(0deg) scale(1);
+        opacity: 0.72;
+      }
+
+      to {
+        transform: rotate(10deg) scale(1.08);
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="hero-orcamento">
+      <div class="nav-topo">
+        <div class="brand-mini">
+          <div class="brand-mark">PH</div>
+          <div>
+            <strong>PH Creative</strong>
+            <span>Sites • Landing Pages • Automações • IA</span>
+          </div>
+        </div>
+
+        <a href="./index.html" class="link-voltar">← Voltar para o site</a>
+      </div>
+
+      <div class="hero-grid">
+        <div>
+          <div class="eyebrow">Site sob medida</div>
+
+          <h1>Peça seu site <span>premium.</span></h1>
+
+          <p class="hero-copy">
+            Escolha os recursos do seu site, informe os detalhes da marca e envie o pedido pronto para o WhatsApp, com valor estimado e informações organizadas.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn" href="#servicosSites">Peça seu site</a>
+            <a class="btn btn-secundario" href="#briefing">Preencher briefing</a>
+            <a class="btn btn-secundario" href="./loja.html" >Loja em breve</a>
+          </div>
+        </div>
+
+        <aside class="hero-resumo" aria-label="Resumo de benefícios">
+          <p>
+            Página separada para pedidos de site sob medida, com briefing completo antes do atendimento.
+          </p>
+
+          <div class="metricas">
+            <div class="metrica">
+              <strong>1</strong>
+              <span>Caminho</span>
+            </div>
+
+            <div class="metrica">
+              <strong>1</strong>
+              <span>Pedido pronto</span>
+            </div>
+
+            <div class="metrica">
+              <strong>WhatsApp</strong>
+              <span>Envio direto</span>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </header>
+
+    <main class="grid-principal">
+      <div class="coluna-servicos">
+        <section class="painel" id="servicosSites">
+          <div class="cabecalho-painel">
+            <div>
+              <h2>Peça seu Site</h2>
+              <p>Escolha estrutura, visual, interações e recursos para solicitar um site profissional.</p>
+            </div>
+
+            <span class="tag-secao">Desenvolvimento</span>
+          </div>
+
+          <div class="servicos" id="listaSites"></div>
+
+          <div class="briefing" id="briefing">
+            <h3>Briefing do site</h3>
+            <p class="texto-apoio">
+              Essas informações ajudam a entender o estilo, a marca e a necessidade do site antes do atendimento.
+            </p>
+
+            <div class="form-grid">
+              <div class="campo-form">
+                <label for="nomeMarca">Nome da marca ou empresa</label>
+                <input type="text" id="nomeMarca" placeholder="Exemplo: PH Creative" autocomplete="organization" />
+              </div>
+
+              <div class="campo-form">
+                <label for="tipoProjeto">Tipo de projeto</label>
+                <select id="tipoProjeto">
+                  <option value="Não informado">Selecione uma opção</option>
+                  <option>Site profissional</option>
+                  <option>Landing page</option>
+                  <option>Loja online</option>
+                  <option>Site catálogo</option>
+                  <option>Página de vendas</option>
+                  <option>Automação com IA</option>
+                  <option>Sistema web / painel</option>
+                  <option>Outro tipo de site</option>
+                </select>
+              </div>
+
+              <div class="campo-form full">
+                <label>Paleta de cores desejada</label>
+                <p class="texto-apoio">
+                  O cliente pode escolher até 3 cores. Também pode deixar em branco para você definir a direção visual.
+                </p>
+
+                <div class="cores-container" id="coresContainer"></div>
+
+                <div class="botoes-cores">
+                  <button class="btn btn-secundario" type="button" id="btnAdicionarCor">+ Adicionar cor</button>
+                  <button class="btn" type="button" id="btnSalvarCores">Salvar cores</button>
+                </div>
+
+                <div class="cores-salvas" id="coresSalvas">
+                  Nenhuma cor salva. O cliente pode deixar sem escolher cores.
+                </div>
+              </div>
+
+              <div class="campo-form full">
+                <label for="descricaoProjeto">Explique como deseja seu site</label>
+                <textarea id="descricaoProjeto" placeholder="Exemplo: quero um site moderno para apresentar meus serviços, com botão de WhatsApp, visual premium, avaliações, loja e identidade visual forte."></textarea>
+              </div>
+            </div>
+
+            <div class="envio-arquivos">
+              <div>
+                <strong>Arquivos e referências visuais</strong>
+                <p>
+                  Envie materiais úteis para montar o site: logo atual, fotos da marca, textos, prints, referências, PDFs, imagens de produtos e arquivos da empresa.
+                </p>
+              </div>
+
+              <a href="#" class="btn btn-secundario" id="btnArquivos">Enviar arquivos</a>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <aside class="coluna-carrinho">
+        <section class="painel carrinho" aria-label="Carrinho do orçamento">
+          <div class="carrinho-header">
+            <h2>
+              Carrinho
+              <span class="contador" id="contadorCarrinho">0</span>
+            </h2>
+          </div>
+
+          <div class="carrinho-body">
+            <div class="lista-carrinho" id="listaCarrinho">
+              <div class="vazio">Nenhum serviço selecionado ainda.</div>
+            </div>
+
+            <div class="resumos">
+              <div class="resumo-box">
+                <p>Total estimado</p>
+                <h3 id="total">R$ 0</h3>
+              </div>
+
+              <div class="resumo-box prazo-box">
+                <p>Prazo estimado</p>
+                <h3 id="prazoTotal">0 dias</h3>
+              </div>
+            </div>
+
+            <div class="pagamento-box">
+              <label for="formaPagamento">Forma de pagamento preferida</label>
+              <select id="formaPagamento">
+                <option value="Não informado">Selecione uma opção</option>
+                <option>Pix</option>
+                <option>Cartão de crédito</option>
+                <option>Cartão de débito</option>
+                <option>Dinheiro em mãos</option>
+              </select>
+
+              <label for="bancoPagamento">Banco ou carteira digital que pretende usar</label>
+              <select id="bancoPagamento">
+                <option value="Não informado">Selecione uma opção</option>
+                <option>Nubank</option>
+                <option>Itaú</option>
+                <option>Bradesco</option>
+                <option>Banco do Brasil</option>
+                <option>Caixa Econômica</option>
+                <option>Santander</option>
+                <option>Inter</option>
+                <option>C6 Bank</option>
+                <option>Mercado Pago</option>
+                <option>PicPay</option>
+                <option>PagBank</option>
+                <option>Neon</option>
+                <option>Outro banco ou carteira</option>
+              </select>
+
+
+              <p class="aviso">
+                Para cartão, não informe número do cartão, senha ou CVV pelo site. O pagamento será feito de forma segura no atendimento.
+              </p>
+            </div>
+
+            <div class="pix-box">
+              <p>Chave Pix disponível</p>
+              <div class="chave-pix" id="chavePix">+5521984150295</div>
+              <button class="btn btn-secundario" type="button" id="btnCopiarPix">Copiar chave Pix</button>
+
+              <p class="aviso">
+                O cliente pode escolher Pix, cartão de crédito, cartão de débito ou dinheiro em mãos.
+              </p>
+            </div>
+
+            <div class="botoes-final">
+              <button class="btn btn-whatsapp" type="button" id="btnWhatsApp">Enviar pedido no WhatsApp</button>
+              <button class="btn btn-perigo" type="button" id="btnLimpar">Limpar carrinho</button>
+            </div>
+
+            <p class="nota-importante">
+              O valor exibido é uma estimativa inicial. Projetos maiores podem ser ajustados conforme complexidade,
+              quantidade de páginas, automações, integrações e recursos especiais.
+            </p>
+          </div>
+        </section>
+      </aside>
+    </main>
+
+    <footer class="rodape">
+      <p>&copy; 2026 PH Creative. Todos os direitos reservados.</p>
+    </footer>
+  </div>
+
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script>
+    /* =========================
+       CONFIGURAÇÕES
+       ========================= */
+
+    const WHATSAPP_NUMERO = "5521984150295";
+    const PIX_CHAVE = "+5521984150295";
+
+    /*
+      Coloque aqui o link do seu Google Forms para receber arquivos.
+      Exemplo:
+      const LINK_GOOGLE_FORMS = "https://forms.gle/SEU-LINK-AQUI";
+    */
+    const LINK_GOOGLE_FORMS = "https://docs.google.com/forms/d/1W2qpawOZeScItVeGNdVJnGKAnauroNLT7HbNJiAHSBI/viewform";
+
+    /* =========================
+       SERVIÇOS
+       ========================= */
+
+    const servicos = {
+      sites: [
+        {
+          id: "html",
+          nome: "Estrutura HTML",
+          descricao: "Base da página, blocos, textos, organização e estrutura do conteúdo.",
+          preco: 300,
+          dias: 1,
+          icone: "⌘"
+        },
+        {
+          id: "css",
+          nome: "Visual CSS Premium",
+          descricao: "Cores, responsividade, acabamento visual e aparência profissional.",
+          preco: 400,
+          dias: 1,
+          icone: "◇"
+        },
+        {
+          id: "interacoes",
+          nome: "Experiência Interativa",
+          descricao: "JavaScript para botões, carrinho, formulários, animações e funções do site.",
+          preco: 500,
+          dias: 2,
+          icone: "✦"
+        },
+        {
+          id: "comentarios",
+          nome: "Sistema de Avaliações",
+          descricao: "Página para clientes deixarem comentários, notas e provas sociais.",
+          preco: 500,
+          dias: 1,
+          icone: "★"
+        },
+        {
+          id: "sistema-avancado",
+          nome: "Sistema Web Avançado",
+          descricao: "Recursos sob demanda, painel, lógica de sistema ou funcionalidades especiais.",
+          preco: 800,
+          dias: 3,
+          icone: "▣",
+          destaque: true,
+          badge: "Sob medida"
+        },
+        {
+          id: "automacao-ia",
+          nome: "Automação com IA",
+          descricao: "Automação com apoio de Inteligência Artificial para agilizar processos.",
+          preco: 1000,
+          dias: 3,
+          icone: "AI",
+          destaque: true,
+          badge: "Premium"
+        }
+      ],
+
+      design: [
+        {
+          id: "arte-redes",
+          nome: "Arte para Redes Sociais",
+          descricao: "Post profissional para Instagram, WhatsApp, anúncio ou divulgação.",
+          preco: 180,
+          dias: 1,
+          icone: "▧"
+        },
+        {
+          id: "edicao-imagem",
+          nome: "Edição de Imagem",
+          descricao: "Melhoria, ajuste, composição, tratamento ou transformação visual.",
+          preco: 200,
+          dias: 1,
+          icone: "✎"
+        },
+        {
+          id: "banner-publicitario",
+          nome: "Banner Publicitário",
+          descricao: "Arte comercial para apresentar serviços, produtos ou campanhas.",
+          preco: 250,
+          dias: 1,
+          icone: "▤"
+        },
+        {
+          id: "cena-ia",
+          nome: "Cena Cinemática com IA",
+          descricao: "Criação de imagem com IA, direção visual, atmosfera e acabamento premium.",
+          preco: 300,
+          dias: 1,
+          icone: "✦",
+          destaque: true,
+          badge: "Cinemático"
+        },
+        {
+          id: "identidade-essencial",
+          nome: "Identidade Essencial",
+          descricao: "Logo limpa em 2D, com nome, símbolo básico e aplicação inicial.",
+          preco: 700,
+          dias: 2,
+          icone: "PH"
+        },
+        {
+          id: "identidade-3d",
+          nome: "Identidade 3D Cinemática",
+          descricao: "Logo com profundidade, brilho, sombra e acabamento visual moderno.",
+          preco: 1200,
+          dias: 3,
+          icone: "3D",
+          destaque: true,
+          badge: "Destaque"
+        },
+        {
+          id: "logo-premium",
+          nome: "Logo Profissional Premium",
+          descricao: "Marca refinada, versões para fundo claro/escuro e acabamento mais exclusivo.",
+          preco: 1800,
+          dias: 5,
+          icone: "◆",
+          destaque: true,
+          badge: "Luxo"
+        }
+      ],
+
+      identidade: [
+        {
+          id: "id-basica",
+          nome: "Identidade Visual Base",
+          descricao: "Logo essencial, paleta de cores, fontes recomendadas e direção visual inicial.",
+          preco: 1500,
+          dias: 5,
+          icone: "01"
+        },
+        {
+          id: "id-intermediaria",
+          nome: "Identidade Visual Pro",
+          descricao: "Logo elaborada, variações, cores, fontes e modelos visuais para redes sociais.",
+          preco: 2500,
+          dias: 7,
+          icone: "02",
+          destaque: true,
+          badge: "Mais forte"
+        },
+        {
+          id: "id-profissional",
+          nome: "Identidade Visual Premium",
+          descricao: "Pacote completo com logo profissional, variações, paleta, fontes, modelos e guia visual.",
+          preco: 3500,
+          dias: 10,
+          icone: "03",
+          destaque: true,
+          badge: "Completo"
+        }
+      ]
+    };
+
+    /* =========================
+       ESTADO
+       ========================= */
+
+    let carrinho = carregarJSON("phc_carrinho", []);
+    let coresSalvasProjeto = carregarJSON("phc_cores", []);
+    const limiteCores = 3;
+
+    const elementos = {
+      listaSites: document.getElementById("listaSites"),
+      listaDesign: document.getElementById("listaDesign"),
+      listaIdentidade: document.getElementById("listaIdentidade"),
+      listaCarrinho: document.getElementById("listaCarrinho"),
+      contadorCarrinho: document.getElementById("contadorCarrinho"),
+      total: document.getElementById("total"),
+      prazoTotal: document.getElementById("prazoTotal"),
+      chavePix: document.getElementById("chavePix"),
+      coresContainer: document.getElementById("coresContainer"),
+      coresSalvas: document.getElementById("coresSalvas"),
+      toast: document.getElementById("toast"),
+      nomeMarca: document.getElementById("nomeMarca"),
+      tipoProjeto: document.getElementById("tipoProjeto"),
+      formaPagamento: document.getElementById("formaPagamento"),
+      bancoPagamento: document.getElementById("bancoPagamento"),
+      descricaoProjeto: document.getElementById("descricaoProjeto")
+    };
+
+    /* =========================
+       UTILIDADES
+       ========================= */
+
+    function carregarJSON(chave, fallback) {
+      try {
+        return JSON.parse(localStorage.getItem(chave)) ?? fallback;
+      } catch {
+        return fallback;
+      }
+    }
+
+    function salvarJSON(chave, valor) {
+      localStorage.setItem(chave, JSON.stringify(valor));
+    }
+
+    function formatarValor(valor) {
+      return valor.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL"
+      });
+    }
+
+    function formatarDias(dias) {
+      if (dias <= 0) return "0 dias";
+      if (dias === 1) return "1 dia";
+      return `${dias} dias`;
+    }
+
+    function mostrarToast(mensagem) {
+      elementos.toast.textContent = mensagem;
+      elementos.toast.classList.add("visivel");
+
+      clearTimeout(mostrarToast.timeout);
+      mostrarToast.timeout = setTimeout(() => {
+        elementos.toast.classList.remove("visivel");
+      }, 2600);
+    }
+
+    function encontrarServicoPorId(id) {
+      return servicos.sites.find((servico) => servico.id === id);
+    }
+
+    function escaparHTML(texto) {
+      return String(texto)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    /* =========================
+       RENDERIZAÇÃO DOS SERVIÇOS
+       ========================= */
+
+    function renderizarServicos(lista, container) {
+      container.innerHTML = lista.map((servico) => {
+        const jaAdicionado = carrinho.some((item) => item.id === servico.id);
+
+        return `
+          <article class="servico ${servico.destaque ? "destaque" : ""}">
+            <div class="servico-topo">
+              <div>
+                ${servico.badge ? `<span class="badge">${escaparHTML(servico.badge)}</span>` : ""}
+                <h3>${escaparHTML(servico.nome)}</h3>
+              </div>
+              <span class="icone">${escaparHTML(servico.icone)}</span>
+            </div>
+
+            <p>${escaparHTML(servico.descricao)}</p>
+
+            <div class="preco">${formatarValor(servico.preco)}</div>
+            <div class="prazo">Prazo estimado: ${formatarDias(servico.dias)}</div>
+
+            <button
+              class="btn ${jaAdicionado ? "btn-secundario" : ""}"
+              type="button"
+              data-servico-id="${servico.id}">
+              ${jaAdicionado ? "Adicionado" : "Adicionar"}
+            </button>
+          </article>
+        `;
+      }).join("");
+    }
+
+    function renderizarTodasAsListas() {
+      renderizarServicos(servicos.sites, elementos.listaSites);
+      configurarBotoesServico();
+    }
+
+    function configurarBotoesServico() {
+      document.querySelectorAll("[data-servico-id]").forEach((botao) => {
+        botao.addEventListener("click", () => {
+          adicionarServico(botao.dataset.servicoId);
+        });
+      });
+    }
+
+    /* =========================
+       CARRINHO
+       ========================= */
+
+    function adicionarServico(id) {
+      const servico = encontrarServicoPorId(id);
+
+      if (!servico) return;
+
+      const jaExiste = carrinho.some((item) => item.id === id);
+
+      if (jaExiste) {
+        mostrarToast("Esse serviço já está no carrinho.");
+        return;
+      }
+
+      carrinho.push({
+        id: servico.id,
+        nome: servico.nome,
+        preco: servico.preco,
+        dias: servico.dias
+      });
+
+      salvarJSON("phc_carrinho", carrinho);
+      atualizarCarrinho();
+      renderizarTodasAsListas();
+      mostrarToast(`${servico.nome} adicionado ao orçamento.`);
+    }
+
+    function removerServico(id) {
+      carrinho = carrinho.filter((item) => item.id !== id);
+      salvarJSON("phc_carrinho", carrinho);
+      atualizarCarrinho();
+      renderizarTodasAsListas();
+      mostrarToast("Serviço removido do carrinho.");
+    }
+
+    function limparCarrinho() {
+      carrinho = [];
+      salvarJSON("phc_carrinho", carrinho);
+      atualizarCarrinho();
+      renderizarTodasAsListas();
+      mostrarToast("Carrinho limpo.");
+    }
+
+    function atualizarCarrinho() {
+      elementos.listaCarrinho.innerHTML = "";
+
+      if (carrinho.length === 0) {
+        elementos.listaCarrinho.innerHTML = '<div class="vazio">Nenhum serviço selecionado ainda.</div>';
+        elementos.total.textContent = "R$ 0";
+        elementos.prazoTotal.textContent = "0 dias";
+        elementos.contadorCarrinho.textContent = "0";
+        return;
+      }
+
+      let total = 0;
+      let prazoTotal = 0;
+
+      carrinho.forEach((item) => {
+        total += item.preco;
+        prazoTotal += item.dias || 0;
+
+        const div = document.createElement("div");
+        div.className = "item-carrinho";
+
+        div.innerHTML = `
+          <div>
+            <strong>${escaparHTML(item.nome)}</strong>
+            <span>${formatarValor(item.preco)} • ${formatarDias(item.dias || 0)}</span>
+          </div>
+          <button class="remover" type="button" aria-label="Remover ${escaparHTML(item.nome)}" data-remover-id="${escaparHTML(item.id)}">×</button>
+        `;
+
+        elementos.listaCarrinho.appendChild(div);
+      });
+
+      elementos.listaCarrinho.querySelectorAll("[data-remover-id]").forEach((botao) => {
+        botao.addEventListener("click", () => removerServico(botao.dataset.removerId));
+      });
+
+      elementos.total.textContent = formatarValor(total);
+      elementos.prazoTotal.textContent = formatarDias(prazoTotal);
+      elementos.contadorCarrinho.textContent = carrinho.length;
+    }
+
+    /* =========================
+       CORES
+       ========================= */
+
+    function adicionarCor(valor = "#d4af37") {
+      const quantidadeAtual = elementos.coresContainer.querySelectorAll("input[type='color']").length;
+
+      if (quantidadeAtual >= limiteCores) {
+        mostrarToast("Você pode escolher até 3 cores.");
+        return;
+      }
+
+      const numero = quantidadeAtual + 1;
+      const div = document.createElement("div");
+      div.className = "cor-linha";
+
+      div.innerHTML = `
+        <label for="corProjeto${numero}">Cor ${numero}</label>
+        <input type="color" id="corProjeto${numero}" value="${valor}">
+      `;
+
+      elementos.coresContainer.appendChild(div);
+    }
+
+    function pegarCoresSelecionadas() {
+      return Array.from(elementos.coresContainer.querySelectorAll("input[type='color']"))
+        .map((input) => input.value.toUpperCase());
+    }
+
+    function salvarCores() {
+      coresSalvasProjeto = pegarCoresSelecionadas();
+      salvarJSON("phc_cores", coresSalvasProjeto);
+      atualizarCoresSalvas();
+
+      if (coresSalvasProjeto.length === 0) {
+        mostrarToast("Nenhuma cor foi escolhida.");
+        return;
+      }
+
+      mostrarToast("Cores salvas com sucesso.");
+    }
+
+    function atualizarCoresSalvas() {
+      if (coresSalvasProjeto.length === 0) {
+        elementos.coresSalvas.innerHTML = "Nenhuma cor salva. O cliente pode deixar sem escolher cores.";
+        return;
+      }
+
+      elementos.coresSalvas.innerHTML = coresSalvasProjeto
+        .map((cor) => `<span class="amostra-cor" style="background:${cor}"></span>${cor}`)
+        .join(" &nbsp; ");
+    }
+
+    function iniciarCores() {
+      elementos.coresContainer.innerHTML = "";
+
+      if (coresSalvasProjeto.length > 0) {
+        coresSalvasProjeto.forEach((cor) => adicionarCor(cor));
+      } else {
+        adicionarCor("#d4af37");
+      }
+
+      atualizarCoresSalvas();
+    }
+
+    /* =========================
+       PIX E ARQUIVOS
+       ========================= */
+
+    function copiarPix() {
+      const chavePix = PIX_CHAVE.replace(/\s|-/g, "");
+
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(chavePix)
+          .then(() => mostrarToast("Chave Pix copiada."))
+          .catch(() => mostrarToast("Não foi possível copiar. Copie manualmente."));
+      } else {
+        mostrarToast("Copie manualmente a chave Pix.");
+      }
+    }
+
+    function abrirFormularioArquivos(evento) {
+      evento.preventDefault();
+
+      if (!LINK_GOOGLE_FORMS) {
+        mostrarToast("O formulário de arquivos ainda não foi configurado. Envie fotos, logos ou referências pelo WhatsApp após finalizar o pedido.");
+        return;
+      }
+
+      window.open(LINK_GOOGLE_FORMS, "_blank", "noopener,noreferrer");
+    }
+
+    /* =========================
+       WHATSAPP
+       ========================= */
+
+    function montarMensagemWhatsApp() {
+      const nomeMarca = elementos.nomeMarca.value.trim() || "Não informado";
+      const tipoProjeto = elementos.tipoProjeto.value || "Não informado";
+      const formaPagamento = elementos.formaPagamento.value || "Não informado";
+      const bancoPagamento = elementos.bancoPagamento.value || "Não informado";
+      const descricaoProjeto = elementos.descricaoProjeto.value.trim() || "Não informado";
+
+      const coresAtuais = pegarCoresSelecionadas();
+      const coresParaEnviar = coresSalvasProjeto.length > 0 ? coresSalvasProjeto : coresAtuais;
+      const coresEscolhidas = coresParaEnviar.length > 0 ? coresParaEnviar.join(", ") : "Não informadas";
+
+      let total = 0;
+      let prazoTotal = 0;
+
+      let mensagem = "Olá, PH Creative! Quero pedir um site.\n\n";
+      mensagem += "SERVIÇOS DE SITE ESCOLHIDOS:\n";
+
+      carrinho.forEach((item) => {
+        total += item.preco;
+        prazoTotal += item.dias || 0;
+        mensagem += `• ${item.nome} — ${formatarValor(item.preco)} | Prazo: ${formatarDias(item.dias || 0)}\n`;
+      });
+
+      mensagem += `\nTOTAL ESTIMADO: ${formatarValor(total)}\n`;
+      mensagem += `PRAZO ESTIMADO: ${formatarDias(prazoTotal)}\n\n`;
+      mensagem += "FORMA DE PAGAMENTO:\n";
+      mensagem += `• Forma preferida: ${formaPagamento}\n`;
+      mensagem += `• Banco/carteira: ${bancoPagamento}\n`;
+      mensagem += "\n";
+      mensagem += "DADOS DO PROJETO:\n";
+      mensagem += `• Marca/empresa: ${nomeMarca}\n`;
+      mensagem += `• Tipo de projeto: ${tipoProjeto}\n`;
+      mensagem += `• Cores escolhidas: ${coresEscolhidas}\n`;
+      mensagem += `• Descrição: ${descricaoProjeto}\n\n`;
+      mensagem += "Gostaria de dar continuidade com esse pedido de site.";
+
+      return mensagem;
+    }
+
+    function enviarWhatsApp() {
+      if (carrinho.length === 0) {
+        mostrarToast("Adicione pelo menos um serviço de site ao carrinho.");
+        return;
+      }
+
+      const mensagem = encodeURIComponent(montarMensagemWhatsApp());
+      window.open(`https://wa.me/${WHATSAPP_NUMERO}?text=${mensagem}`, "_blank");
+    }
+
+    /* =========================
+       CAMPOS SALVOS
+       ========================= */
+
+    function salvarCamposBriefing() {
+      const dados = {
+        nomeMarca: elementos.nomeMarca.value,
+        tipoProjeto: elementos.tipoProjeto.value,
+        formaPagamento: elementos.formaPagamento.value,
+        bancoPagamento: elementos.bancoPagamento.value,
+        descricaoProjeto: elementos.descricaoProjeto.value
+      };
+
+      salvarJSON("phc_briefing", dados);
+    }
+
+    function carregarCamposBriefing() {
+      const dados = carregarJSON("phc_briefing", {});
+
+      elementos.nomeMarca.value = dados.nomeMarca || "";
+      elementos.tipoProjeto.value = dados.tipoProjeto || "Não informado";
+      elementos.formaPagamento.value = dados.formaPagamento || "Não informado";
+      elementos.bancoPagamento.value = dados.bancoPagamento || "Não informado";
+      elementos.descricaoProjeto.value = dados.descricaoProjeto || "";
+    }
+
+    function configurarEventos() {
+      document.getElementById("btnAdicionarCor").addEventListener("click", () => adicionarCor());
+      document.getElementById("btnSalvarCores").addEventListener("click", salvarCores);
+      document.getElementById("btnCopiarPix").addEventListener("click", copiarPix);
+      document.getElementById("btnWhatsApp").addEventListener("click", enviarWhatsApp);
+      document.getElementById("btnLimpar").addEventListener("click", limparCarrinho);
+      document.getElementById("btnArquivos").addEventListener("click", abrirFormularioArquivos);
+
+      [elementos.nomeMarca, elementos.tipoProjeto, elementos.formaPagamento, elementos.bancoPagamento, elementos.descricaoProjeto].forEach((campo) => {
+        campo.addEventListener("input", salvarCamposBriefing);
+        campo.addEventListener("change", salvarCamposBriefing);
+      });
+    }
+
+    /* =========================
+       INICIALIZAÇÃO
+       ========================= */
+
+    function iniciarPagina() {
+      carrinho = carrinho.filter((item) => encontrarServicoPorId(item.id));
+      salvarJSON("phc_carrinho", carrinho);
+      elementos.chavePix.textContent = PIX_CHAVE;
+      carregarCamposBriefing();
+      iniciarCores();
+      renderizarTodasAsListas();
+      atualizarCarrinho();
+      configurarEventos();
+    }
+
+    iniciarPagina();
+  </script>
+</body>
+</html>

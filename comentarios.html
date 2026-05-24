@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Comentários - PH Creative</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold: #d4af37;
+      --gold-light: #f5d76e;
+      --gold-dark: #9f7c18;
+      --black: #050507;
+      --dark: #0b0b0f;
+      --card: #15151c;
+      --card-dark: #101016;
+      --text: #f5f5f5;
+      --muted: #d0d0d0;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      color: var(--text);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(212, 175, 55, 0.14), transparent 30%),
+        radial-gradient(circle at 80% 70%, rgba(245, 215, 110, 0.10), transparent 35%),
+        linear-gradient(180deg, #050507, #0b0b0f 55%, #050507);
+      padding: 35px 20px;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .topo {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .topo h1 {
+      font-size: 3rem;
+      margin-bottom: 10px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .topo p {
+      color: #d6d6d6;
+      font-size: 1.1rem;
+      max-width: 720px;
+      margin: 0 auto;
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--card), var(--card-dark));
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 24px;
+      padding: 28px;
+      box-shadow:
+        0 20px 45px rgba(0, 0, 0, 0.42),
+        0 0 30px rgba(212, 175, 55, 0.10);
+      margin-bottom: 25px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: -80px;
+      right: -80px;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(245, 215, 110, 0.13), transparent 65%);
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card h2 {
+      font-size: 1.8rem;
+      margin-bottom: 18px;
+      color: #ffffff;
+    }
+
+    .card h2::after {
+      content: "";
+      display: block;
+      width: 65px;
+      height: 4px;
+      margin-top: 8px;
+      border-radius: 20px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: bold;
+      color: #ffffff;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      padding: 14px;
+      margin-bottom: 18px;
+      border-radius: 14px;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      background: #0b0b0f;
+      color: #ffffff;
+      font-size: 1rem;
+      outline: none;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--gold-light);
+      box-shadow: 0 0 18px rgba(212, 175, 55, 0.22);
+    }
+
+    textarea {
+      min-height: 130px;
+      resize: vertical;
+    }
+
+    .campo-form {
+      margin-bottom: 18px;
+    }
+
+    .texto-apoio {
+      color: #bfbfbf;
+      font-size: 0.95rem;
+      margin-bottom: 12px;
+    }
+
+    .estrelas {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 12px;
+      flex-wrap: wrap;
+    }
+
+    .estrela {
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      color: #5f5f66;
+      font-size: 2.4rem;
+      line-height: 1;
+      padding: 0;
+      cursor: pointer;
+      transition: 0.2s ease;
+    }
+
+    .estrela:hover,
+    .estrela.ativa {
+      color: var(--gold-light);
+      transform: scale(1.08);
+      text-shadow: 0 0 18px rgba(245, 215, 110, 0.35);
+    }
+
+    .opcoes-avaliacao {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-bottom: 18px;
+    }
+
+    .opcao-check {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 13px;
+      border-radius: 14px;
+      background: #1f1f2a;
+      border: 1px solid rgba(212, 175, 55, 0.14);
+      color: #eeeeee;
+      cursor: pointer;
+      transition: 0.3s ease;
+      font-weight: normal;
+      margin: 0;
+    }
+
+    .opcao-check:hover {
+      border-color: rgba(245, 215, 110, 0.45);
+      box-shadow: 0 10px 22px rgba(212, 175, 55, 0.10);
+      transform: translateY(-2px);
+    }
+
+    .opcao-check input {
+      width: auto;
+      margin: 0;
+      accent-color: var(--gold);
+    }
+
+    button,
+    .voltar {
+      display: inline-block;
+      border: none;
+      cursor: pointer;
+      padding: 14px 28px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #050507;
+      font-weight: bold;
+      background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-light));
+      box-shadow:
+        0 0 20px rgba(212, 175, 55, 0.35),
+        0 0 30px rgba(245, 215, 110, 0.20);
+      transition: 0.3s ease;
+    }
+
+    button:hover,
+    .voltar:hover {
+      transform: translateY(-3px) scale(1.02);
+    }
+
+    button:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .comentario {
+      background: #1f1f2a;
+      border: 1px solid rgba(212, 175, 55, 0.12);
+      border-left: 4px solid var(--gold);
+      padding: 18px;
+      border-radius: 16px;
+      margin-bottom: 15px;
+    }
+
+    .comentario-topo {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 8px;
+      flex-wrap: wrap;
+    }
+
+    .comentario h3 {
+      color: #ffffff;
+      font-size: 1.1rem;
+    }
+
+    .estrelas-exibidas {
+      color: var(--gold-light);
+      font-size: 1.1rem;
+      letter-spacing: 1px;
+      text-shadow: 0 0 12px rgba(245, 215, 110, 0.25);
+      white-space: nowrap;
+    }
+
+    .comentario p {
+      color: #d6d6d6;
+      margin-bottom: 10px;
+      white-space: pre-wrap;
+    }
+
+    .tags-avaliacao {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0;
+    }
+
+    .tag {
+      display: inline-block;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(212, 175, 55, 0.10);
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      color: var(--gold-light);
+      font-size: 0.82rem;
+      font-weight: bold;
+    }
+
+    .data {
+      display: block;
+      color: #999999;
+      font-size: 0.85rem;
+    }
+
+    .mensagem-status {
+      margin-top: 12px;
+      color: var(--gold-light);
+      font-size: 0.95rem;
+    }
+
+
+    .aviso-bloqueio {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      background: rgba(212, 175, 55, 0.08);
+      border: 1px solid rgba(212, 175, 55, 0.16);
+      color: var(--gold-light);
+      font-size: 0.95rem;
+      display: none;
+    }
+
+    .aviso {
+      color: #bbbbbb;
+      font-size: 0.9rem;
+      margin-top: 15px;
+    }
+
+    .acoes {
+      text-align: center;
+      margin-top: 30px;
+    }
+
+    @media (max-width: 650px) {
+      body {
+        padding: 28px 15px;
+      }
+
+      .topo h1 {
+        font-size: 2.2rem;
+      }
+
+      .card {
+        padding: 24px 20px;
+      }
+
+      .opcoes-avaliacao {
+        grid-template-columns: 1fr;
+      }
+
+      .estrela {
+        font-size: 2.1rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <div class="topo">
+      <h1>Comentários</h1>
+      <p>Avalie sua experiência com a PH Creative.</p>
+    </div>
+
+    <div class="card">
+      <h2>Deixar avaliação</h2>
+
+      <form id="formComentario">
+        <label for="nome">Seu nome</label>
+        <input type="text" id="nome" placeholder="Digite seu nome" maxlength="60" required>
+
+        <div class="campo-form">
+          <label>Avaliação em estrelas</label>
+          <p class="texto-apoio">Escolha de 1 a 5 estrelas.</p>
+
+          <div class="estrelas" id="estrelas">
+            <button type="button" class="estrela" data-valor="1">★</button>
+            <button type="button" class="estrela" data-valor="2">★</button>
+            <button type="button" class="estrela" data-valor="3">★</button>
+            <button type="button" class="estrela" data-valor="4">★</button>
+            <button type="button" class="estrela" data-valor="5">★</button>
+          </div>
+
+          <input type="hidden" id="avaliacao" value="0">
+        </div>
+
+        <div class="campo-form">
+          <label>O que você achou do serviço?</label>
+          <p class="texto-apoio">Selecione as opções que combinam com sua experiência.</p>
+
+          <div class="opcoes-avaliacao">
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Entrega no prazo correto">
+              Entrega no prazo correto
+            </label>
+
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Entregou antes do prazo / rápido">
+              Entregou antes do prazo / rápido
+            </label>
+
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Bom atendimento">
+              Bom atendimento
+            </label>
+
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Responde rápido">
+              Responde rápido
+            </label>
+
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Qualidade profissional">
+              Qualidade profissional
+            </label>
+
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Visual bonito e criativo">
+              Visual bonito e criativo
+            </label>
+
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Gostei do resultado">
+              Gostei do resultado
+            </label>
+
+            <label class="opcao-check">
+              <input type="checkbox" name="pontos" value="Recomendo a PH Creative">
+              Recomendo a PH Creative
+            </label>
+          </div>
+        </div>
+
+        <label for="mensagem">Seu comentário</label>
+        <textarea id="mensagem" placeholder="Escreva seu comentário sobre o serviço" maxlength="500" required></textarea>
+
+        <button type="submit" id="botaoEnviar">Enviar avaliação</button>
+
+        <p class="mensagem-status" id="mensagemStatus"></p>
+        <p class="aviso">Sua avaliação ficará visível publicamente nesta página.</p>
+        <p class="aviso-bloqueio" id="avisoBloqueio"></p>
+      </form>
+    </div>
+
+    <div class="card">
+      <h2>Avaliações recebidas</h2>
+      <div class="comentarios-lista" id="listaComentarios">
+        <p>Carregando avaliações...</p>
+      </div>
+    </div>
+
+    <div class="acoes">
+      <a href="index.html" class="voltar">Voltar para o site</a>
+    </div>
+
+  </div>
+
+  <script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import {
+      getFirestore,
+      collection,
+      addDoc,
+      serverTimestamp,
+      onSnapshot
+    } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGaAMXH6JZvkxTjOQswClherBNpO8OlyY",
+      authDomain: "ph-creative.firebaseapp.com",
+      projectId: "ph-creative",
+      storageBucket: "ph-creative.firebasestorage.app",
+      messagingSenderId: "838725389820",
+      appId: "1:838725389820:web:e361e5c021ae6593277679"
+    };
+
+    const app = initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+
+    const form = document.getElementById("formComentario");
+    const nomeInput = document.getElementById("nome");
+    const mensagemInput = document.getElementById("mensagem");
+    const listaComentarios = document.getElementById("listaComentarios");
+    const mensagemStatus = document.getElementById("mensagemStatus");
+    const botaoEnviar = document.getElementById("botaoEnviar");
+    const avaliacaoInput = document.getElementById("avaliacao");
+    const botoesEstrelas = document.querySelectorAll(".estrela");
+    const avisoBloqueio = document.getElementById("avisoBloqueio");
+
+    /*
+      Anti-spam:
+      Depois que a pessoa envia uma avaliação, este navegador/dispositivo
+      fica bloqueado por 24 horas para evitar vários comentários seguidos.
+    */
+    const CHAVE_BLOQUEIO_COMENTARIOS = "phCreativeUltimaAvaliacao";
+    const TEMPO_BLOQUEIO_MS = 24 * 60 * 60 * 1000;
+
+    function escaparTexto(texto) {
+      return String(texto || "")
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+    }
+
+    function formatarData(comentario) {
+      if (comentario.criadoEm && typeof comentario.criadoEm.toDate === "function") {
+        return comentario.criadoEm.toDate().toLocaleDateString("pt-BR");
+      }
+
+      return comentario.data || "Data não informada";
+    }
+
+    function mostrarEstrelas(quantidade) {
+      const valor = Number(quantidade) || 0;
+      const cheias = "★".repeat(valor);
+      const vazias = "☆".repeat(5 - valor);
+      return cheias + vazias;
+    }
+
+    function atualizarEstrelas(valor) {
+      avaliacaoInput.value = valor;
+
+      botoesEstrelas.forEach((botao) => {
+        const numero = Number(botao.dataset.valor);
+
+        if (numero <= valor) {
+          botao.classList.add("ativa");
+        } else {
+          botao.classList.remove("ativa");
+        }
+      });
+    }
+
+    botoesEstrelas.forEach((botao) => {
+      botao.addEventListener("click", () => {
+        atualizarEstrelas(Number(botao.dataset.valor));
+      });
+    });
+
+    function pegarPontosSelecionados() {
+      const checks = document.querySelectorAll("input[name='pontos']:checked");
+      return Array.from(checks).map((check) => check.value);
+    }
+
+    function limparPontosSelecionados() {
+      const checks = document.querySelectorAll("input[name='pontos']");
+      checks.forEach((check) => {
+        check.checked = false;
+      });
+    }
+
+    function ordenarComentarios(comentarios) {
+      return comentarios.sort((a, b) => {
+        const dataA = a.criadoEm && typeof a.criadoEm.toMillis === "function" ? a.criadoEm.toMillis() : 0;
+        const dataB = b.criadoEm && typeof b.criadoEm.toMillis === "function" ? b.criadoEm.toMillis() : 0;
+        return dataB - dataA;
+      });
+    }
+
+    function formatarTempoRestante(ms) {
+      const totalMinutos = Math.ceil(ms / 60000);
+      const horas = Math.floor(totalMinutos / 60);
+      const minutos = totalMinutos % 60;
+
+      if (horas <= 0) {
+        return `${minutos} minuto${minutos === 1 ? "" : "s"}`;
+      }
+
+      if (minutos === 0) {
+        return `${horas} hora${horas === 1 ? "" : "s"}`;
+      }
+
+      return `${horas} hora${horas === 1 ? "" : "s"} e ${minutos} minuto${minutos === 1 ? "" : "s"}`;
+    }
+
+    function obterTempoRestanteBloqueio() {
+      const ultimaAvaliacao = Number(localStorage.getItem(CHAVE_BLOQUEIO_COMENTARIOS)) || 0;
+
+      if (!ultimaAvaliacao) {
+        return 0;
+      }
+
+      const tempoPassado = Date.now() - ultimaAvaliacao;
+      const tempoRestante = TEMPO_BLOQUEIO_MS - tempoPassado;
+
+      return tempoRestante > 0 ? tempoRestante : 0;
+    }
+
+    function atualizarAvisoBloqueio() {
+      const tempoRestante = obterTempoRestanteBloqueio();
+
+      if (tempoRestante > 0) {
+        avisoBloqueio.style.display = "block";
+        avisoBloqueio.innerText = `Este dispositivo já enviou uma avaliação recentemente. Aguarde ${formatarTempoRestante(tempoRestante)} para enviar outra.`;
+        botaoEnviar.disabled = true;
+        botaoEnviar.innerText = "Aguarde para avaliar novamente";
+        return true;
+      }
+
+      avisoBloqueio.style.display = "none";
+      avisoBloqueio.innerText = "";
+      botaoEnviar.disabled = false;
+      botaoEnviar.innerText = "Enviar avaliação";
+      return false;
+    }
+
+    setInterval(atualizarAvisoBloqueio, 60000);
+
+    function carregarComentarios() {
+      const comentariosRef = collection(db, "comentarios");
+
+      onSnapshot(comentariosRef, (snapshot) => {
+        const comentarios = [];
+
+        snapshot.forEach((doc) => {
+          comentarios.push({
+            id: doc.id,
+            ...doc.data()
+          });
+        });
+
+        listaComentarios.innerHTML = "";
+
+        if (comentarios.length === 0) {
+          listaComentarios.innerHTML = "<p>Ainda não há avaliações. Seja o primeiro a avaliar.</p>";
+          return;
+        }
+
+        ordenarComentarios(comentarios).forEach((comentario) => {
+          const div = document.createElement("div");
+          div.classList.add("comentario");
+
+          const pontos = Array.isArray(comentario.pontosPositivos)
+            ? comentario.pontosPositivos
+            : [];
+
+          const tags = pontos.length > 0
+            ? `<div class="tags-avaliacao">${pontos.map((ponto) => `<span class="tag">${escaparTexto(ponto)}</span>`).join("")}</div>`
+            : "";
+
+          div.innerHTML = `
+            <div class="comentario-topo">
+              <h3>${escaparTexto(comentario.nome)}</h3>
+              <div class="estrelas-exibidas">${mostrarEstrelas(comentario.avaliacao || 0)}</div>
+            </div>
+
+            ${tags}
+
+            <p>${escaparTexto(comentario.mensagem)}</p>
+            <span class="data">${escaparTexto(formatarData(comentario))}</span>
+          `;
+
+          listaComentarios.appendChild(div);
+        });
+      }, (erro) => {
+        console.error("Erro ao carregar avaliações:", erro);
+        listaComentarios.innerHTML = "<p>Não foi possível carregar as avaliações no momento. Verifique as regras do Firebase.</p>";
+      });
+    }
+
+    form.addEventListener("submit", async (evento) => {
+      evento.preventDefault();
+
+      const nome = nomeInput.value.trim();
+      const mensagem = mensagemInput.value.trim();
+      const avaliacao = Number(avaliacaoInput.value);
+      const pontosPositivos = pegarPontosSelecionados();
+
+      if (atualizarAvisoBloqueio()) {
+        mensagemStatus.innerText = "Você já enviou uma avaliação recentemente. Aguarde o tempo informado para enviar outra.";
+        return;
+      }
+
+      if (!nome || !mensagem) {
+        mensagemStatus.innerText = "Preencha seu nome e comentário.";
+        return;
+      }
+
+      if (avaliacao < 1 || avaliacao > 5) {
+        mensagemStatus.innerText = "Escolha uma avaliação de 1 a 5 estrelas.";
+        return;
+      }
+
+      try {
+        botaoEnviar.disabled = true;
+        botaoEnviar.innerText = "Enviando...";
+
+        await addDoc(collection(db, "comentarios"), {
+          nome,
+          mensagem,
+          avaliacao,
+          pontosPositivos,
+          data: new Date().toLocaleDateString("pt-BR"),
+          criadoEm: serverTimestamp()
+        });
+
+        localStorage.setItem(CHAVE_BLOQUEIO_COMENTARIOS, Date.now().toString());
+
+        form.reset();
+        atualizarEstrelas(0);
+        limparPontosSelecionados();
+        mensagemStatus.innerText = "Avaliação enviada com sucesso!";
+        atualizarAvisoBloqueio();
+      } catch (erro) {
+        console.error("Erro ao enviar avaliação:", erro);
+        mensagemStatus.innerText = "Erro ao enviar avaliação. Verifique as regras do Firebase.";
+      } finally {
+        botaoEnviar.disabled = false;
+        botaoEnviar.innerText = "Enviar avaliação";
+      }
+    });
+
+    atualizarAvisoBloqueio();
+    carregarComentarios();
+  </script>
+
+</body>
+
+</html>
