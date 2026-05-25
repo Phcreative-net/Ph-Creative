@@ -1,5 +1,32 @@
 // PH Creative - JavaScript global
 (function () {
+  const estilosAviso = document.createElement("style");
+  estilosAviso.textContent = `
+    .aviso-agendamento-ph {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 16px 20px;
+      border-radius: 20px;
+      border: 1px solid rgba(245, 215, 110, 0.34);
+      background: rgba(5, 5, 7, 0.68);
+      color: #f5d76e;
+      font-weight: 800;
+      line-height: 1.55;
+      box-shadow: 0 0 28px rgba(212, 175, 55, 0.16);
+    }
+  `;
+  document.head.appendChild(estilosAviso);
+
+  const heroConteudo = document.querySelector(".hero-conteudo");
+  const heroActions = document.querySelector(".hero-actions");
+
+  if (heroConteudo && heroActions && !document.querySelector(".aviso-agendamento-ph")) {
+    const avisoAgendamento = document.createElement("p");
+    avisoAgendamento.className = "descricao-hero aviso-agendamento-ph";
+    avisoAgendamento.innerText = "Quer agendar um serviço ou tirar dúvidas? Me chame no WhatsApp — respondo na hora.";
+    heroConteudo.insertBefore(avisoAgendamento, heroActions);
+  }
+
   const elementosAnimados = document.querySelectorAll("section, .categoria-card, .card-orcamento, li, .produto-home, .caminho-card, .produto-loja");
 
   if ("IntersectionObserver" in window && elementosAnimados.length) {
@@ -56,8 +83,6 @@
       titulo.style.letterSpacing = window.innerWidth <= 480 ? "4px" : "10px";
     });
   }
-
-
 
   // Loja liberada como página de aviso "Em breve". Sem bloqueio por modal.
 
