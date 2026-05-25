@@ -7,6 +7,92 @@
   <meta name="description" content="Catálogo da loja PH Creative com artes publicitárias, logos, banners e capas personalizáveis." />
   <meta name="theme-color" content="#050507" />
   <link rel="stylesheet" href="./style.css" />
+  <style>
+    .galeria-artes-publicitarias {
+      margin-top: 34px;
+      padding: clamp(22px, 4vw, 34px);
+      border-radius: 28px;
+      border: 1px solid rgba(245, 215, 110, 0.24);
+      background:
+        radial-gradient(circle at top left, rgba(245, 215, 110, 0.12), transparent 36%),
+        linear-gradient(180deg, rgba(5, 5, 7, 0.52), rgba(5, 5, 7, 0.24));
+      box-shadow: 0 24px 58px rgba(0, 0, 0, 0.34);
+    }
+
+    .galeria-artes-publicitarias .cabecalho-secao {
+      max-width: 860px;
+      margin-bottom: 24px;
+    }
+
+    .grid-artes-publicitarias {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .arte-publicitaria-card {
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      background: rgba(5, 5, 7, 0.46);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.28);
+      transition: 0.28s ease;
+    }
+
+    .arte-publicitaria-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(245, 215, 110, 0.45);
+      box-shadow: 0 26px 54px rgba(0, 0, 0, 0.42), 0 0 28px rgba(212, 175, 55, 0.12);
+    }
+
+    .arte-publicitaria-card figure {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #050507;
+    }
+
+    .arte-publicitaria-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .arte-publicitaria-info {
+      padding: 18px;
+    }
+
+    .arte-publicitaria-info span {
+      display: inline-flex;
+      margin-bottom: 8px;
+      color: var(--gold-light);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .arte-publicitaria-info h3 {
+      color: #fff;
+      font-size: 1.14rem;
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .arte-publicitaria-info p {
+      color: var(--muted);
+      font-size: 0.94rem;
+      line-height: 1.55;
+    }
+
+    @media (max-width: 900px) {
+      .grid-artes-publicitarias { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    @media (max-width: 580px) {
+      .grid-artes-publicitarias { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body class="pagina-loja-em-breve pagina-catalogo-loja">
   <header class="topo-loja">
@@ -86,6 +172,93 @@
             <p>Capas para redes sociais, perfis, WhatsApp, YouTube, lojas e páginas profissionais.</p>
           </div>
         </article>
+      </div>
+
+      <div class="galeria-artes-publicitarias" id="artes-publicitarias">
+        <div class="cabecalho-secao">
+          <span class="tag-mini">Artes Publicitárias</span>
+          <h2>Modelos de artes publicitárias</h2>
+          <p>Algumas artes criadas para divulgação, produtos, alimentação, bebidas, fitness e campanhas visuais. Escolha um modelo e peça a personalização pelo WhatsApp.</p>
+        </div>
+
+        <div class="grid-artes-publicitarias" aria-label="Galeria de artes publicitárias">
+          <article class="arte-publicitaria-card">
+            <figure>
+              <img src="https://phcreative-net.github.io/portfolio-ph/public/artes-publicitarias/97cb99ad-db37-451f-b34e-7b8e5eb243f6.png" alt="Arte publicitária de hambúrguer promocional" loading="lazy">
+            </figure>
+            <div class="arte-publicitaria-info">
+              <span>Food design</span>
+              <h3>Hambúrguer promocional</h3>
+              <p>Arte forte para divulgação de burger, delivery e campanha de venda.</p>
+            </div>
+          </article>
+
+          <article class="arte-publicitaria-card">
+            <figure>
+              <img src="https://phcreative-net.github.io/portfolio-ph/public/artes-publicitarias/338df308-3e51-4223-b280-67ccf2caff38%20(1).png" alt="Arte publicitária de bebidas irresistíveis" loading="lazy">
+            </figure>
+            <div class="arte-publicitaria-info">
+              <span>Bebidas</span>
+              <h3>Bebidas irresistíveis</h3>
+              <p>Visual refrescante para sucos, drinks, delivery e cardápios digitais.</p>
+            </div>
+          </article>
+
+          <article class="arte-publicitaria-card">
+            <figure>
+              <img src="https://phcreative-net.github.io/portfolio-ph/public/artes-publicitarias/2895ba35-beaf-46a1-9f41-dfd64c80b126.png" alt="Arte publicitária de açaí natural" loading="lazy">
+            </figure>
+            <div class="arte-publicitaria-info">
+              <span>Produto natural</span>
+              <h3>Açaí natural</h3>
+              <p>Arte com energia, cor e impacto para produtos naturais e saudáveis.</p>
+            </div>
+          </article>
+
+          <article class="arte-publicitaria-card">
+            <figure>
+              <img src="https://phcreative-net.github.io/portfolio-ph/public/artes-publicitarias/f6460515-71d9-4c5c-9285-52058158c285.png" alt="Arte publicitária de burger premium" loading="lazy">
+            </figure>
+            <div class="arte-publicitaria-info">
+              <span>Campanha food</span>
+              <h3>Burger premium</h3>
+              <p>Peça visual com foco em apetite, promoção e chamada direta.</p>
+            </div>
+          </article>
+
+          <article class="arte-publicitaria-card">
+            <figure>
+              <img src="https://phcreative-net.github.io/portfolio-ph/public/artes-publicitarias/1aae4804-55cf-430b-b4a5-cbb21e6f7ad9.png" alt="Arte fitness com foco e disciplina" loading="lazy">
+            </figure>
+            <div class="arte-publicitaria-info">
+              <span>Fitness</span>
+              <h3>Foco e disciplina</h3>
+              <p>Arte motivacional para academia, treino, performance e marca fitness.</p>
+            </div>
+          </article>
+
+          <article class="arte-publicitaria-card">
+            <figure>
+              <img src="https://phcreative-net.github.io/portfolio-ph/public/artes-publicitarias/3d04c6ea-6753-4fdb-a102-b0a4fc23e859.png" alt="Arte fitness feminina com força e disciplina" loading="lazy">
+            </figure>
+            <div class="arte-publicitaria-info">
+              <span>Fitness</span>
+              <h3>Força e disciplina</h3>
+              <p>Peça moderna para divulgação de treinos, desafios e conteúdos fitness.</p>
+            </div>
+          </article>
+
+          <article class="arte-publicitaria-card">
+            <figure>
+              <img src="https://phcreative-net.github.io/portfolio-ph/public/artes-publicitarias/4fc86295-af13-4d3a-b78e-e279497a8a60.png" alt="Arte publicitária de batata frita promocional" loading="lazy">
+            </figure>
+            <div class="arte-publicitaria-info">
+              <span>Food design</span>
+              <h3>Batata frita promocional</h3>
+              <p>Arte promocional para produto, oferta, delivery e divulgação rápida.</p>
+            </div>
+          </article>
+        </div>
       </div>
 
       <div class="loja-em-breve-acoes">
