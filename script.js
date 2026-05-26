@@ -202,6 +202,139 @@
     });
   }
 
+  function removerTabelaDuplicadaLoja() {
+    const tabelaDuplicada = document.querySelector(".grade-categorias-preview");
+    if (tabelaDuplicada) tabelaDuplicada.remove();
+  }
+
+  function inserirGaleriaLogos() {
+    if (document.getElementById("logos-identidades")) return;
+
+    const secaoLoja = document.getElementById("loja");
+    if (!secaoLoja) return;
+
+    const logos = [
+      { src: "./62f43944-ba07-432a-9c9b-65c412e748a0.png", titulo: "Sabor Express Marmitas", tipo: "Logo gastronômica" },
+      { src: "./86b3525e-f745-4c4e-914d-dd4b02939296.png", titulo: "Elevare Alto Padrão", tipo: "Identidade premium" },
+      { src: "./0272f6ca-e3da-4ad2-8a87-b7e0ccdef10d.png", titulo: "Tabela de Preços", tipo: "Apresentação comercial" },
+      { src: "./545cafd7-cbe8-4756-b871-43eaf2b90bfe.png", titulo: "Elevare Imóveis", tipo: "Logo imobiliária" },
+      { src: "./6427c0f7-cd2d-4ff0-9a79-ef1fa27917a6.png", titulo: "Elevare Imóveis", tipo: "Aplicação em fachada" },
+      { src: "./74766a8c-4f97-40bf-a378-2026eb45e581.png", titulo: "Zena Moda Masculina", tipo: "Logo fashion" },
+      { src: "./a588002b-3517-45f9-bde5-383d9c364853.png", titulo: "Elevare Alto Padrão", tipo: "Aplicação externa" },
+      { src: "./ce0e53db-8ab4-4cd6-a2d4-cac19acc0110.png", titulo: "Elevare Imóveis", tipo: "Aplicação urbana" },
+      { src: "./fa019d57-2a04-426b-a7a8-616572b805e1.png", titulo: "Zena Moda Masculina", tipo: "Logo em textura" },
+      { src: "./ff30f682-db4a-43a9-b306-ac716cb25dc3.png", titulo: "Zena Moda Masculina", tipo: "Logo minimalista" },
+      { src: "./21e04d001-ea74-4abf-98cf-505da508026c.png", titulo: "Sabor Express Marmitas", tipo: "Logo clean" },
+      { src: "./21e04001-ea74-4abf-98cf-505da508026c.png", titulo: "Sabor Express Marmitas", tipo: "Logo fundo escuro" },
+      { src: "./55c1cc0e-d7bf-41b9-8d22-f38e04ce6071.png", titulo: "Zena Moda Masculina", tipo: "Logo premium" }
+    ];
+
+    const estiloId = "estilo-galeria-logos-ph";
+    if (!document.getElementById(estiloId)) {
+      const estilo = document.createElement("style");
+      estilo.id = estiloId;
+      estilo.textContent = `
+        .secao-logos-ph {
+          width: min(1180px, calc(100% - 32px));
+          margin: 80px auto;
+          padding: clamp(28px, 4vw, 44px);
+          border: 1px solid rgba(245, 215, 110, 0.22);
+          border-radius: 34px;
+          background: radial-gradient(circle at top left, rgba(245, 215, 110, 0.12), transparent 34%), rgba(5, 5, 7, 0.56);
+          box-shadow: 0 26px 70px rgba(0, 0, 0, 0.36);
+        }
+        .secao-logos-ph .cabecalho-logos-ph {
+          max-width: 860px;
+          margin-bottom: 28px;
+        }
+        .secao-logos-ph .cabecalho-logos-ph h2 {
+          margin: 8px 0 12px;
+          font-size: clamp(2rem, 4vw, 3.5rem);
+          color: #fff;
+        }
+        .secao-logos-ph .cabecalho-logos-ph p {
+          color: #cfc6a8;
+          line-height: 1.75;
+        }
+        .grid-logos-ph {
+          display: grid;
+          grid-template-columns: repeat(3, minmax(0, 1fr));
+          gap: 18px;
+        }
+        .logo-card-ph {
+          overflow: hidden;
+          border: 1px solid rgba(212, 175, 55, 0.20);
+          border-radius: 24px;
+          background: rgba(255, 255, 255, 0.035);
+          box-shadow: 0 18px 44px rgba(0, 0, 0, 0.30);
+          transition: 0.28s ease;
+        }
+        .logo-card-ph:hover {
+          transform: translateY(-6px);
+          border-color: rgba(245, 215, 110, 0.52);
+          box-shadow: 0 28px 60px rgba(0, 0, 0, 0.42), 0 0 24px rgba(212, 175, 55, 0.12);
+        }
+        .logo-card-ph figure {
+          aspect-ratio: 1 / 1;
+          background: #050507;
+        }
+        .logo-card-ph img {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+        }
+        .logo-card-ph div {
+          padding: 18px;
+        }
+        .logo-card-ph span {
+          display: inline-flex;
+          margin-bottom: 8px;
+          color: #f5d76e;
+          font-size: 0.72rem;
+          font-weight: 900;
+          letter-spacing: 0.08em;
+          text-transform: uppercase;
+        }
+        .logo-card-ph h3 {
+          color: #fff;
+          font-size: 1.1rem;
+          line-height: 1.25;
+        }
+        @media (max-width: 900px) {
+          .grid-logos-ph { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 560px) {
+          .grid-logos-ph { grid-template-columns: 1fr; }
+        }
+      `;
+      document.head.appendChild(estilo);
+    }
+
+    const secaoLogos = document.createElement("section");
+    secaoLogos.id = "logos-identidades";
+    secaoLogos.className = "secao-logos-ph";
+    secaoLogos.innerHTML = `
+      <div class="cabecalho-logos-ph">
+        <span class="tag-mini">Logos</span>
+        <h2>Logos e identidades visuais</h2>
+        <p>Alguns exemplos de logos, marcas e aplicações visuais criadas pela PH Creative, com foco em presença profissional, impacto e identidade de marca.</p>
+      </div>
+      <div class="grid-logos-ph" aria-label="Galeria de logos e identidades visuais">
+        ${logos.map((item) => `
+          <article class="logo-card-ph">
+            <figure><img src="${item.src}" alt="${item.titulo}" loading="lazy"></figure>
+            <div><span>${item.tipo}</span><h3>${item.titulo}</h3></div>
+          </article>
+        `).join("")}
+      </div>
+    `;
+
+    secaoLoja.insertAdjacentElement("afterend", secaoLogos);
+  }
+
+  removerTabelaDuplicadaLoja();
+  inserirGaleriaLogos();
+
   if (document.readyState === "complete") {
     iniciarContadorVisitas();
   } else {
