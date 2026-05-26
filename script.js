@@ -243,10 +243,9 @@
         nome: "Zena Moda Masculina",
         descricao: "Sequência de logos para marca de moda masculina.",
         itens: [
-          { src: "./55c1cc0e-d7bf-41b9-8d22-f38e04ce6071.png", titulo: "Zena Moda Masculina", tipo: "Logo fundo claro" },
           { src: "./ff30f682-db4a-43a9-b306-ac716cb25dc3.png", titulo: "Zena Moda Masculina", tipo: "Logo minimalista" },
-          { src: "./fa019d57-2a04-426b-a7a8-616572b805e1.png", titulo: "Zena Moda Masculina", tipo: "Logo em textura" },
-          { src: "./74766a8c-4f97-40bf-a378-2026eb45e581.png", titulo: "Zena Moda Masculina", tipo: "Logo premium" }
+          { src: "./74766a8c-4f97-40bf-a378-2026eb45e581.png", titulo: "Zena Moda Masculina", tipo: "Logo fundo claro" },
+          { src: "./fa019d57-2a04-426b-a7a8-616572b805e1.png", titulo: "Zena Moda Masculina", tipo: "Logo em textura" }
         ]
       }
     ];
