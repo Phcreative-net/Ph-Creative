@@ -202,31 +202,53 @@
     });
   }
 
+  function ehPaginaLoja() {
+    return document.body.classList.contains("pagina-catalogo-loja") || /loja\.html$/i.test(window.location.pathname);
+  }
+
   function removerTabelaDuplicadaLoja() {
+    if (!ehPaginaLoja()) return;
     const tabelaDuplicada = document.querySelector(".grade-categorias-preview");
     if (tabelaDuplicada) tabelaDuplicada.remove();
   }
 
   function inserirGaleriaLogos() {
-    if (document.getElementById("logos-identidades")) return;
+    if (!ehPaginaLoja() || document.getElementById("logos-identidades")) return;
 
-    const secaoLoja = document.getElementById("loja");
-    if (!secaoLoja) return;
+    const pontoDeInsercao = document.getElementById("artes-publicitarias") || document.querySelector(".catalogo-loja-card");
+    if (!pontoDeInsercao) return;
 
-    const logos = [
-      { src: "./62f43944-ba07-432a-9c9b-65c412e748a0.png", titulo: "Sabor Express Marmitas", tipo: "Logo gastronômica" },
-      { src: "./86b3525e-f745-4c4e-914d-dd4b02939296.png", titulo: "Elevare Alto Padrão", tipo: "Identidade premium" },
-      { src: "./0272f6ca-e3da-4ad2-8a87-b7e0ccdef10d.png", titulo: "Tabela de Preços", tipo: "Apresentação comercial" },
-      { src: "./545cafd7-cbe8-4756-b871-43eaf2b90bfe.png", titulo: "Elevare Imóveis", tipo: "Logo imobiliária" },
-      { src: "./6427c0f7-cd2d-4ff0-9a79-ef1fa27917a6.png", titulo: "Elevare Imóveis", tipo: "Aplicação em fachada" },
-      { src: "./74766a8c-4f97-40bf-a378-2026eb45e581.png", titulo: "Zena Moda Masculina", tipo: "Logo fashion" },
-      { src: "./a588002b-3517-45f9-bde5-383d9c364853.png", titulo: "Elevare Alto Padrão", tipo: "Aplicação externa" },
-      { src: "./ce0e53db-8ab4-4cd6-a2d4-cac19acc0110.png", titulo: "Elevare Imóveis", tipo: "Aplicação urbana" },
-      { src: "./fa019d57-2a04-426b-a7a8-616572b805e1.png", titulo: "Zena Moda Masculina", tipo: "Logo em textura" },
-      { src: "./ff30f682-db4a-43a9-b306-ac716cb25dc3.png", titulo: "Zena Moda Masculina", tipo: "Logo minimalista" },
-      { src: "./21e04d001-ea74-4abf-98cf-505da508026c.png", titulo: "Sabor Express Marmitas", tipo: "Logo clean" },
-      { src: "./21e04001-ea74-4abf-98cf-505da508026c.png", titulo: "Sabor Express Marmitas", tipo: "Logo fundo escuro" },
-      { src: "./55c1cc0e-d7bf-41b9-8d22-f38e04ce6071.png", titulo: "Zena Moda Masculina", tipo: "Logo premium" }
+    const grupos = [
+      {
+        nome: "Sabor Express Marmitas",
+        descricao: "Linha gastronômica para marmitas, delivery e marcas de comida.",
+        itens: [
+          { src: "./21e04d001-ea74-4abf-98cf-505da508026c.png", titulo: "Sabor Express Marmitas", tipo: "Logo clean" },
+          { src: "./21e04001-ea74-4abf-98cf-505da508026c.png", titulo: "Sabor Express Marmitas", tipo: "Logo fundo escuro" },
+          { src: "./62f43944-ba07-432a-9c9b-65c412e748a0.png", titulo: "Sabor Express Marmitas", tipo: "Logo cinematográfica" }
+        ]
+      },
+      {
+        nome: "Elevare",
+        descricao: "Sequência de logos imobiliárias e aplicações visuais da marca.",
+        itens: [
+          { src: "./545cafd7-cbe8-4756-b871-43eaf2b90bfe.png", titulo: "Elevare", tipo: "Logo imobiliária" },
+          { src: "./6427c0f7-cd2d-4ff0-9a79-ef1fa27917a6.png", titulo: "Elevare", tipo: "Logo em ambiente interno" },
+          { src: "./ce0e53db-8ab4-4cd6-a2d4-cac19acc0110.png", titulo: "Elevare", tipo: "Logo em fachada" },
+          { src: "./a588002b-3517-45f9-bde5-383d9c364853.png", titulo: "Elevare", tipo: "Logo alto padrão" },
+          { src: "./86b3525e-f745-4c4e-914d-dd4b02939296.png", titulo: "Elevare", tipo: "Logo imobiliária premium" }
+        ]
+      },
+      {
+        nome: "Zena Moda Masculina",
+        descricao: "Sequência de logos para marca de moda masculina.",
+        itens: [
+          { src: "./55c1cc0e-d7bf-41b9-8d22-f38e04ce6071.png", titulo: "Zena Moda Masculina", tipo: "Logo fundo claro" },
+          { src: "./ff30f682-db4a-43a9-b306-ac716cb25dc3.png", titulo: "Zena Moda Masculina", tipo: "Logo minimalista" },
+          { src: "./fa019d57-2a04-426b-a7a8-616572b805e1.png", titulo: "Zena Moda Masculina", tipo: "Logo em textura" },
+          { src: "./74766a8c-4f97-40bf-a378-2026eb45e581.png", titulo: "Zena Moda Masculina", tipo: "Logo premium" }
+        ]
+      }
     ];
 
     const estiloId = "estilo-galeria-logos-ph";
@@ -235,13 +257,12 @@
       estilo.id = estiloId;
       estilo.textContent = `
         .secao-logos-ph {
-          width: min(1180px, calc(100% - 32px));
-          margin: 80px auto;
-          padding: clamp(28px, 4vw, 44px);
-          border: 1px solid rgba(245, 215, 110, 0.22);
-          border-radius: 34px;
-          background: radial-gradient(circle at top left, rgba(245, 215, 110, 0.12), transparent 34%), rgba(5, 5, 7, 0.56);
-          box-shadow: 0 26px 70px rgba(0, 0, 0, 0.36);
+          margin-top: 34px;
+          padding: clamp(22px, 4vw, 34px);
+          border: 1px solid rgba(245, 215, 110, 0.24);
+          border-radius: 28px;
+          background: radial-gradient(circle at top left, rgba(245, 215, 110, 0.12), transparent 36%), linear-gradient(180deg, rgba(5, 5, 7, 0.52), rgba(5, 5, 7, 0.24));
+          box-shadow: 0 24px 58px rgba(0, 0, 0, 0.34);
         }
         .secao-logos-ph .cabecalho-logos-ph {
           max-width: 860px;
@@ -252,14 +273,29 @@
           font-size: clamp(2rem, 4vw, 3.5rem);
           color: #fff;
         }
-        .secao-logos-ph .cabecalho-logos-ph p {
+        .secao-logos-ph .cabecalho-logos-ph p,
+        .grupo-logos-ph > p {
           color: #cfc6a8;
           line-height: 1.75;
+        }
+        .grupo-logos-ph {
+          padding-top: 26px;
+          margin-top: 26px;
+          border-top: 1px solid rgba(245, 215, 110, 0.18);
+        }
+        .grupo-logos-ph:first-of-type {
+          margin-top: 0;
+        }
+        .grupo-logos-ph h3 {
+          margin: 0 0 8px;
+          color: #f5d76e;
+          font-size: clamp(1.35rem, 2.5vw, 2rem);
         }
         .grid-logos-ph {
           display: grid;
           grid-template-columns: repeat(3, minmax(0, 1fr));
           gap: 18px;
+          margin-top: 18px;
         }
         .logo-card-ph {
           overflow: hidden;
@@ -295,7 +331,8 @@
           letter-spacing: 0.08em;
           text-transform: uppercase;
         }
-        .logo-card-ph h3 {
+        .logo-card-ph h4 {
+          margin: 0;
           color: #fff;
           font-size: 1.1rem;
           line-height: 1.25;
@@ -317,19 +354,25 @@
       <div class="cabecalho-logos-ph">
         <span class="tag-mini">Logos</span>
         <h2>Logos e identidades visuais</h2>
-        <p>Alguns exemplos de logos, marcas e aplicações visuais criadas pela PH Creative, com foco em presença profissional, impacto e identidade de marca.</p>
+        <p>Galeria organizada por marca, sem tabela de preços no meio. Cada fileira mantém a mesma identidade, indo dos modelos mais simples até os mais fortes visualmente.</p>
       </div>
-      <div class="grid-logos-ph" aria-label="Galeria de logos e identidades visuais">
-        ${logos.map((item) => `
-          <article class="logo-card-ph">
-            <figure><img src="${item.src}" alt="${item.titulo}" loading="lazy"></figure>
-            <div><span>${item.tipo}</span><h3>${item.titulo}</h3></div>
-          </article>
-        `).join("")}
-      </div>
+      ${grupos.map((grupo) => `
+        <div class="grupo-logos-ph">
+          <h3>${grupo.nome}</h3>
+          <p>${grupo.descricao}</p>
+          <div class="grid-logos-ph" aria-label="Galeria ${grupo.nome}">
+            ${grupo.itens.map((item) => `
+              <article class="logo-card-ph">
+                <figure><img src="${item.src}" alt="${item.titulo}" loading="lazy"></figure>
+                <div><span>${item.tipo}</span><h4>${item.titulo}</h4></div>
+              </article>
+            `).join("")}
+          </div>
+        </div>
+      `).join("")}
     `;
 
-    secaoLoja.insertAdjacentElement("afterend", secaoLogos);
+    pontoDeInsercao.insertAdjacentElement("afterend", secaoLogos);
   }
 
   removerTabelaDuplicadaLoja();
