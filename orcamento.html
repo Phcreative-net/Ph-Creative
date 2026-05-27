@@ -18,6 +18,9 @@
     .botao-voltar-simples:hover{background:rgba(245,215,110,.12);border-color:rgba(245,215,110,.46);transform:translateY(-1px)}
     h1{max-width:820px;font-size:clamp(2.5rem,7vw,5.4rem);line-height:.96;letter-spacing:-.06em;margin-bottom:16px}
     .intro{max-width:760px;color:#cfc6a8;font-size:clamp(1rem,2vw,1.18rem);line-height:1.72;margin-bottom:24px}
+    .portfolio-chamada{display:flex;align-items:center;justify-content:space-between;gap:18px;flex-wrap:wrap;margin:0 0 24px;padding:18px;border:1px solid rgba(245,215,110,.22);border-radius:24px;background:rgba(245,215,110,.06);box-shadow:0 18px 45px rgba(0,0,0,.25)}
+    .portfolio-chamada p{max-width:660px;color:#d8ceb0;line-height:1.65}
+    .portfolio-chamada strong{color:#f5d76e}
     .formulario-site{display:grid;gap:16px;margin-top:20px}
     .linha-campos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
     .campo{display:grid;gap:8px}
@@ -35,7 +38,7 @@
     .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 22px;border:0;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;text-decoration:none;cursor:pointer;font-size:1rem}
     .btn-secundario{border:1px solid rgba(245,215,110,.25);background:rgba(255,255,255,.04);color:#f5d76e}
     footer{text-align:center;color:#9c9278;padding:8px 0 0;font-size:.92rem}
-    @media(max-width:760px){.linha-campos{grid-template-columns:1fr}.acoes .btn{width:100%}}
+    @media(max-width:760px){.linha-campos{grid-template-columns:1fr}.portfolio-chamada .btn,.acoes .btn{width:100%}}
   </style>
 </head>
 <body>
@@ -44,6 +47,11 @@
       <div class="topo-site"><span class="tag">Sites</span><a href="./index.html" class="botao-voltar-simples">← Voltar</a></div>
       <h1>Monte seu Site</h1>
       <p class="intro">Preencha as informações principais e fale diretamente comigo no WhatsApp para explicar melhor o site que você deseja.</p>
+
+      <div class="portfolio-chamada">
+        <p><strong>Conheça também meu portfólio.</strong><br>Se quiser ver mais sobre minha história, acompanhar meu trabalho ou deixar algum comentário, está tudo organizado no portfólio da Ph Creative.</p>
+        <a class="btn" href="https://phcreative-net.github.io/portfolio-ph/" target="_blank" rel="noopener noreferrer">Abrir portfólio</a>
+      </div>
 
       <form class="formulario-site" id="formSite">
         <div class="linha-campos">
