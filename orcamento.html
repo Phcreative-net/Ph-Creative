@@ -17,7 +17,7 @@
     h1{max-width:820px;font-size:clamp(2.5rem,7vw,5.4rem);line-height:.96;letter-spacing:-.06em;margin-bottom:16px}.intro{max-width:760px;color:#cfc6a8;font-size:clamp(1rem,2vw,1.18rem);line-height:1.72;margin-bottom:24px}
     .assistente-box{display:grid;gap:14px;margin-top:20px}.campo{display:grid;gap:8px}label{color:#f5d76e;font-weight:900;font-size:.95rem}textarea,input{width:100%;border:1px solid rgba(245,215,110,.18);border-radius:18px;padding:15px;background:rgba(5,5,7,.66);color:#fff;outline:none;font-family:inherit}textarea{min-height:190px;resize:vertical;line-height:1.65}textarea:focus,input:focus{border-color:rgba(245,215,110,.55)}
     .linha-campos{display:grid;grid-template-columns:1fr 1fr;gap:12px}.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 20px;border:0;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;text-decoration:none;cursor:pointer}.btn-secundario{border:1px solid rgba(245,215,110,.25);background:rgba(255,255,255,.04);color:#f5d76e}
-    .resultado{display:none;margin-top:22px;padding:22px;border-radius:24px;border:1px solid rgba(245,215,110,.24);background:rgba(245,215,110,.07);box-shadow:0 18px 48px rgba(0,0,0,.28)}.resultado.mostrar{display:block}.resultado-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:12px}.resultado h2{font-size:clamp(1.45rem,3vw,2.4rem);line-height:1}.preco-final{display:inline-flex;padding:9px 13px;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;white-space:nowrap}.resultado p{color:#cfc6a8;line-height:1.65}.lista-detectada{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chip{border:1px solid rgba(245,215,110,.22);border-radius:999px;padding:7px 10px;color:#f5d76e;background:rgba(5,5,7,.48);font-size:.84rem;font-weight:800}.chip.palavra{color:#e9dec2;border-color:rgba(255,255,255,.13)}.aviso{margin-top:14px;color:#9c9278;font-size:.9rem;line-height:1.55}
+    .resultado{display:none;margin-top:22px;padding:22px;border-radius:24px;border:1px solid rgba(245,215,110,.24);background:rgba(245,215,110,.07);box-shadow:0 18px 48px rgba(0,0,0,.28)}.resultado.mostrar{display:block}.resultado-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:12px}.resultado h2{font-size:clamp(1.45rem,3vw,2.4rem);line-height:1}.preco-final{display:inline-flex;padding:9px 13px;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;white-space:nowrap}.resultado p{color:#cfc6a8;line-height:1.65}.lista-detectada{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chip{border:1px solid rgba(245,215,110,.22);border-radius:999px;padding:7px 10px;color:#f5d76e;background:rgba(5,5,7,.48);font-size:.84rem;font-weight:800}.chip.palavra{color:#e9dec2;border-color:rgba(255,255,255,.13)}.chip.valor{color:#050507;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);border:0}.aviso{margin-top:14px;color:#9c9278;font-size:.9rem;line-height:1.55}
     footer{text-align:center;color:#9c9278;padding:8px 0 0;font-size:.92rem}@media(max-width:700px){.linha-campos{grid-template-columns:1fr}.acoes .btn{width:100%}}
   </style>
 </head>
@@ -26,7 +26,7 @@
     <section class="painel">
       <div class="topo-site"><span class="tag">Sites</span><a href="./index.html" class="botao-voltar-simples">← Voltar</a></div>
       <h1>Monte seu Site</h1>
-      <p class="intro">Descreva a ideia do seu site. O assistente inteligente lê as palavras do cliente, reconhece recursos, estilo, objetivo e calcula uma estimativa automática.</p>
+      <p class="intro">Descreva a ideia do seu site. O assistente inteligente lê as palavras do cliente, soma os recursos encontrados e calcula um valor mais específico.</p>
 
       <div class="assistente-box">
         <div class="linha-campos">
@@ -38,10 +38,10 @@
       </div>
 
       <div class="resultado" id="resultado">
-        <div class="resultado-topo"><div><span class="tag">Resultado</span><h2 id="categoriaResultado">Site simples</h2></div><strong class="preco-final" id="precoResultado">R$ 300</strong></div>
+        <div class="resultado-topo"><div><span class="tag">Resultado</span><h2 id="categoriaResultado">Orçamento estimado</h2></div><strong class="preco-final" id="precoResultado">R$ 300</strong></div>
         <p id="textoResultado">Descreva seu projeto e clique em calcular.</p>
         <div class="lista-detectada" id="itensDetectados"></div>
-        <p class="aviso">O valor é uma estimativa inicial. Caso o projeto tenha detalhes extras, o valor final pode ser ajustado pelo WhatsApp.</p>
+        <p class="aviso">O valor é uma estimativa inicial automática. O valor final pode ser ajustado pelo WhatsApp de acordo com detalhes, prazo e quantidade de alterações.</p>
         <div class="acoes"><a class="btn" id="btnWhatsApp" target="_blank" rel="noopener noreferrer">Enviar orçamento no WhatsApp</a></div>
       </div>
     </section>
@@ -52,32 +52,38 @@
     const numeroWhatsApp="5521984150295";
     const descricao=document.getElementById("descricaoSite"),nomeMarca=document.getElementById("nomeMarca"),prazoCliente=document.getElementById("prazoCliente"),resultado=document.getElementById("resultado"),categoriaResultado=document.getElementById("categoriaResultado"),precoResultado=document.getElementById("precoResultado"),textoResultado=document.getElementById("textoResultado"),itensDetectados=document.getElementById("itensDetectados"),btnWhatsApp=document.getElementById("btnWhatsApp");
 
-    const stopwords=new Set("a o os as um uma uns umas de da do das dos e ou para por com sem em no na nos nas meu minha meus minhas seu sua seus suas que quero queria preciso precisa criar fazer site pagina página ter tenha como sobre mais menos muito pouco algo esse essa isso aquele aquela voce você cliente clientes empresa marca produto projeto visual design bom boa bonito bonita quero quero site gostaria".split(" "));
-    const mapaSinonimos={basico:"básico",pagina:"página",catalogo:"catálogo",portfolio:"portfólio",servicos:"serviços",precos:"preços",animacao:"animação",animacoes:"animações",comentarios:"comentários",avaliacoes:"avaliações",cartao:"cartão",noticias:"notícias",experiencia:"experiência",apresentacao:"apresentação",conversao:"conversão"};
+    const stopwords=new Set("a o os as um uma uns umas de da do das dos e ou para por com sem em no na nos nas meu minha meus minhas seu sua seus suas que quero queria preciso precisa criar fazer site pagina página ter tenha como sobre mais menos muito pouco algo esse essa isso aquele aquela voce você cliente clientes empresa marca projeto visual design bom boa bonito bonita gostaria".split(" "));
+    const mapaSinonimos={basico:"básico",pagina:"página",catalogo:"catálogo",portfolio:"portfólio",servicos:"serviços",precos:"preços",animacao:"animação",animacoes:"animações",comentarios:"comentários",avaliacoes:"avaliações",cartao:"cartão",noticias:"notícias",experiencia:"experiência",apresentacao:"apresentação",conversao:"conversão",orcamento:"orçamento",localizacao:"localização",endereco:"endereço",horario:"horário",usuario:"usuário",usuarios:"usuários",integracao:"integração",automacao:"automação"};
 
-    const regras=[
-      {nivel:1,peso:2,item:"site pessoal",palavras:["pessoal","biografia","curriculo","currículo","sobre mim","apresentação","apresentacao","perfil","autônomo","autonomo"]},
-      {nivel:1,peso:2,item:"links e contato",palavras:["link","links","contato","telefone","instagram","facebook","linkedin","whatsapp","redes sociais","botão de whatsapp","botao de whatsapp"]},
-      {nivel:1,peso:3,item:"landing page",palavras:["landing","vender","venda","oferta","divulgar","promoção","promocao","campanha","captar","conversão","conversao","lançamento","lancamento","produto único","produto unico","serviço único","servico unico"]},
-      {nivel:1,peso:1,item:"estilo visual simples",palavras:["bonito","moderno","limpo","minimalista","simples","escuro","claro","dourado","azul","verde","vermelho","preto","branco"]},
-      {nivel:2,peso:5,item:"catálogo / vitrine",palavras:["catálogo","catalogo","vitrine","produtos","produto","lista de produtos","fotos dos produtos","serviços","servicos","preços","precos","modelos","cardápio","cardapio","menu","artes","imagens","galeria"]},
-      {nivel:2,peso:5,item:"portfólio",palavras:["portfólio","portfolio","projetos","trabalhos","habilidades","experiência","experiencia","galeria de projetos","mostrar meus trabalhos","currículo online","curriculo online"]},
-      {nivel:2,peso:6,item:"loja com carrinho",palavras:["loja","loja online","loja virtual","comprar","compra","carrinho","adicionar ao carrinho","pedido pelo whatsapp","checkout whatsapp","enviar pedido","orcamento pelo whatsapp","orçamento pelo whatsapp"]},
-      {nivel:2,peso:4,item:"formulários e atendimento",palavras:["formulário","formulario","orçamento","orcamento","mensagem","email","agendamento","agenda","marcar horário","marcar horario","reserva","reservar"]},
-      {nivel:2,peso:3,item:"localização e informação",palavras:["mapa","localização","localizacao","endereço","endereco","horário","horario","depoimentos","perguntas frequentes","faq"]},
-      {nivel:2,peso:3,item:"conteúdo / blog",palavras:["blog","notícias","noticias","postagens","artigos","novidades","conteúdo","conteudo"]},
-      {nivel:3,peso:8,item:"site profissional",palavras:["profissional","completo","premium","alto padrão","alto padrao","empresa grande","empresarial","institucional completo","marca grande","pessoa famosa","famoso","influencer","autoridade","presença premium","presenca premium"]},
-      {nivel:3,peso:9,item:"sistema com login",palavras:["sistema","login","senha","painel","admin","administrador","cadastro","usuário","usuario","usuários","usuarios","cliente entra","área do cliente","area do cliente","painel do cliente"]},
-      {nivel:3,peso:9,item:"banco de dados",palavras:["banco de dados","firebase","database","salvar dados","dados dos clientes","cadastro de clientes","dashboard","relatório","relatorio"]},
-      {nivel:3,peso:8,item:"pagamentos e loja avançada",palavras:["pagamento","pix","cartão","cartao","boleto","ecommerce","e-commerce","estoque","cupom","frete","entrega","calcular frete","loja completa"]},
-      {nivel:3,peso:6,item:"recursos avançados",palavras:["api","integração","integracao","automação","automacao","chat","comentários","comentarios","avaliações","avaliacoes","contador de acessos","notificação","notificacao"]},
-      {nivel:3,peso:5,item:"animações premium",palavras:["animação","animacao","animações","animacoes","efeito","efeitos","cinematográfico","cinematografico","3d","parallax","muito moderno","super moderno","design avançado","design avancado"]},
-      {nivel:3,peso:5,item:"muitas páginas",palavras:["muitas páginas","muitas paginas","várias páginas","varias paginas","mais de 5 páginas","mais de 5 paginas","home sobre serviços contato","home, sobre, serviços, contato"]}
+    const recursos=[
+      {nome:"Base do site",valor:300,nivel:"Site simples",palavras:["pessoal","biografia","curriculo","currículo","apresentação","apresentacao","perfil","contato","whatsapp","instagram","link","links","telefone","redes sociais","simples","básico","basico"]},
+      {nome:"Landing page de venda",valor:80,nivel:"Landing page",palavras:["landing","vender","venda","oferta","divulgar","promoção","promocao","campanha","captar","conversão","conversao","lançamento","lancamento","produto único","produto unico","serviço único","servico unico"]},
+      {nome:"Catálogo / vitrine",valor:250,nivel:"Site catálogo",palavras:["catálogo","catalogo","vitrine","produtos","produto","lista de produtos","fotos dos produtos","serviços","servicos","preços","precos","modelos","cardápio","cardapio","menu","artes","imagens"]},
+      {nome:"Portfólio",valor:220,nivel:"Portfólio",palavras:["portfólio","portfolio","projetos","trabalhos","habilidades","experiência","experiencia","galeria de projetos","mostrar meus trabalhos","currículo online","curriculo online"]},
+      {nome:"Galeria de fotos",valor:120,nivel:"Galeria",palavras:["galeria","fotos","imagens","album","álbum","antes e depois","carrossel","carrosel"]},
+      {nome:"Loja online básica",valor:260,nivel:"Loja online",palavras:["loja","loja online","loja virtual","comprar","compra","vender produtos","ecommerce simples"]},
+      {nome:"Carrinho simples",valor:180,nivel:"Carrinho",palavras:["carrinho","adicionar ao carrinho","pedido pelo whatsapp","checkout whatsapp","enviar pedido","comprar pelo whatsapp"]},
+      {nome:"Formulário",valor:120,nivel:"Formulário",palavras:["formulário","formulario","orçamento","orcamento","mensagem","email","fale conosco","solicitar orçamento","solicitar orcamento"]},
+      {nome:"Agendamento",valor:160,nivel:"Agendamento",palavras:["agendamento","agenda","marcar horário","marcar horario","reserva","reservar","horário disponível","horario disponivel"]},
+      {nome:"Mapa e localização",valor:80,nivel:"Localização",palavras:["mapa","localização","localizacao","endereço","endereco","como chegar","google maps","horário","horario"]},
+      {nome:"Depoimentos / avaliações",valor:90,nivel:"Avaliações",palavras:["depoimentos","avaliações","avaliacoes","comentários de clientes","comentarios de clientes","prova social"]},
+      {nome:"Blog / notícias",valor:180,nivel:"Blog",palavras:["blog","notícias","noticias","postagens","artigos","novidades","conteúdo","conteudo"]},
+      {nome:"Animações",valor:140,nivel:"Animações",palavras:["animação","animacao","animações","animacoes","efeito","efeitos","parallax","movimento","transição","transicao"]},
+      {nome:"Acabamento premium",valor:180,nivel:"Premium",palavras:["premium","alto padrão","alto padrao","cinematográfico","cinematografico","3d","muito moderno","super moderno","design avançado","design avancado","profissional"]},
+      {nome:"Muitas páginas",valor:220,nivel:"Mais páginas",palavras:["muitas páginas","muitas paginas","várias páginas","varias paginas","mais de 5 páginas","mais de 5 paginas","home sobre serviços contato","home, sobre, serviços, contato"]},
+      {nome:"Login / área do cliente",valor:420,nivel:"Sistema",palavras:["login","senha","cadastro","usuário","usuario","usuários","usuarios","cliente entra","área do cliente","area do cliente","painel do cliente"]},
+      {nome:"Painel administrativo",valor:450,nivel:"Painel",palavras:["painel","admin","administrador","dashboard","gerenciar","editar pelo painel","sistema"]},
+      {nome:"Banco de dados",valor:380,nivel:"Banco de dados",palavras:["banco de dados","firebase","database","salvar dados","dados dos clientes","cadastro de clientes"]},
+      {nome:"Pagamento online",valor:500,nivel:"Pagamento",palavras:["pagamento","pix","cartão","cartao","boleto","checkout","mercado pago","stripe","pagar online"]},
+      {nome:"Estoque / frete / cupom",valor:420,nivel:"Loja avançada",palavras:["estoque","cupom","frete","entrega","calcular frete","controle de estoque","loja completa"]},
+      {nome:"Integração / API",valor:450,nivel:"Integração",palavras:["api","integração","integracao","automação","automacao","notificação","notificacao","webhook"]}
     ];
 
     function normalizar(texto){return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
     function contem(texto,palavra){return texto.includes(normalizar(palavra));}
     function tokenizar(texto){return normalizar(texto).replace(/[^a-z0-9\s]/g," ").split(/\s+/).filter(p=>p.length>2&&!stopwords.has(p)).map(p=>mapaSinonimos[p]||p);}
+    function moeda(valor){return valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});}
+    function arredondar50(valor){return Math.round(valor/50)*50;}
 
     function calcular(){
       const texto=descricao.value.trim();
@@ -85,55 +91,45 @@
 
       const normalizado=normalizar(texto);
       const palavrasCliente=[...new Set(tokenizar(texto))];
-      let pontos=0;
-      let nivelMaisAlto=1;
+      let total=0;
       const detectados=[];
+      const niveis=[];
       const encontrados=[];
 
-      regras.forEach(regra=>{
-        const termosAchados=regra.palavras.filter(palavra=>contem(normalizado,palavra));
+      recursos.forEach(recurso=>{
+        const termosAchados=recurso.palavras.filter(palavra=>contem(normalizado,palavra));
         if(termosAchados.length){
-          pontos+=regra.peso+Math.min(termosAchados.length-1,3);
-          nivelMaisAlto=Math.max(nivelMaisAlto,regra.nivel);
-          detectados.push(regra.item);
+          total+=recurso.valor;
+          detectados.push(`${recurso.nome} +${moeda(recurso.valor)}`);
+          niveis.push(recurso.nivel);
           termosAchados.forEach(t=>encontrados.push(t));
         }
       });
 
-      const sinaisIntermediarios=["produto","produtos","foto","fotos","galeria","servico","servicos","serviço","serviços","preco","preços","precos","cliente","clientes","vender","loja","modelo","modelos"];
-      const sinaisAvancados=["login","painel","sistema","pagamento","estoque","frete","cadastro","dashboard","firebase","api","cupom","admin"];
-      const qtdInter=palavrasCliente.filter(p=>sinaisIntermediarios.includes(normalizar(p))).length;
-      const qtdAvanc=palavrasCliente.filter(p=>sinaisAvancados.includes(normalizar(p))).length;
-      pontos+=qtdInter;
-      pontos+=qtdAvanc*3;
-      if(qtdInter>=3){nivelMaisAlto=Math.max(nivelMaisAlto,2);detectados.push("várias palavras de vitrine/venda");}
-      if(qtdAvanc>=1){nivelMaisAlto=Math.max(nivelMaisAlto,3);detectados.push("palavras técnicas avançadas");}
+      if(total===0){total=300;detectados.push("Base do site +R$ 300");niveis.push("Site simples");}
+      if(palavrasCliente.length>22){total+=80;detectados.push("Descrição detalhada +R$ 80");}
+      if(palavrasCliente.length>45){total+=180;detectados.push("Projeto grande +R$ 180");}
+      if((texto.match(/,|;|\n/g)||[]).length>=3){total+=80;detectados.push("Várias necessidades +R$ 80");}
 
-      if(palavrasCliente.length>22){pontos+=2;detectados.push("descrição detalhada");}
-      if(palavrasCliente.length>45){pontos+=4;nivelMaisAlto=Math.max(nivelMaisAlto,3);detectados.push("projeto grande");}
-      if((texto.match(/,|;|\n/g)||[]).length>=3){pontos+=2;detectados.push("várias necessidades");}
+      total=Math.max(300,arredondar50(total));
+      let categoria="Site simples";
+      if(total>=550) categoria="Site intermediário";
+      if(total>=850) categoria="Site profissional";
+      if(total>=1300) categoria="Projeto completo avançado";
 
-      let nivel=1;
-      if(pontos>=7||nivelMaisAlto>=2) nivel=2;
-      if(pontos>=16||nivelMaisAlto>=3) nivel=3;
-
-      const dados={
-        1:{categoria:"Site simples",preco:"R$ 300",texto:"Indicado para página pessoal, landing page simples, apresentação, links, contato e WhatsApp."},
-        2:{categoria:"Site intermediário",preco:"R$ 600",texto:"Indicado para catálogo, portfólio, vitrine de produtos, serviços, galeria, formulário e carrinho simples pelo WhatsApp."},
-        3:{categoria:"Site profissional",preco:"R$ 900",texto:"Indicado para projeto completo, empresa, marca premium, muitas páginas, animações, sistema, login, banco de dados ou recursos avançados."}
-      }[nivel];
-
-      categoriaResultado.innerText=dados.categoria;
-      precoResultado.innerText=dados.preco;
-      textoResultado.innerText=`${dados.texto} O assistente analisou ${palavrasCliente.length} palavras importantes e encontrou ${encontrados.length} sinais no texto. Pontuação: ${pontos}.`;
+      categoriaResultado.innerText=categoria;
+      precoResultado.innerText=moeda(total);
+      textoResultado.innerText=`Preço calculado por recursos encontrados, não por valor fixo. O assistente encontrou ${encontrados.length} sinais no texto, analisou ${palavrasCliente.length} palavras importantes e calculou ${moeda(total)}.`;
       itensDetectados.innerHTML="";
-      [...new Set(detectados.length?detectados:["análise geral"])].forEach(item=>{const chip=document.createElement("span");chip.className="chip";chip.innerText=item;itensDetectados.appendChild(chip);});
-      palavrasCliente.slice(0,26).forEach(item=>{const chip=document.createElement("span");chip.className="chip palavra";chip.innerText=item;itensDetectados.appendChild(chip);});
+      detectados.forEach(item=>{const chip=document.createElement("span");chip.className="chip valor";chip.innerText=item;itensDetectados.appendChild(chip);});
+      [...new Set(niveis)].forEach(item=>{const chip=document.createElement("span");chip.className="chip";chip.innerText=item;itensDetectados.appendChild(chip);});
+      palavrasCliente.slice(0,28).forEach(item=>{const chip=document.createElement("span");chip.className="chip palavra";chip.innerText=item;itensDetectados.appendChild(chip);});
 
       const nome=nomeMarca.value.trim()||"Não informado";
       const prazo=prazoCliente.value.trim()||"Não informado";
-      const palavrasResumo=palavrasCliente.slice(0,32).join(", ")||"Não informado";
-      const mensagem=encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nResultado do assistente:\nTipo: ${dados.categoria}\nValor estimado: ${dados.preco}\nPontuação: ${pontos}\nPalavras analisadas: ${palavrasResumo}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\n\nDescrição do projeto:\n${texto}`);
+      const palavrasResumo=palavrasCliente.slice(0,36).join(", ")||"Não informado";
+      const itensResumo=detectados.join("; ");
+      const mensagem=encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nResultado do assistente:\nCategoria: ${categoria}\nValor estimado: ${moeda(total)}\nItens calculados: ${itensResumo}\nPalavras analisadas: ${palavrasResumo}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\n\nDescrição do projeto:\n${texto}`);
       btnWhatsApp.href=`https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
       resultado.classList.add("mostrar");
       resultado.scrollIntoView({behavior:"smooth",block:"nearest"});
