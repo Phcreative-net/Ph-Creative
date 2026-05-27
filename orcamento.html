@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Monte seu Site | Ph Creative</title>
-  <meta name="description" content="Assistente inteligente da Ph Creative para estimar o valor de um site." />
+  <meta name="description" content="Fale diretamente com a Ph Creative para montar seu site." />
   <meta name="theme-color" content="#050507" />
   <style>
     *{box-sizing:border-box;margin:0;padding:0}
@@ -12,13 +12,30 @@
     body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px;opacity:.55}
     .page{position:relative;z-index:1;width:min(980px,calc(100% - 32px));margin:0 auto;padding:clamp(28px,5vw,58px) 0 38px}
     .painel{border:1px solid rgba(245,215,110,.22);border-radius:32px;padding:clamp(24px,4vw,42px);background:radial-gradient(circle at top left,rgba(245,215,110,.12),transparent 34%),linear-gradient(180deg,rgba(20,20,28,.84),rgba(7,7,10,.94));box-shadow:0 28px 80px rgba(0,0,0,.46);margin-bottom:24px}
-    .topo-site{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.tag{display:inline-flex;width:max-content;padding:8px 12px;border-radius:999px;border:1px solid rgba(245,215,110,.28);color:#f5d76e;font-size:.74rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase;background:rgba(245,215,110,.06)}
-    .botao-voltar-simples{display:inline-flex;align-items:center;justify-content:center;min-height:35px;padding:8px 13px;border-radius:999px;border:1px solid rgba(245,215,110,.24);background:rgba(255,255,255,.035);color:#f5d76e;font-size:.82rem;font-weight:900;text-decoration:none;transition:.22s ease}.botao-voltar-simples:hover{background:rgba(245,215,110,.12);border-color:rgba(245,215,110,.46);transform:translateY(-1px)}
-    h1{max-width:820px;font-size:clamp(2.5rem,7vw,5.4rem);line-height:.96;letter-spacing:-.06em;margin-bottom:16px}.intro{max-width:760px;color:#cfc6a8;font-size:clamp(1rem,2vw,1.18rem);line-height:1.72;margin-bottom:24px}
-    .assistente-box{display:grid;gap:14px;margin-top:20px}.campo{display:grid;gap:8px}label{color:#f5d76e;font-weight:900;font-size:.95rem}textarea,input{width:100%;border:1px solid rgba(245,215,110,.18);border-radius:18px;padding:15px;background:rgba(5,5,7,.66);color:#fff;outline:none;font-family:inherit}textarea{min-height:190px;resize:vertical;line-height:1.65}textarea:focus,input:focus{border-color:rgba(245,215,110,.55)}
-    .linha-campos{display:grid;grid-template-columns:1fr 1fr;gap:12px}.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 20px;border:0;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;text-decoration:none;cursor:pointer}.btn-secundario{border:1px solid rgba(245,215,110,.25);background:rgba(255,255,255,.04);color:#f5d76e}
-    .resultado{display:none;margin-top:22px;padding:22px;border-radius:24px;border:1px solid rgba(245,215,110,.24);background:rgba(245,215,110,.07);box-shadow:0 18px 48px rgba(0,0,0,.28)}.resultado.mostrar{display:block}.resultado-topo{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;flex-wrap:wrap;margin-bottom:12px}.resultado h2{font-size:clamp(1.45rem,3vw,2.4rem);line-height:1}.preco-final{display:inline-flex;padding:9px 13px;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;white-space:nowrap}.resultado p{color:#cfc6a8;line-height:1.65}.lista-detectada{display:flex;gap:8px;flex-wrap:wrap;margin-top:14px}.chip{border:1px solid rgba(245,215,110,.22);border-radius:999px;padding:7px 10px;color:#f5d76e;background:rgba(5,5,7,.48);font-size:.84rem;font-weight:800}.chip.palavra{color:#e9dec2;border-color:rgba(255,255,255,.13)}.chip.valor{color:#050507;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);border:0}.aviso{margin-top:14px;color:#9c9278;font-size:.9rem;line-height:1.55}
-    footer{text-align:center;color:#9c9278;padding:8px 0 0;font-size:.92rem}@media(max-width:700px){.linha-campos{grid-template-columns:1fr}.acoes .btn{width:100%}}
+    .topo-site{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}
+    .tag{display:inline-flex;width:max-content;padding:8px 12px;border-radius:999px;border:1px solid rgba(245,215,110,.28);color:#f5d76e;font-size:.74rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase;background:rgba(245,215,110,.06)}
+    .botao-voltar-simples{display:inline-flex;align-items:center;justify-content:center;min-height:35px;padding:8px 13px;border-radius:999px;border:1px solid rgba(245,215,110,.24);background:rgba(255,255,255,.035);color:#f5d76e;font-size:.82rem;font-weight:900;text-decoration:none;transition:.22s ease}
+    .botao-voltar-simples:hover{background:rgba(245,215,110,.12);border-color:rgba(245,215,110,.46);transform:translateY(-1px)}
+    h1{max-width:820px;font-size:clamp(2.5rem,7vw,5.4rem);line-height:.96;letter-spacing:-.06em;margin-bottom:16px}
+    .intro{max-width:760px;color:#cfc6a8;font-size:clamp(1rem,2vw,1.18rem);line-height:1.72;margin-bottom:24px}
+    .formulario-site{display:grid;gap:16px;margin-top:20px}
+    .linha-campos{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+    .campo{display:grid;gap:8px}
+    label{color:#f5d76e;font-weight:900;font-size:.95rem}
+    .obrigatorio{color:#fff1a6;font-size:.82rem;font-weight:900}
+    input,textarea{width:100%;border:1px solid rgba(245,215,110,.18);border-radius:18px;padding:15px;background:rgba(5,5,7,.66);color:#fff;outline:none;font-family:inherit;font-size:1rem}
+    textarea{min-height:150px;resize:vertical;line-height:1.65}
+    input:focus,textarea:focus{border-color:rgba(245,215,110,.55);box-shadow:0 0 0 3px rgba(245,215,110,.08)}
+    .caixa-ajuda{border:1px solid rgba(245,215,110,.2);border-radius:22px;padding:18px;background:rgba(245,215,110,.06);color:#d8ceb0;line-height:1.65}
+    .caixa-ajuda strong{color:#f5d76e}
+    .audio-aviso{border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px 16px;background:rgba(255,255,255,.04);color:#e9dec2;line-height:1.55}
+    .erro{display:none;color:#ffcf70;font-weight:800;font-size:.92rem;line-height:1.5}
+    .erro.mostrar{display:block}
+    .acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:8px}
+    .btn{display:inline-flex;align-items:center;justify-content:center;min-height:52px;padding:14px 22px;border:0;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;text-decoration:none;cursor:pointer;font-size:1rem}
+    .btn-secundario{border:1px solid rgba(245,215,110,.25);background:rgba(255,255,255,.04);color:#f5d76e}
+    footer{text-align:center;color:#9c9278;padding:8px 0 0;font-size:.92rem}
+    @media(max-width:760px){.linha-campos{grid-template-columns:1fr}.acoes .btn{width:100%}}
   </style>
 </head>
 <body>
@@ -26,128 +43,85 @@
     <section class="painel">
       <div class="topo-site"><span class="tag">Sites</span><a href="./index.html" class="botao-voltar-simples">← Voltar</a></div>
       <h1>Monte seu Site</h1>
-      <p class="intro">Descreva a ideia do seu site. O assistente inteligente lê o texto, entende o tipo de projeto e calcula o valor de acordo com o que o cliente pediu.</p>
+      <p class="intro">Preencha as informações principais e fale diretamente comigo no WhatsApp para explicar melhor o site que você deseja.</p>
 
-      <div class="assistente-box">
+      <form class="formulario-site" id="formSite">
         <div class="linha-campos">
-          <div class="campo"><label for="nomeMarca">Nome da marca</label><input id="nomeMarca" type="text" placeholder="Exemplo: Ph Creative"></div>
-          <div class="campo"><label for="prazoCliente">Prazo desejado</label><input id="prazoCliente" type="text" placeholder="Exemplo: até 7 dias"></div>
+          <div class="campo">
+            <label for="nomeSite">Nome do site <span class="obrigatorio">obrigatório</span></label>
+            <input id="nomeSite" type="text" placeholder="Exemplo: Studio Bella" required>
+          </div>
+          <div class="campo">
+            <label for="prazoSite">Prazo desejado <span class="obrigatorio">obrigatório</span></label>
+            <input id="prazoSite" type="text" placeholder="Exemplo: até 7 dias" required>
+          </div>
         </div>
-        <div class="campo"><label for="descricaoSite">Descreva o site que você quer</label><textarea id="descricaoSite" placeholder="Exemplo: Quero um site para meu trabalho, para prestar meus serviços, com botão de WhatsApp e uma área explicando o que eu faço."></textarea></div>
-        <div class="acoes"><button class="btn" type="button" id="btnCalcular">Calcular preço</button><button class="btn btn-secundario" type="button" id="btnLimpar">Limpar</button></div>
-      </div>
 
-      <div class="resultado" id="resultado">
-        <div class="resultado-topo"><div><span class="tag">Resultado</span><h2 id="categoriaResultado">Orçamento estimado</h2></div><strong class="preco-final" id="precoResultado">R$ 300</strong></div>
-        <p id="textoResultado">Descreva seu projeto e clique em calcular.</p>
-        <div class="lista-detectada" id="itensDetectados"></div>
-        <p class="aviso">O valor é uma estimativa inicial automática. O valor final pode ser ajustado pelo WhatsApp de acordo com detalhes, prazo e quantidade de alterações.</p>
-        <div class="acoes"><a class="btn" id="btnWhatsApp" target="_blank" rel="noopener noreferrer">Enviar orçamento no WhatsApp</a></div>
-      </div>
+        <div class="campo">
+          <label for="corSite">Cor ou estilo desejado <span class="obrigatorio">obrigatório</span></label>
+          <input id="corSite" type="text" placeholder="Exemplo: preto e dourado, azul moderno, branco elegante..." required>
+        </div>
+
+        <div class="caixa-ajuda">
+          <strong>O que escrever sobre o site?</strong><br>
+          Conte o que você faz, qual é o objetivo do site, quais páginas imagina, quais serviços ou produtos deseja mostrar e qualquer referência visual que goste.
+        </div>
+
+        <div class="campo">
+          <label for="detalhesSite">Fale mais sobre o site</label>
+          <textarea id="detalhesSite" placeholder="Exemplo: Sou pintor e quero um site para divulgar meu trabalho, mostrar fotos dos serviços, colocar meu WhatsApp e explicar os tipos de pintura que faço."></textarea>
+        </div>
+
+        <div class="audio-aviso">
+          Também pode mandar áudio no WhatsApp, caso prefira explicar falando. As informações preenchidas aqui serão enviadas junto para facilitar o atendimento.
+        </div>
+
+        <p class="erro" id="mensagemErro">Preencha nome do site, prazo desejado e cor/estilo antes de falar no WhatsApp.</p>
+
+        <div class="acoes">
+          <button class="btn" type="submit">Falar sobre o site no WhatsApp</button>
+          <button class="btn btn-secundario" type="button" id="btnLimpar">Limpar</button>
+        </div>
+      </form>
     </section>
     <footer><p>&copy; 2026 Ph Creative. Todos os direitos reservados.</p></footer>
   </main>
 
   <script>
     const numeroWhatsApp="5521984150295";
-    const descricao=document.getElementById("descricaoSite"),nomeMarca=document.getElementById("nomeMarca"),prazoCliente=document.getElementById("prazoCliente"),resultado=document.getElementById("resultado"),categoriaResultado=document.getElementById("categoriaResultado"),precoResultado=document.getElementById("precoResultado"),textoResultado=document.getElementById("textoResultado"),itensDetectados=document.getElementById("itensDetectados"),btnWhatsApp=document.getElementById("btnWhatsApp");
+    const form=document.getElementById("formSite");
+    const nomeSite=document.getElementById("nomeSite");
+    const prazoSite=document.getElementById("prazoSite");
+    const corSite=document.getElementById("corSite");
+    const detalhesSite=document.getElementById("detalhesSite");
+    const mensagemErro=document.getElementById("mensagemErro");
 
-    const stopwords=new Set("a o os as um uma uns umas de da do das dos e ou para por com sem em no na nos nas meu minha meus minhas seu sua seus suas que quero queria preciso precisa criar fazer site pagina página ter tenha como sobre mais menos muito pouco algo esse essa isso aquele aquela voce você cliente clientes empresa marca projeto visual design bom boa bonito bonita gostaria".split(" "));
-    const mapaSinonimos={basico:"básico",pagina:"página",catalogo:"catálogo",portfolio:"portfólio",servicos:"serviços",precos:"preços",animacao:"animação",animacoes:"animações",comentarios:"comentários",avaliacoes:"avaliações",cartao:"cartão",noticias:"notícias",experiencia:"experiência",apresentacao:"apresentação",conversao:"conversão",orcamento:"orçamento",localizacao:"localização",endereco:"endereço",horario:"horário",usuario:"usuário",usuarios:"usuários",integracao:"integração",automacao:"automação",ebook:"e-book"};
+    form.addEventListener("submit",(evento)=>{
+      evento.preventDefault();
+      const nome=nomeSite.value.trim();
+      const prazo=prazoSite.value.trim();
+      const cor=corSite.value.trim();
+      const detalhes=detalhesSite.value.trim()||"Vou explicar melhor pelo WhatsApp ou por áudio.";
 
-    const recursos=[
-      {nome:"E-book simples / página de texto",valor:150,nivel:"E-book",palavras:["ebook","e-book","livro digital","apostila","apenas escrever","só escrever","so escrever","página de leitura","pagina de leitura","site de leitura","site de texto","artigo longo","conteúdo escrito","conteudo escrito","material digital","leitura online"]},
-      {nome:"E-book com capa e seções",valor:80,nivel:"E-book organizado",palavras:["capa do ebook","capa do e-book","capítulos","capitulos","sumário","sumario","seções do livro","secoes do livro","download do ebook","baixar ebook","baixar e-book"]},
-      {nome:"Site simples / básico",valor:300,nivel:"Site simples",palavras:["site simples","site básico","site basico","página simples","pagina simples","site pequeno","apresentação simples","apresentacao simples"]},
-      {nome:"Site para prestação de serviços",valor:300,nivel:"Prestação de serviços",palavras:["trabalho","para trabalho","prestar serviço","prestar servico","prestar serviços","prestar servicos","prestar meus serviços","prestar meus servicos","meus serviços","meus servicos","meu serviço","meu servico","serviço profissional","servico profissional","serviços profissionais","servicos profissionais","atendimento","freelancer"]},
-      {nome:"Lista de serviços",valor:120,nivel:"Serviços",palavras:["lista de serviços","lista de servicos","meus serviços","meus servicos","preços dos serviços","precos dos servicos","serviços que faço","servicos que faco","o que eu faço","o que eu faco"]},
-      {nome:"Site pessoal",valor:300,nivel:"Site pessoal",palavras:["pessoal","biografia","curriculo","currículo","apresentação","apresentacao","perfil","sobre mim","autônomo","autonomo","profissional autônomo","profissional autonomo"]},
-      {nome:"Links e contato",valor:60,nivel:"Contato",palavras:["contato","whatsapp","instagram","facebook","linkedin","link","links","telefone","redes sociais","botão de whatsapp","botao de whatsapp"]},
-      {nome:"Landing page de venda",valor:300,nivel:"Landing page",palavras:["landing","vender","venda","oferta","divulgar","promoção","promocao","campanha","captar","conversão","conversao","lançamento","lancamento","produto único","produto unico","serviço único","servico unico","página de venda","pagina de venda"]},
-      {nome:"Venda de e-book",valor:120,nivel:"Venda de e-book",palavras:["vender ebook","vender e-book","comprar ebook","comprar e-book","e-book para vender","ebook para vender","página para vender ebook","pagina para vender ebook"]},
-      {nome:"Portfólio simples",valor:350,nivel:"Portfólio",palavras:["portfólio","portfolio","projetos","trabalhos","habilidades","experiência","experiencia","mostrar meus trabalhos","currículo online","curriculo online"]},
-      {nome:"Portfólio com galeria",valor:180,nivel:"Portfólio completo",palavras:["galeria de projetos","fotos dos projetos","cards de projetos","projetos organizados","trabalhos organizados","antes e depois"]},
-      {nome:"Catálogo / vitrine",valor:250,nivel:"Site catálogo",palavras:["catálogo","catalogo","vitrine","produtos","produto","lista de produtos","fotos dos produtos","preços","precos","modelos","cardápio","cardapio","menu","artes","imagens"]},
-      {nome:"Galeria de fotos",valor:120,nivel:"Galeria",palavras:["galeria","fotos","imagens","album","álbum","carrossel","carrosel"]},
-      {nome:"Loja online básica",valor:260,nivel:"Loja online",palavras:["loja","loja online","loja virtual","comprar","compra","vender produtos","ecommerce simples"]},
-      {nome:"Carrinho simples",valor:180,nivel:"Carrinho",palavras:["carrinho","adicionar ao carrinho","pedido pelo whatsapp","checkout whatsapp","enviar pedido","comprar pelo whatsapp"]},
-      {nome:"Formulário",valor:120,nivel:"Formulário",palavras:["formulário","formulario","orçamento","orcamento","mensagem","email","fale conosco","solicitar orçamento","solicitar orcamento"]},
-      {nome:"Agendamento",valor:160,nivel:"Agendamento",palavras:["agendamento","agenda","marcar horário","marcar horario","reserva","reservar","horário disponível","horario disponivel"]},
-      {nome:"Mapa e localização",valor:80,nivel:"Localização",palavras:["mapa","localização","localizacao","endereço","endereco","como chegar","google maps","horário","horario"]},
-      {nome:"Depoimentos / avaliações",valor:90,nivel:"Avaliações",palavras:["depoimentos","avaliações","avaliacoes","comentários de clientes","comentarios de clientes","prova social"]},
-      {nome:"Blog / notícias",valor:180,nivel:"Blog",palavras:["blog","notícias","noticias","postagens","artigos","novidades","conteúdo","conteudo"]},
-      {nome:"Animações",valor:140,nivel:"Animações",palavras:["animação","animacao","animações","animacoes","efeito","efeitos","parallax","movimento","transição","transicao"]},
-      {nome:"Acabamento premium",valor:180,nivel:"Premium",palavras:["premium","alto padrão","alto padrao","cinematográfico","cinematografico","3d","muito moderno","super moderno","design avançado","design avancado","profissional"]},
-      {nome:"Muitas páginas",valor:220,nivel:"Mais páginas",palavras:["muitas páginas","muitas paginas","várias páginas","varias paginas","mais de 5 páginas","mais de 5 paginas","home sobre serviços contato","home, sobre, serviços, contato"]},
-      {nome:"Login / área do cliente",valor:420,nivel:"Sistema",palavras:["login","senha","cadastro","usuário","usuario","usuários","usuarios","cliente entra","área do cliente","area do cliente","painel do cliente"]},
-      {nome:"Painel administrativo",valor:450,nivel:"Painel",palavras:["painel","admin","administrador","dashboard","gerenciar","editar pelo painel","sistema"]},
-      {nome:"Banco de dados",valor:380,nivel:"Banco de dados",palavras:["banco de dados","firebase","database","salvar dados","dados dos clientes","cadastro de clientes"]},
-      {nome:"Pagamento online",valor:500,nivel:"Pagamento",palavras:["pagamento","pix","cartão","cartao","boleto","checkout","mercado pago","stripe","pagar online"]},
-      {nome:"Estoque / frete / cupom",valor:420,nivel:"Loja avançada",palavras:["estoque","cupom","frete","entrega","calcular frete","controle de estoque","loja completa"]},
-      {nome:"Integração / API",valor:450,nivel:"Integração",palavras:["api","integração","integracao","automação","automacao","notificação","notificacao","webhook"]}
-    ];
+      if(!nome||!prazo||!cor){
+        mensagemErro.classList.add("mostrar");
+        if(!nome) nomeSite.focus(); else if(!prazo) prazoSite.focus(); else corSite.focus();
+        return;
+      }
 
-    function normalizar(texto){return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
-    function contem(texto,palavra){return texto.includes(normalizar(palavra));}
-    function tokenizar(texto){return normalizar(texto).replace(/[^a-z0-9\s]/g," ").split(/\s+/).filter(p=>p.length>2&&!stopwords.has(p)).map(p=>mapaSinonimos[p]||p);}
-    function moeda(valor){return valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});}
-    function arredondar10(valor){return Math.round(valor/10)*10;}
+      mensagemErro.classList.remove("mostrar");
+      const mensagem=encodeURIComponent(`Olá, quero falar sobre um site com a Ph Creative.\n\nNome do site: ${nome}\nPrazo desejado: ${prazo}\nCor/estilo desejado: ${cor}\n\nSobre o site:\n${detalhes}\n\nObs: se precisar, posso explicar melhor por áudio.`);
+      window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`,"_blank","noopener,noreferrer");
+    });
 
-    function calcular(){
-      const texto=descricao.value.trim();
-      if(!texto){descricao.focus();return;}
-
-      const normalizado=normalizar(texto);
-      const palavrasCliente=[...new Set(tokenizar(texto))];
-      let total=0;
-      const detectados=[];
-      const niveis=[];
-      const encontrados=[];
-
-      recursos.forEach(recurso=>{
-        const termosAchados=recurso.palavras.filter(palavra=>contem(normalizado,palavra));
-        if(termosAchados.length){
-          total+=recurso.valor;
-          detectados.push(`${recurso.nome} +${moeda(recurso.valor)}`);
-          niveis.push(recurso.nivel);
-          termosAchados.forEach(t=>encontrados.push(t));
-        }
-      });
-
-      if(total===0){total=300;detectados.push("Análise geral / site básico +R$ 300");niveis.push("Site básico");}
-      if(palavrasCliente.length>22){total+=80;detectados.push("Descrição detalhada +R$ 80");}
-      if(palavrasCliente.length>45){total+=180;detectados.push("Projeto grande +R$ 180");}
-      if((texto.match(/,|;|\n/g)||[]).length>=3){total+=80;detectados.push("Várias necessidades +R$ 80");}
-
-      total=Math.max(120,arredondar10(total));
-      let categoria="Projeto simples";
-      if(total<300) categoria="E-book / página simples";
-      if(total>=300) categoria="Site simples";
-      if(total>=550) categoria="Site intermediário";
-      if(total>=850) categoria="Site profissional";
-      if(total>=1300) categoria="Projeto completo avançado";
-
-      categoriaResultado.innerText=categoria;
-      precoResultado.innerText=moeda(total);
-      textoResultado.innerText=`Preço calculado por recursos encontrados. O assistente encontrou ${encontrados.length} sinais no texto, analisou ${palavrasCliente.length} palavras importantes e calculou ${moeda(total)} de acordo com o que foi pedido.`;
-      itensDetectados.innerHTML="";
-      detectados.forEach(item=>{const chip=document.createElement("span");chip.className="chip valor";chip.innerText=item;itensDetectados.appendChild(chip);});
-      [...new Set(niveis)].forEach(item=>{const chip=document.createElement("span");chip.className="chip";chip.innerText=item;itensDetectados.appendChild(chip);});
-      palavrasCliente.slice(0,28).forEach(item=>{const chip=document.createElement("span");chip.className="chip palavra";chip.innerText=item;itensDetectados.appendChild(chip);});
-
-      const nome=nomeMarca.value.trim()||"Não informado";
-      const prazo=prazoCliente.value.trim()||"Não informado";
-      const palavrasResumo=palavrasCliente.slice(0,36).join(", ")||"Não informado";
-      const itensResumo=detectados.join("; ");
-      const mensagem=encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nResultado do assistente:\nCategoria: ${categoria}\nValor estimado: ${moeda(total)}\nItens calculados: ${itensResumo}\nPalavras analisadas: ${palavrasResumo}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\n\nDescrição do projeto:\n${texto}`);
-      btnWhatsApp.href=`https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
-      resultado.classList.add("mostrar");
-      resultado.scrollIntoView({behavior:"smooth",block:"nearest"});
-    }
-
-    document.getElementById("btnCalcular").addEventListener("click",calcular);
-    descricao.addEventListener("keydown",(evento)=>{if((evento.ctrlKey||evento.metaKey)&&evento.key==="Enter")calcular();});
-    document.getElementById("btnLimpar").addEventListener("click",()=>{descricao.value="";nomeMarca.value="";prazoCliente.value="";resultado.classList.remove("mostrar");descricao.focus();});
+    document.getElementById("btnLimpar").addEventListener("click",()=>{
+      nomeSite.value="";
+      prazoSite.value="";
+      corSite.value="";
+      detalhesSite.value="";
+      mensagemErro.classList.remove("mostrar");
+      nomeSite.focus();
+    });
   </script>
 </body>
 </html>
