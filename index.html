@@ -3,247 +3,297 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>PH Creative | Loja e Sites Profissionais</title>
-  <meta name="description" content="PH Creative - loja de logos, artes publicitárias, banners, capas, pacotes de identidade visual e criação de sites profissionais." />
+  <title>PH Creative | Design e Criação de Sites</title>
+  <meta name="description" content="PH Creative - loja de design visual e criação de sites profissionais." />
   <meta name="theme-color" content="#050507" />
   <link rel="stylesheet" href="./style.css" />
   <style>
     * { box-sizing: border-box; }
-    body { margin: 0; background: #050507; color: #f5f5f5; font-family: Arial, Helvetica, sans-serif; }
-    .hero { min-height: 100vh; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; text-align: center; padding: 120px 20px 80px; isolation: isolate; }
-    .nav-principal { position: absolute; top: 22px; left: 50%; transform: translateX(-50%); z-index: 20; width: min(1120px, calc(100% - 32px)); display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 12px 14px; border: 1px solid rgba(212,175,55,.18); border-radius: 999px; background: rgba(5,5,7,.72); backdrop-filter: blur(16px); }
-    .nav-principal a { color: #f5f5f5; text-decoration: none; }
-    .links-nav { display: flex; gap: 8px; flex-wrap: wrap; justify-content: flex-end; }
-    .links-nav a { padding: 9px 12px; border-radius: 999px; color: #d0d0d0; }
-    .hero-media { position: absolute; top: 0; bottom: 0; width: min(34vw, 520px); z-index: 1; pointer-events: none; overflow: hidden; background-image: var(--hero-img); background-size: cover; background-repeat: no-repeat; opacity: .95; filter: brightness(.50) contrast(1.15) saturate(.95); transform: scale(1.02); }
-    .hero-media-left { left: 0; background-position: 26% center; -webkit-mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,.72) 68%, transparent 100%); mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,.72) 68%, transparent 100%); }
-    .hero-media-right { right: 0; background-position: 52% center; -webkit-mask-image: linear-gradient(to left, #000 0%, #000 50%, rgba(0,0,0,.72) 70%, transparent 100%); mask-image: linear-gradient(to left, #000 0%, #000 50%, rgba(0,0,0,.72) 70%, transparent 100%); }
-    .hero-vinheta { position: absolute; inset: 0; z-index: 3; pointer-events: none; background: radial-gradient(circle at center, rgba(5,5,7,.05) 0%, rgba(5,5,7,.26) 58%, rgba(5,5,7,.78) 100%); }
-    .hero-conteudo { position: relative; z-index: 4; max-width: 900px; display: flex; flex-direction: column; align-items: center; gap: 26px; }
-    @media (max-width: 768px) { .hero-media, .hero-vinheta { display: none; } .nav-principal { position: relative; top: auto; left: auto; transform: none; margin: 14px auto 0; flex-direction: column; border-radius: 24px; } .hero { padding-top: 60px; } }
+    body {
+      margin: 0;
+      background: #050507;
+      color: #f5f5f5;
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .entrada-site {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 120px 20px 70px;
+      isolation: isolate;
+      background:
+        radial-gradient(circle at 50% 20%, rgba(212, 175, 55, 0.18), transparent 34%),
+        linear-gradient(180deg, #050507 0%, #090806 58%, #030303 100%);
+    }
+
+    .entrada-site::before,
+    .entrada-site::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: min(34vw, 520px);
+      z-index: 1;
+      pointer-events: none;
+      background-size: cover;
+      background-repeat: no-repeat;
+      opacity: 0.72;
+      filter: brightness(0.48) contrast(1.14) saturate(0.95);
+    }
+
+    .entrada-site::before {
+      left: 0;
+      background-image: url('./img/capa-lateral-esquerda.png');
+      background-position: 26% center;
+      -webkit-mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,.72) 68%, transparent 100%);
+      mask-image: linear-gradient(to right, #000 0%, #000 48%, rgba(0,0,0,.72) 68%, transparent 100%);
+    }
+
+    .entrada-site::after {
+      right: 0;
+      background-image: url('./img/capa-lateral-direita.png');
+      background-position: 52% center;
+      -webkit-mask-image: linear-gradient(to left, #000 0%, #000 50%, rgba(0,0,0,.72) 70%, transparent 100%);
+      mask-image: linear-gradient(to left, #000 0%, #000 50%, rgba(0,0,0,.72) 70%, transparent 100%);
+    }
+
+    .nav-principal {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 20;
+      width: min(1120px, calc(100% - 32px));
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      padding: 12px 14px;
+      border: 1px solid rgba(212, 175, 55, 0.18);
+      border-radius: 999px;
+      background: rgba(5, 5, 7, 0.72);
+      backdrop-filter: blur(16px);
+    }
+
+    .nav-principal a {
+      color: #f5f5f5;
+      text-decoration: none;
+    }
+
+    .marca-nav {
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .marca-nav span {
+      color: #f5d76e;
+    }
+
+    .links-nav {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .links-nav a {
+      padding: 9px 12px;
+      border-radius: 999px;
+      color: #d0d0d0;
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+    }
+
+    .links-nav a:hover {
+      color: #050507;
+      background: #f5d76e;
+      border-color: #f5d76e;
+    }
+
+    .conteudo-entrada {
+      position: relative;
+      z-index: 4;
+      width: min(980px, 100%);
+      text-align: center;
+      display: grid;
+      gap: 36px;
+    }
+
+    .logo-central {
+      display: grid;
+      justify-items: center;
+      gap: 16px;
+    }
+
+    .logo-ph {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(245, 215, 110, 0.55);
+      background: radial-gradient(circle at 35% 20%, rgba(245, 215, 110, 0.30), rgba(5, 5, 7, 0.95) 68%);
+      box-shadow: 0 0 60px rgba(212, 175, 55, 0.24), inset 0 0 30px rgba(212, 175, 55, 0.16);
+      color: #f5d76e;
+      font-size: 58px;
+      font-weight: 950;
+      letter-spacing: -0.08em;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.6rem, 7vw, 5.6rem);
+      line-height: 0.95;
+      letter-spacing: -0.06em;
+      text-shadow: 0 12px 40px rgba(0,0,0,.55);
+    }
+
+    .subtitulo {
+      margin: 0 auto;
+      max-width: 680px;
+      color: #d8ceb0;
+      font-size: clamp(1rem, 2vw, 1.2rem);
+      line-height: 1.65;
+    }
+
+    .opcoes-site {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      text-align: left;
+    }
+
+    .opcao-card {
+      min-height: 230px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      padding: clamp(24px, 4vw, 34px);
+      border: 1px solid rgba(245, 215, 110, 0.25);
+      border-radius: 28px;
+      background: linear-gradient(180deg, rgba(245, 215, 110, 0.10), rgba(255,255,255,0.035)), rgba(5,5,7,0.78);
+      box-shadow: 0 24px 70px rgba(0,0,0,0.45);
+      text-decoration: none;
+      color: #fff;
+      transition: 0.28s ease;
+    }
+
+    .opcao-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(245, 215, 110, 0.62);
+      box-shadow: 0 34px 90px rgba(0,0,0,0.58), 0 0 35px rgba(212,175,55,0.15);
+    }
+
+    .opcao-card span {
+      width: max-content;
+      padding: 8px 12px;
+      border: 1px solid rgba(245, 215, 110, 0.32);
+      border-radius: 999px;
+      color: #f5d76e;
+      font-size: 0.75rem;
+      font-weight: 950;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .opcao-card h2 {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.8rem);
+      line-height: 1;
+    }
+
+    .opcao-card p {
+      margin: 0;
+      color: #cfc6a8;
+      line-height: 1.65;
+    }
+
+    .opcao-card strong {
+      color: #f5d76e;
+      font-size: 0.95rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    footer {
+      position: relative;
+      z-index: 4;
+      text-align: center;
+      padding: 0 20px 28px;
+      color: #9c9278;
+      background: #030303;
+      font-size: 0.92rem;
+    }
+
+    @media (max-width: 760px) {
+      .entrada-site { padding-top: 40px; }
+      .entrada-site::before,
+      .entrada-site::after { display: none; }
+      .nav-principal {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        margin: 0 auto 36px;
+        flex-direction: column;
+        border-radius: 24px;
+      }
+      .opcoes-site { grid-template-columns: 1fr; }
+      .logo-ph { width: 118px; height: 118px; font-size: 46px; }
+    }
   </style>
 </head>
 <body>
-  <header class="hero" id="inicio">
+  <section class="entrada-site" aria-labelledby="tituloEntrada">
     <nav class="nav-principal" aria-label="Navegação principal">
       <a href="./index.html" class="marca-nav"><span>PH</span> Creative</a>
       <div class="links-nav">
-        <a href="./loja.html">Loja</a>
-        <a href="./orcamento.html#servicosSites">Peça seu site</a>
-        <a href="#contato">Sobre mim</a>
+        <a href="./loja.html">Design</a>
+        <a href="./orcamento.html#servicosSites">Criação de sites</a>
       </div>
     </nav>
 
-    <div class="hero-media hero-media-left" style="--hero-img: url('./img/capa-lateral-esquerda.png');" aria-hidden="true"></div>
-    <div class="hero-media hero-media-right" style="--hero-img: url('./img/capa-lateral-direita.png');" aria-hidden="true"></div>
-    <div class="hero-vinheta" aria-hidden="true"></div>
-
-    <div class="hero-conteudo">
-      <div class="logo-cinematica">
-        <div class="efeito-luz"></div>
-        <div class="simbolo-logo">
-          <span class="anel"></span>
-          <span class="corte"></span>
-          <h1>PH</h1>
-        </div>
-        <div class="texto-logo">
-          <h2>PH Creative</h2>
-          <p>Visuais que inspiram</p>
-        </div>
+    <div class="conteudo-entrada">
+      <div class="logo-central">
+        <div class="logo-ph" aria-hidden="true">PH</div>
+        <h1 id="tituloEntrada">PH Creative</h1>
+        <p class="subtitulo">Escolha uma das áreas principais da loja.</p>
       </div>
 
-      <div class="hero-actions">
-        <a href="./loja.html" class="botao-hero">Loja</a>
-        <a href="./orcamento.html#servicosSites" class="botao-hero botao-secundario">Peça seu site</a>
+      <div class="opcoes-site" aria-label="Áreas principais da PH Creative">
+        <a class="opcao-card" href="./loja.html">
+          <span>Design</span>
+          <div>
+            <h2>Design visual</h2>
+            <p>Artes publicitárias, logos, banners, capas e modelos visuais para marcas.</p>
+          </div>
+          <strong>Abrir loja</strong>
+        </a>
+
+        <a class="opcao-card" href="./orcamento.html#servicosSites">
+          <span>Sites</span>
+          <div>
+            <h2>Criação de sites</h2>
+            <p>Sites profissionais, páginas de venda, vitrines digitais e soluções sob medida.</p>
+          </div>
+          <strong>Pedir site</strong>
+        </a>
       </div>
     </div>
-  </header>
-
-  <main>
-    <section id="loja" class="secao-destaque">
-      <div class="cabecalho-secao">
-        <span class="tag-mini">Loja</span>
-        <h2>Catálogo da loja</h2>
-        <p>Veja as categorias da loja e solicite modelos pelo WhatsApp. Qualquer serviço do catálogo custa R$ 30 e pode ser personalizado com nome, texto, cor, fundo e informações principais.</p>
-      </div>
-
-      <div class="grade-produtos-home manutencao-home-grid">
-        <article class="produto-home destaque-produto">
-          <span class="produto-tag">R$ 30</span>
-          <h3>Artes Publicitárias</h3>
-          <p>Modelos para propaganda, divulgação, anúncio, campanha e apresentação de marca.</p>
-          <strong>R$ 30</strong>
-        </article>
-        <article class="produto-home">
-          <h3>Logos</h3>
-          <p>Modelos de logo para personalizar nome, cor, fundo e estilo visual.</p>
-          <strong>R$ 30</strong>
-        </article>
-        <article class="produto-home">
-          <h3>Banners</h3>
-          <p>Banners comerciais, promocionais e modelos para divulgação de produtos ou serviços.</p>
-          <strong>R$ 30</strong>
-        </article>
-        <article class="produto-home">
-          <h3>Capas</h3>
-          <p>Capas para redes sociais, perfis, WhatsApp, YouTube, lojas e páginas profissionais.</p>
-          <strong>R$ 30</strong>
-        </article>
-      </div>
-
-      <a href="./loja.html" class="botao-orcamento">Abrir loja</a>
-    </section>
-
-    <section id="caminhos">
-      <div class="cabecalho-secao">
-        <span class="tag-mini">Escolha o caminho</span>
-        <h2>O cliente decide como quer começar</h2>
-        <p>Escolha entre abrir o catálogo da loja, solicitar criação de site ou falar diretamente pelo WhatsApp.</p>
-      </div>
-
-      <div class="cards-caminhos">
-        <article class="caminho-card">
-          <span class="numero-card">01</span>
-          <h3>Catálogo da loja</h3>
-          <p>Artes, logos, banners e capas por R$ 30, com personalização pelo WhatsApp.</p>
-          <a href="./loja.html">Abrir loja</a>
-        </article>
-        <article class="caminho-card">
-          <span class="numero-card">02</span>
-          <h3>Peça seu site</h3>
-          <p>Para quem precisa de página, landing page, visual premium, carrinho, avaliações ou automações.</p>
-          <a href="./orcamento.html#servicosSites">Pedir site</a>
-        </article>
-        <article class="caminho-card">
-          <span class="numero-card">03</span>
-          <h3>Serviços personalizados</h3>
-          <p>Serviços de design, logos, banners e capas podem ser solicitados pela loja ou pelo WhatsApp.</p>
-          <a href="./loja.html">Abrir loja</a>
-        </article>
-      </div>
-    </section>
-
-    <section id="sobre">
-      <h2>Sobre</h2>
-      <p>A PH Creative é um projeto criativo independente, desenvolvido por Paulo Henrique, com foco em criação de sites profissionais, design visual, identidade para marcas, automações com Inteligência Artificial e soluções digitais com estética moderna e cinematográfica.</p>
-    </section>
-
-    <section id="servicos">
-      <h2>Serviços principais</h2>
-      <div class="categorias-servicos">
-        <div class="categoria-card">
-          <h3>Sites e soluções digitais</h3>
-          <ul>
-            <li>Criação de sites profissionais</li>
-            <li>Landing pages para vendas</li>
-            <li>Sites em HTML, CSS e JavaScript</li>
-            <li>Sistema de avaliações e comentários</li>
-            <li>Botão e pedido automático pelo WhatsApp</li>
-            <li>Design responsivo para celular</li>
-          </ul>
-          <a href="./orcamento.html#servicosSites" class="link-card">Montar meu site</a>
-        </div>
-        <div class="categoria-card">
-          <h3>Design sob atendimento</h3>
-          <ul>
-            <li>Logos 2D, 3D e cinematográficas</li>
-            <li>Artes publicitárias prontas por plano</li>
-            <li>Banners personalizados</li>
-            <li>Capas para plataformas diferentes</li>
-            <li>Pacotes de identidade visual</li>
-            <li>Atendimento pelo WhatsApp para modelos da loja</li>
-          </ul>
-          <a href="./loja.html" class="link-card">Abrir loja</a>
-        </div>
-      </div>
-    </section>
-
-    <section id="como-funciona">
-      <h2>Como funciona</h2>
-      <div class="passos">
-        <div><span>1</span><h3>Escolha</h3><p>O cliente escolhe um produto da loja ou solicita um site personalizado.</p></div>
-        <div><span>2</span><h3>Preencha</h3><p>Ele informa nome da marca, cores, referências e detalhes do pedido.</p></div>
-        <div><span>3</span><h3>Envie</h3><p>O site monta a mensagem e envia tudo organizado pelo WhatsApp.</p></div>
-      </div>
-    </section>
-
-    <section id="avaliacoes">
-      <h2>Avaliações</h2>
-      <div class="resumo-avaliacoes-section">
-        <div class="nota-avaliacoes-section">
-          <span class="numero-avaliacao-section" id="mediaAvaliacoes">0.0</span>
-          <span class="estrelas-avaliacao-section" id="estrelasMedia">☆☆☆☆☆</span>
-        </div>
-        <p id="textoAvaliacoes">Carregando avaliações da PH Creative...</p>
-      </div>
-      <p>Veja comentários de clientes ou deixe sua opinião sobre os serviços da PH Creative.</p>
-      <a href="./comentarios.html" class="botao-orcamento">Ver ou deixar comentário</a>
-    </section>
-
-    <section id="contato">
-      <h2>Sobre mim e links</h2>
-      <p>Prazer, me chamo Paulo Henrique. Aqui você encontra os principais links da PH Creative e acompanha meu trabalho com criação visual, sites, tecnologia e inteligência artificial.</p>
-      <p>Site oficial: <a href="https://phcreative-net.github.io/Ph-Creative/" target="_blank" rel="noopener noreferrer">PH Creative</a></p>
-      <p>Portfólio: <a href="https://phcreative-net.github.io/portfolio-ph/" target="_blank" rel="noopener noreferrer">Meu portfólio</a></p>
-      <p>LinkedIn: <a href="https://www.linkedin.com/in/paulo-henrique-79b6b72a5/" target="_blank" rel="noopener noreferrer">Paulo Henrique</a></p>
-      <p>Facebook: <a href="https://www.facebook.com/profile.php?id=61577245450129" target="_blank" rel="noopener noreferrer">PH Creative</a></p>
-    </section>
-  </main>
+  </section>
 
   <footer>
-    <p>&copy; 2026 PH Creative. Loja e sites sob medida.</p>
+    <p>&copy; 2026 PH Creative. Todos os direitos reservados.</p>
   </footer>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
-    import { getFirestore, collection, onSnapshot } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
-
-    const firebaseConfig = {
-      apiKey: "AIzaSyCGaAMXH6JZvkxTjOQswClherBNpO8OlyY",
-      authDomain: "ph-creative.firebaseapp.com",
-      projectId: "ph-creative",
-      storageBucket: "ph-creative.firebasestorage.app",
-      messagingSenderId: "838725389820",
-      appId: "1:838725389820:web:e361e5c021ae6593277679"
-    };
-
-    try {
-      const app = initializeApp(firebaseConfig);
-      const db = getFirestore(app);
-      const mediaAvaliacoes = document.getElementById("mediaAvaliacoes");
-      const estrelasMedia = document.getElementById("estrelasMedia");
-      const textoAvaliacoes = document.getElementById("textoAvaliacoes");
-
-      function montarEstrelas(media) {
-        const estrelasCheias = Math.round(media);
-        return "★".repeat(estrelasCheias) + "☆".repeat(5 - estrelasCheias);
-      }
-
-      onSnapshot(collection(db, "comentarios"), (snapshot) => {
-        const avaliacoes = [];
-        snapshot.forEach((doc) => {
-          const nota = Number(doc.data().avaliacao);
-          if (nota >= 1 && nota <= 5) avaliacoes.push(nota);
-        });
-
-        if (!avaliacoes.length) {
-          mediaAvaliacoes.innerText = "0.0";
-          estrelasMedia.innerText = "☆☆☆☆☆";
-          textoAvaliacoes.innerText = "Ainda não há avaliações com estrelas. Seja o primeiro a avaliar.";
-          return;
-        }
-
-        const media = avaliacoes.reduce((total, nota) => total + nota, 0) / avaliacoes.length;
-        mediaAvaliacoes.innerText = media.toFixed(1);
-        estrelasMedia.innerText = montarEstrelas(media);
-        textoAvaliacoes.innerText = avaliacoes.length === 1 ? "1 avaliação de cliente da PH Creative." : `${avaliacoes.length} avaliações de clientes da PH Creative.`;
-      }, () => {
-        textoAvaliacoes.innerText = "Não foi possível carregar as avaliações agora.";
-      });
-    } catch (erro) {
-      console.warn("Avaliações não carregadas:", erro);
-    }
-  </script>
   <script src="./script.js"></script>
 </body>
 </html>
