@@ -7,201 +7,7 @@
   <meta name="description" content="Solicite um site profissional com a Ph Creative de forma direta e organizada pelo WhatsApp." />
   <meta name="theme-color" content="#050507" />
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body {
-      min-height: 100vh;
-      color: #f7f7f7;
-      font-family: Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at 10% 0%, rgba(245, 215, 110, 0.16), transparent 34%),
-        radial-gradient(circle at 90% 8%, rgba(212, 175, 55, 0.10), transparent 32%),
-        linear-gradient(180deg, #050507 0%, #0b0b0f 48%, #050507 100%);
-    }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
-      background-size: 72px 72px;
-      opacity: 0.55;
-    }
-    .page {
-      position: relative;
-      z-index: 1;
-      width: min(1180px, calc(100% - 32px));
-      margin: 0 auto;
-      padding: clamp(28px, 5vw, 58px) 0 38px;
-    }
-    .painel {
-      border: 1px solid rgba(245, 215, 110, 0.22);
-      border-radius: 32px;
-      padding: clamp(24px, 4vw, 42px);
-      background: radial-gradient(circle at top left, rgba(245, 215, 110, 0.12), transparent 34%), linear-gradient(180deg, rgba(20, 20, 28, 0.82), rgba(7, 7, 10, 0.92));
-      box-shadow: 0 28px 80px rgba(0, 0, 0, 0.46);
-      margin-bottom: 24px;
-    }
-    .topo-site {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin-bottom: 14px;
-    }
-    .tag {
-      display: inline-flex;
-      width: max-content;
-      padding: 8px 12px;
-      border-radius: 999px;
-      border: 1px solid rgba(245, 215, 110, 0.28);
-      color: #f5d76e;
-      font-size: 0.74rem;
-      font-weight: 950;
-      letter-spacing: 0.14em;
-      text-transform: uppercase;
-      background: rgba(245, 215, 110, 0.06);
-    }
-    .botao-voltar-simples {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 35px;
-      padding: 8px 13px;
-      border-radius: 999px;
-      border: 1px solid rgba(245, 215, 110, 0.24);
-      background: rgba(255,255,255,0.035);
-      color: #f5d76e;
-      font-size: 0.82rem;
-      font-weight: 900;
-      text-decoration: none;
-      transition: 0.22s ease;
-    }
-    .botao-voltar-simples:hover {
-      background: rgba(245, 215, 110, 0.12);
-      border-color: rgba(245, 215, 110, 0.46);
-      transform: translateY(-1px);
-    }
-    h1 {
-      max-width: 780px;
-      font-size: clamp(2.5rem, 7vw, 5.4rem);
-      line-height: 0.96;
-      letter-spacing: -0.06em;
-      margin-bottom: 16px;
-    }
-    .intro {
-      max-width: 760px;
-      color: #cfc6a8;
-      font-size: clamp(1rem, 2vw, 1.18rem);
-      line-height: 1.72;
-      margin-bottom: 26px;
-    }
-    .planos-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 16px;
-      margin-top: 22px;
-    }
-    .plano-card {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 230px;
-      border: 1px solid rgba(245, 215, 110, 0.18);
-      border-radius: 24px;
-      padding: 22px;
-      background: rgba(255,255,255,0.04);
-      cursor: pointer;
-      transition: 0.25s ease;
-    }
-    .plano-card:hover, .plano-card.ativo {
-      transform: translateY(-4px);
-      border-color: rgba(245, 215, 110, 0.55);
-      background: rgba(245, 215, 110, 0.08);
-      box-shadow: 0 20px 48px rgba(0,0,0,0.34);
-    }
-    .plano-topo {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 12px;
-    }
-    .plano-card span {
-      color: #f5d76e;
-      font-size: 0.72rem;
-      font-weight: 900;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-    .preco-plano {
-      color: #050507;
-      background: linear-gradient(135deg, #fff1a6, #d4af37, #8c661b);
-      border-radius: 999px;
-      padding: 7px 10px;
-      font-size: 0.82rem;
-      font-weight: 950;
-      white-space: nowrap;
-    }
-    .plano-card h3 {
-      font-size: 1.28rem;
-      line-height: 1.15;
-    }
-    .plano-card p {
-      color: #cfc6a8;
-      line-height: 1.58;
-      font-size: 0.95rem;
-    }
-    .inclui {
-      margin-top: auto;
-      color: #f3ead0;
-      font-size: 0.88rem;
-      line-height: 1.55;
-    }
-    .form-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
-      margin-top: 24px;
-    }
-    .campo { display: grid; gap: 8px; }
-    .campo.full { grid-column: 1 / -1; }
-    label { color: #f5d76e; font-weight: 800; font-size: 0.92rem; }
-    input, select, textarea {
-      width: 100%;
-      border: 1px solid rgba(245, 215, 110, 0.18);
-      border-radius: 16px;
-      padding: 14px;
-      background: rgba(5,5,7,0.64);
-      color: #fff;
-      outline: none;
-    }
-    textarea { min-height: 130px; resize: vertical; }
-    input:focus, select:focus, textarea:focus { border-color: rgba(245, 215, 110, 0.55); }
-    .acoes {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-height: 48px;
-      padding: 13px 20px;
-      border: 0;
-      border-radius: 999px;
-      background: linear-gradient(135deg, #fff1a6, #d4af37, #8c661b);
-      color: #050507;
-      font-weight: 950;
-      text-decoration: none;
-      cursor: pointer;
-    }
-    footer { text-align: center; color: #9c9278; padding: 8px 0 0; font-size: 0.92rem; }
-    @media (max-width: 900px) {
-      .planos-grid, .form-grid { grid-template-columns: 1fr; }
-      .campo.full { grid-column: auto; }
-    }
+    *{box-sizing:border-box;margin:0;padding:0}body{min-height:100vh;color:#f7f7f7;font-family:Arial,Helvetica,sans-serif;background:radial-gradient(circle at 10% 0%,rgba(245,215,110,.16),transparent 34%),radial-gradient(circle at 90% 8%,rgba(212,175,55,.10),transparent 32%),linear-gradient(180deg,#050507 0%,#0b0b0f 48%,#050507 100%)}body:before{content:"";position:fixed;inset:0;pointer-events:none;background:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.02) 1px,transparent 1px);background-size:72px 72px;opacity:.55}.page{position:relative;z-index:1;width:min(1180px,calc(100% - 32px));margin:0 auto;padding:clamp(28px,5vw,58px) 0 38px}.painel{border:1px solid rgba(245,215,110,.22);border-radius:32px;padding:clamp(24px,4vw,42px);background:radial-gradient(circle at top left,rgba(245,215,110,.12),transparent 34%),linear-gradient(180deg,rgba(20,20,28,.82),rgba(7,7,10,.92));box-shadow:0 28px 80px rgba(0,0,0,.46);margin-bottom:24px}.topo-site{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:14px}.tag{display:inline-flex;width:max-content;padding:8px 12px;border-radius:999px;border:1px solid rgba(245,215,110,.28);color:#f5d76e;font-size:.74rem;font-weight:950;letter-spacing:.14em;text-transform:uppercase;background:rgba(245,215,110,.06)}.botao-voltar-simples{display:inline-flex;align-items:center;justify-content:center;min-height:35px;padding:8px 13px;border-radius:999px;border:1px solid rgba(245,215,110,.24);background:rgba(255,255,255,.035);color:#f5d76e;font-size:.82rem;font-weight:900;text-decoration:none;transition:.22s ease}.botao-voltar-simples:hover{background:rgba(245,215,110,.12);border-color:rgba(245,215,110,.46);transform:translateY(-1px)}h1{max-width:780px;font-size:clamp(2.5rem,7vw,5.4rem);line-height:.96;letter-spacing:-.06em;margin-bottom:16px}.intro{max-width:800px;color:#cfc6a8;font-size:clamp(1rem,2vw,1.18rem);line-height:1.72;margin-bottom:26px}.etapa-bloco{margin-top:24px;padding-top:22px;border-top:1px solid rgba(245,215,110,.16)}.etapa-cabecalho{display:flex;align-items:end;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-bottom:14px}.etapa-cabecalho h2{font-size:clamp(1.45rem,3vw,2.25rem);line-height:1}.etapa-cabecalho p{max-width:560px;color:#cfc6a8;line-height:1.55;font-size:.95rem}.planos-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}.plano-card{position:relative;display:flex;flex-direction:column;gap:12px;min-height:230px;border:1px solid rgba(245,215,110,.18);border-radius:24px;padding:22px;background:rgba(255,255,255,.04);cursor:pointer;transition:.25s ease}.plano-card:hover,.plano-card.ativo{transform:translateY(-4px);border-color:rgba(245,215,110,.55);background:rgba(245,215,110,.08);box-shadow:0 20px 48px rgba(0,0,0,.34)}.plano-topo{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}.plano-card span{color:#f5d76e;font-size:.72rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}.preco-plano{color:#050507;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);border-radius:999px;padding:7px 10px;font-size:.82rem;font-weight:950;white-space:nowrap}.plano-card h3{font-size:1.28rem;line-height:1.15}.plano-card p{color:#cfc6a8;line-height:1.58;font-size:.95rem}.inclui{margin-top:auto;color:#f3ead0;font-size:.88rem;line-height:1.55}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin-top:28px;padding-top:24px;border-top:1px solid rgba(245,215,110,.16)}.campo{display:grid;gap:8px}.campo.full{grid-column:1/-1}label{color:#f5d76e;font-weight:800;font-size:.92rem}input,select,textarea{width:100%;border:1px solid rgba(245,215,110,.18);border-radius:16px;padding:14px;background:rgba(5,5,7,.64);color:#fff;outline:none}textarea{min-height:130px;resize:vertical}.acoes{display:flex;flex-wrap:wrap;gap:12px;margin-top:22px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:13px 20px;border:0;border-radius:999px;background:linear-gradient(135deg,#fff1a6,#d4af37,#8c661b);color:#050507;font-weight:950;text-decoration:none;cursor:pointer}footer{text-align:center;color:#9c9278;padding:8px 0 0;font-size:.92rem}@media(max-width:980px){.planos-grid,.form-grid{grid-template-columns:1fr}.campo.full{grid-column:auto}}
   </style>
 </head>
 <body>
@@ -209,101 +15,38 @@
     <section class="painel">
       <div class="topo-site"><span class="tag">Sites</span><a href="./index.html" class="botao-voltar-simples">← Voltar</a></div>
       <h1>Monte seu Site</h1>
-      <p class="intro">Agora os valores são por site pronto. Escolha o modelo que combina com sua necessidade e envie o pedido direto para o WhatsApp da Ph Creative.</p>
+      <p class="intro">Escolha uma etapa de site pronto. Os valores são base inicial e podem mudar conforme quantidade de páginas, funções e detalhes do projeto.</p>
 
-      <div class="planos-grid" id="opcoesSite">
-        <article class="plano-card" data-servico="Site simples" data-preco="A partir de R$ 300">
-          <div class="plano-topo"><span>01</span><strong class="preco-plano">R$ 300+</strong></div>
-          <h3>Site simples</h3>
-          <p>Para quem precisa de uma presença básica na internet, com ferramentas simples e visual organizado.</p>
-          <div class="inclui">Inclui: estrutura, visual simples, responsivo e botão de WhatsApp.</div>
-        </article>
+      <div class="etapa-bloco"><div class="etapa-cabecalho"><h2>Sites simples</h2><p>Para começar com algo direto, bonito e funcional, usando ferramentas simples.</p></div><div class="planos-grid">
+        <article class="plano-card" data-servico="Site pessoal básico" data-preco="A partir de R$ 300" data-etapa="Sites simples"><div class="plano-topo"><span>01</span><strong class="preco-plano">R$ 300+</strong></div><h3>Site pessoal básico</h3><p>Ideal para apresentação pessoal, contato, biografia curta e links principais.</p><div class="inclui">Inclui: página única, visual simples, responsivo e botão de WhatsApp.</div></article>
+        <article class="plano-card" data-servico="Landing page" data-preco="A partir de R$ 450" data-etapa="Sites simples"><div class="plano-topo"><span>02</span><strong class="preco-plano">R$ 450+</strong></div><h3>Landing page</h3><p>Site direto para vender um produto, divulgar serviço ou levar clientes para o WhatsApp.</p><div class="inclui">Inclui: chamada principal, seções de venda, CTA e design responsivo.</div></article>
+        <article class="plano-card" data-servico="Loja online básica" data-preco="A partir de R$ 700" data-etapa="Sites simples"><div class="plano-topo"><span>03</span><strong class="preco-plano">R$ 700+</strong></div><h3>Loja online básica</h3><p>Para vender produtos ou modelos com carrinho simples e envio do pedido pelo WhatsApp.</p><div class="inclui">Inclui: vitrine, carrinho simples, pedido automático e responsivo.</div></article>
+      </div></div>
 
-        <article class="plano-card" data-servico="Landing page" data-preco="A partir de R$ 450">
-          <div class="plano-topo"><span>02</span><strong class="preco-plano">R$ 450+</strong></div>
-          <h3>Landing page</h3>
-          <p>Página direta para vender, divulgar um serviço ou levar o cliente para o WhatsApp.</p>
-          <div class="inclui">Inclui: chamada principal, seções de venda, responsivo e CTA.</div>
-        </article>
+      <div class="etapa-bloco"><div class="etapa-cabecalho"><h2>Site intermediário</h2><p>Para marcas que precisam mostrar mais conteúdo, serviços, produtos ou trabalhos.</p></div><div class="planos-grid">
+        <article class="plano-card" data-servico="Site catálogo" data-preco="A partir de R$ 750" data-etapa="Site intermediário"><div class="plano-topo"><span>04</span><strong class="preco-plano">R$ 750+</strong></div><h3>Site catálogo</h3><p>Vitrine digital para mostrar produtos, modelos, serviços, artes ou trabalhos da marca.</p><div class="inclui">Inclui: cards organizados, galeria, botões de pedido e seções personalizadas.</div></article>
+        <article class="plano-card" data-servico="Portfólio" data-preco="A partir de R$ 650" data-etapa="Site intermediário"><div class="plano-topo"><span>05</span><strong class="preco-plano">R$ 650+</strong></div><h3>Portfólio</h3><p>Para apresentar trabalhos, projetos, história, habilidades e links profissionais.</p><div class="inclui">Inclui: galeria de projetos, sobre, links, contato e visual personalizado.</div></article>
+        <article class="plano-card" data-servico="Site institucional" data-preco="A partir de R$ 850" data-etapa="Site intermediário"><div class="plano-topo"><span>06</span><strong class="preco-plano">R$ 850+</strong></div><h3>Site institucional</h3><p>Para empresa pequena ou profissional que quer explicar serviços com mais autoridade.</p><div class="inclui">Inclui: seções completas, serviços, contato, identidade visual e responsivo.</div></article>
+      </div></div>
 
-        <article class="plano-card" data-servico="Site profissional" data-preco="A partir de R$ 650">
-          <div class="plano-topo"><span>03</span><strong class="preco-plano">R$ 650+</strong></div>
-          <h3>Site profissional</h3>
-          <p>Para empresa, profissional autônomo ou marca que quer uma apresentação mais completa.</p>
-          <div class="inclui">Inclui: páginas/seções principais, identidade visual, responsivo e WhatsApp.</div>
-        </article>
-
-        <article class="plano-card" data-servico="Site catálogo" data-preco="A partir de R$ 750">
-          <div class="plano-topo"><span>04</span><strong class="preco-plano">R$ 750+</strong></div>
-          <h3>Site catálogo</h3>
-          <p>Vitrine digital para mostrar produtos, modelos, serviços, artes ou portfólio.</p>
-          <div class="inclui">Inclui: cards de produtos, galeria, botões de pedido e organização visual.</div>
-        </article>
-
-        <article class="plano-card" data-servico="Loja online básica" data-preco="A partir de R$ 900">
-          <div class="plano-topo"><span>05</span><strong class="preco-plano">R$ 900+</strong></div>
-          <h3>Loja online básica</h3>
-          <p>Para vender produtos ou modelos com carrinho simples e envio do pedido pelo WhatsApp.</p>
-          <div class="inclui">Inclui: vitrine, carrinho simples, pedido automático e responsivo.</div>
-        </article>
-
-        <article class="plano-card" data-servico="Site completo" data-preco="A partir de R$ 1.200">
-          <div class="plano-topo"><span>06</span><strong class="preco-plano">R$ 1.200+</strong></div>
-          <h3>Site completo</h3>
-          <p>Projeto mais elaborado, com mais seções, animações, recursos extras e acabamento premium.</p>
-          <div class="inclui">Inclui: design avançado, animações, catálogo/recursos extras e suporte inicial.</div>
-        </article>
-      </div>
+      <div class="etapa-bloco"><div class="etapa-cabecalho"><h2>Site completo</h2><p>Projetos mais fortes, indicados para empresas, criadores, marcas maiores ou presença premium.</p></div><div class="planos-grid">
+        <article class="plano-card" data-servico="Site completo" data-preco="A partir de R$ 1.000" data-etapa="Site completo"><div class="plano-topo"><span>07</span><strong class="preco-plano">R$ 1.000+</strong></div><h3>Site completo</h3><p>Projeto mais elaborado, com mais seções, animações, recursos extras e acabamento premium.</p><div class="inclui">Inclui: design avançado, páginas principais, animações, recursos extras e suporte inicial.</div></article>
+        <article class="plano-card" data-servico="Site profissional premium" data-preco="A partir de R$ 1.200" data-etapa="Site completo"><div class="plano-topo"><span>08</span><strong class="preco-plano">R$ 1.200+</strong></div><h3>Site profissional</h3><p>Para empresas ou marcas que precisam passar confiança e alto padrão.</p><div class="inclui">Inclui: apresentação premium, estratégia visual, seções completas e acabamento cinematográfico.</div></article>
+      </div></div>
 
       <div class="form-grid">
         <div class="campo"><label for="nomeMarca">Nome da marca</label><input id="nomeMarca" type="text" placeholder="Exemplo: Ph Creative"></div>
-        <div class="campo"><label for="tipoSite">Tipo de site</label><select id="tipoSite"><option value="Não informado" data-preco="Não informado">Selecione</option><option data-preco="A partir de R$ 300">Site simples</option><option data-preco="A partir de R$ 450">Landing page</option><option data-preco="A partir de R$ 650">Site profissional</option><option data-preco="A partir de R$ 750">Site catálogo</option><option data-preco="A partir de R$ 900">Loja online básica</option><option data-preco="A partir de R$ 1.200">Site completo</option><option data-preco="A combinar">Outro</option></select></div>
+        <div class="campo"><label for="tipoSite">Tipo de site</label><select id="tipoSite"><option value="Não informado" data-preco="Não informado" data-etapa="Não informado">Selecione</option><option data-etapa="Sites simples" data-preco="A partir de R$ 300">Site pessoal básico</option><option data-etapa="Sites simples" data-preco="A partir de R$ 450">Landing page</option><option data-etapa="Sites simples" data-preco="A partir de R$ 700">Loja online básica</option><option data-etapa="Site intermediário" data-preco="A partir de R$ 750">Site catálogo</option><option data-etapa="Site intermediário" data-preco="A partir de R$ 650">Portfólio</option><option data-etapa="Site intermediário" data-preco="A partir de R$ 850">Site institucional</option><option data-etapa="Site completo" data-preco="A partir de R$ 1.000">Site completo</option><option data-etapa="Site completo" data-preco="A partir de R$ 1.200">Site profissional premium</option><option data-etapa="A combinar" data-preco="A combinar">Outro</option></select></div>
         <div class="campo"><label for="prazoCliente">Prazo desejado</label><input id="prazoCliente" type="text" placeholder="Exemplo: até 7 dias"></div>
         <div class="campo"><label for="estiloSite">Estilo visual</label><input id="estiloSite" type="text" placeholder="Exemplo: moderno, escuro, dourado"></div>
         <div class="campo full"><label for="descricaoProjeto">Como você quer o site?</label><textarea id="descricaoProjeto" placeholder="Explique as páginas, cores, referências, objetivo do site e detalhes importantes."></textarea></div>
       </div>
-
-      <div class="acoes">
-        <button class="btn" type="button" id="btnWhatsApp">Enviar no WhatsApp</button>
-      </div>
+      <div class="acoes"><button class="btn" type="button" id="btnWhatsApp">Enviar no WhatsApp</button></div>
     </section>
-
     <footer><p>&copy; 2026 Ph Creative. Todos os direitos reservados.</p></footer>
   </main>
-
   <script>
-    const numeroWhatsApp = "5521984150295";
-    let servicoSelecionado = "";
-    let precoSelecionado = "";
-    const cards = document.querySelectorAll(".plano-card");
-    const tipoSite = document.getElementById("tipoSite");
-
-    cards.forEach((card) => {
-      card.addEventListener("click", () => {
-        cards.forEach((item) => item.classList.remove("ativo"));
-        card.classList.add("ativo");
-        servicoSelecionado = card.dataset.servico;
-        precoSelecionado = card.dataset.preco;
-        tipoSite.value = servicoSelecionado;
-      });
-    });
-
-    tipoSite.addEventListener("change", () => {
-      servicoSelecionado = tipoSite.value;
-      precoSelecionado = tipoSite.options[tipoSite.selectedIndex].dataset.preco || "A combinar";
-      cards.forEach((card) => card.classList.toggle("ativo", card.dataset.servico === servicoSelecionado));
-    });
-
-    document.getElementById("btnWhatsApp").addEventListener("click", () => {
-      const nome = document.getElementById("nomeMarca").value.trim() || "Não informado";
-      const tipo = servicoSelecionado || tipoSite.value || "Não informado";
-      const preco = precoSelecionado || tipoSite.options[tipoSite.selectedIndex].dataset.preco || "Não informado";
-      const prazo = document.getElementById("prazoCliente").value.trim() || "Não informado";
-      const estilo = document.getElementById("estiloSite").value.trim() || "Não informado";
-      const descricao = document.getElementById("descricaoProjeto").value.trim() || "Não informado";
-      const mensagem = encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nTipo de site: ${tipo}\nValor: ${preco}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\nEstilo visual: ${estilo}\n\nDescrição:\n${descricao}`);
-      window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank", "noopener,noreferrer");
-    });
+    const numeroWhatsApp="5521984150295";let servicoSelecionado="",precoSelecionado="",etapaSelecionada="";const cards=document.querySelectorAll(".plano-card"),tipoSite=document.getElementById("tipoSite");cards.forEach(card=>{card.addEventListener("click",()=>{cards.forEach(item=>item.classList.remove("ativo"));card.classList.add("ativo");servicoSelecionado=card.dataset.servico;precoSelecionado=card.dataset.preco;etapaSelecionada=card.dataset.etapa;tipoSite.value=servicoSelecionado})});tipoSite.addEventListener("change",()=>{servicoSelecionado=tipoSite.value;precoSelecionado=tipoSite.options[tipoSite.selectedIndex].dataset.preco||"A combinar";etapaSelecionada=tipoSite.options[tipoSite.selectedIndex].dataset.etapa||"A combinar";cards.forEach(card=>card.classList.toggle("ativo",card.dataset.servico===servicoSelecionado))});document.getElementById("btnWhatsApp").addEventListener("click",()=>{const nome=document.getElementById("nomeMarca").value.trim()||"Não informado",tipo=servicoSelecionado||tipoSite.value||"Não informado",preco=precoSelecionado||tipoSite.options[tipoSite.selectedIndex].dataset.preco||"Não informado",etapa=etapaSelecionada||tipoSite.options[tipoSite.selectedIndex].dataset.etapa||"Não informado",prazo=document.getElementById("prazoCliente").value.trim()||"Não informado",estilo=document.getElementById("estiloSite").value.trim()||"Não informado",descricao=document.getElementById("descricaoProjeto").value.trim()||"Não informado",mensagem=encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nEtapa: ${etapa}\nTipo de site: ${tipo}\nValor: ${preco}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\nEstilo visual: ${estilo}\n\nDescrição:\n${descricao}`);window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`,"_blank","noopener,noreferrer")});
   </script>
 </body>
 </html>
