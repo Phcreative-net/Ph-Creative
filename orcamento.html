@@ -113,7 +113,7 @@
     }
     .campo { display: grid; gap: 8px; }
     .campo.full { grid-column: 1 / -1; }
-    label { color: #f5d76e; font-weight: 800; font-size: 0.92rem; }
+    label, .label-ferramentas { color: #f5d76e; font-weight: 800; font-size: 0.92rem; }
     input, select, textarea {
       width: 100%;
       border: 1px solid rgba(245, 215, 110, 0.18);
@@ -125,6 +125,32 @@
     }
     textarea { min-height: 130px; resize: vertical; }
     input:focus, select:focus, textarea:focus { border-color: rgba(245, 215, 110, 0.55); }
+    .ferramentas-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 8px;
+    }
+    .ferramenta-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 13px;
+      border: 1px solid rgba(245, 215, 110, 0.18);
+      border-radius: 16px;
+      background: rgba(5,5,7,0.52);
+      color: #e9dec2;
+      cursor: pointer;
+      transition: 0.22s ease;
+    }
+    .ferramenta-item:hover {
+      border-color: rgba(245, 215, 110, 0.48);
+      background: rgba(245, 215, 110, 0.07);
+    }
+    .ferramenta-item input {
+      width: auto;
+      accent-color: #d4af37;
+    }
     .acoes {
       display: flex;
       flex-wrap: wrap;
@@ -150,17 +176,11 @@
       background: rgba(255,255,255,0.04);
       color: #f5d76e;
     }
-    .resumo {
-      margin-top: 18px;
-      padding: 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(245, 215, 110, 0.18);
-      background: rgba(245, 215, 110, 0.06);
-      color: #cfc6a8;
-      line-height: 1.6;
-    }
     footer { text-align: center; color: #9c9278; padding: 8px 0 0; font-size: 0.92rem; }
-    @media (max-width: 900px) { .grid, .form-grid { grid-template-columns: 1fr; } .campo.full { grid-column: auto; } }
+    @media (max-width: 900px) {
+      .grid, .form-grid, .ferramentas-grid { grid-template-columns: 1fr; }
+      .campo.full { grid-column: auto; }
+    }
   </style>
 </head>
 <body>
@@ -168,7 +188,7 @@
     <section class="painel">
       <span class="tag">Sites</span>
       <h1>Monte seu Site</h1>
-      <p class="intro">Escolha o tipo de site, informe o básico do projeto e envie tudo direto para o WhatsApp da PH Creative. Sem enrolação.</p>
+      <p class="intro">Escolha o tipo de site, selecione as ferramentas desejadas e envie tudo direto para o WhatsApp da PH Creative.</p>
 
       <div class="grid" id="opcoesSite">
         <article class="card" data-servico="Site profissional"><span>01</span><h3>Site profissional</h3><p>Para apresentar empresa, serviços, contatos e identidade da marca.</p></article>
@@ -179,12 +199,24 @@
       <div class="form-grid">
         <div class="campo"><label for="nomeMarca">Nome da marca</label><input id="nomeMarca" type="text" placeholder="Exemplo: PH Creative"></div>
         <div class="campo"><label for="tipoSite">Tipo de site</label><select id="tipoSite"><option value="Não informado">Selecione</option><option>Site profissional</option><option>Landing page</option><option>Site catálogo</option><option>Loja online</option><option>Outro</option></select></div>
-        <div class="campo"><label for="whatsCliente">WhatsApp ou contato</label><input id="whatsCliente" type="text" placeholder="Seu WhatsApp"></div>
         <div class="campo"><label for="prazoCliente">Prazo desejado</label><input id="prazoCliente" type="text" placeholder="Exemplo: até 7 dias"></div>
-        <div class="campo full"><label for="descricaoProjeto">Como você quer o site?</label><textarea id="descricaoProjeto" placeholder="Explique o estilo, páginas, cores, referências e objetivo do site."></textarea></div>
+        <div class="campo"><label for="estiloSite">Estilo visual</label><input id="estiloSite" type="text" placeholder="Exemplo: moderno, escuro, dourado"></div>
+        <div class="campo full">
+          <span class="label-ferramentas">Ferramentas que deseja no site</span>
+          <div class="ferramentas-grid">
+            <label class="ferramenta-item"><input type="checkbox" value="HTML"> HTML</label>
+            <label class="ferramenta-item"><input type="checkbox" value="CSS"> CSS</label>
+            <label class="ferramenta-item"><input type="checkbox" value="JavaScript"> JavaScript</label>
+            <label class="ferramenta-item"><input type="checkbox" value="WhatsApp automático"> WhatsApp automático</label>
+            <label class="ferramenta-item"><input type="checkbox" value="Formulário"> Formulário</label>
+            <label class="ferramenta-item"><input type="checkbox" value="Carrinho"> Carrinho</label>
+            <label class="ferramenta-item"><input type="checkbox" value="Firebase"> Firebase</label>
+            <label class="ferramenta-item"><input type="checkbox" value="Animações"> Animações</label>
+            <label class="ferramenta-item"><input type="checkbox" value="Design responsivo"> Design responsivo</label>
+          </div>
+        </div>
+        <div class="campo full"><label for="descricaoProjeto">Como você quer o site?</label><textarea id="descricaoProjeto" placeholder="Explique as páginas, cores, referências, objetivo do site e detalhes importantes."></textarea></div>
       </div>
-
-      <div class="resumo" id="resumoPedido">Nenhum tipo de site selecionado ainda.</div>
 
       <div class="acoes">
         <button class="btn" type="button" id="btnWhatsApp">Enviar no WhatsApp</button>
@@ -199,14 +231,7 @@
     const numeroWhatsApp = "5521984150295";
     let servicoSelecionado = "";
     const cards = document.querySelectorAll(".card");
-    const resumo = document.getElementById("resumoPedido");
     const tipoSite = document.getElementById("tipoSite");
-
-    function atualizarResumo() {
-      const nome = document.getElementById("nomeMarca").value.trim() || "marca não informada";
-      const tipo = servicoSelecionado || tipoSite.value || "não informado";
-      resumo.innerText = `Pedido: ${tipo} para ${nome}.`;
-    }
 
     cards.forEach((card) => {
       card.addEventListener("click", () => {
@@ -214,19 +239,18 @@
         card.classList.add("ativo");
         servicoSelecionado = card.dataset.servico;
         tipoSite.value = servicoSelecionado;
-        atualizarResumo();
       });
     });
-
-    document.querySelectorAll("input, select, textarea").forEach((campo) => campo.addEventListener("input", atualizarResumo));
 
     document.getElementById("btnWhatsApp").addEventListener("click", () => {
       const nome = document.getElementById("nomeMarca").value.trim() || "Não informado";
       const tipo = servicoSelecionado || tipoSite.value || "Não informado";
-      const contato = document.getElementById("whatsCliente").value.trim() || "Não informado";
       const prazo = document.getElementById("prazoCliente").value.trim() || "Não informado";
+      const estilo = document.getElementById("estiloSite").value.trim() || "Não informado";
+      const ferramentasSelecionadas = Array.from(document.querySelectorAll(".ferramentas-grid input:checked")).map((item) => item.value);
+      const ferramentas = ferramentasSelecionadas.length ? ferramentasSelecionadas.join(", ") : "Não informado";
       const descricao = document.getElementById("descricaoProjeto").value.trim() || "Não informado";
-      const mensagem = encodeURIComponent(`Olá, quero montar um site com a PH Creative.\n\nTipo de site: ${tipo}\nNome da marca: ${nome}\nContato: ${contato}\nPrazo desejado: ${prazo}\n\nDescrição:\n${descricao}`);
+      const mensagem = encodeURIComponent(`Olá, quero montar um site com a PH Creative.\n\nTipo de site: ${tipo}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\nEstilo visual: ${estilo}\nFerramentas desejadas: ${ferramentas}\n\nDescrição:\n${descricao}`);
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank", "noopener,noreferrer");
     });
   </script>
