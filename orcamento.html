@@ -95,13 +95,18 @@
       line-height: 1.72;
       margin-bottom: 26px;
     }
-    .grid {
+    .planos-grid {
       display: grid;
       grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 16px;
       margin-top: 22px;
     }
-    .card {
+    .plano-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 230px;
       border: 1px solid rgba(245, 215, 110, 0.18);
       border-radius: 24px;
       padding: 22px;
@@ -109,37 +114,58 @@
       cursor: pointer;
       transition: 0.25s ease;
     }
-    .card:hover, .card.ativo {
+    .plano-card:hover, .plano-card.ativo {
       transform: translateY(-4px);
       border-color: rgba(245, 215, 110, 0.55);
       background: rgba(245, 215, 110, 0.08);
       box-shadow: 0 20px 48px rgba(0,0,0,0.34);
     }
-    .card span {
+    .plano-topo {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 12px;
+    }
+    .plano-card span {
       color: #f5d76e;
       font-size: 0.72rem;
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
     }
-    .card h3 {
-      margin: 10px 0 8px;
-      font-size: 1.26rem;
+    .preco-plano {
+      color: #050507;
+      background: linear-gradient(135deg, #fff1a6, #d4af37, #8c661b);
+      border-radius: 999px;
+      padding: 7px 10px;
+      font-size: 0.82rem;
+      font-weight: 950;
+      white-space: nowrap;
     }
-    .card p {
+    .plano-card h3 {
+      font-size: 1.28rem;
+      line-height: 1.15;
+    }
+    .plano-card p {
       color: #cfc6a8;
       line-height: 1.58;
       font-size: 0.95rem;
+    }
+    .inclui {
+      margin-top: auto;
+      color: #f3ead0;
+      font-size: 0.88rem;
+      line-height: 1.55;
     }
     .form-grid {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 14px;
-      margin-top: 20px;
+      margin-top: 24px;
     }
     .campo { display: grid; gap: 8px; }
     .campo.full { grid-column: 1 / -1; }
-    label, .label-ferramentas { color: #f5d76e; font-weight: 800; font-size: 0.92rem; }
+    label { color: #f5d76e; font-weight: 800; font-size: 0.92rem; }
     input, select, textarea {
       width: 100%;
       border: 1px solid rgba(245, 215, 110, 0.18);
@@ -151,46 +177,6 @@
     }
     textarea { min-height: 130px; resize: vertical; }
     input:focus, select:focus, textarea:focus { border-color: rgba(245, 215, 110, 0.55); }
-    .ferramentas-grid {
-      display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-      gap: 10px;
-      margin-top: 8px;
-    }
-    .ferramenta-item {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      min-height: 50px;
-      padding: 12px 13px;
-      border: 1px solid rgba(245, 215, 110, 0.18);
-      border-radius: 16px;
-      background: rgba(5,5,7,0.52);
-      color: #e9dec2;
-      cursor: pointer;
-      transition: 0.22s ease;
-    }
-    .ferramenta-item:hover {
-      border-color: rgba(245, 215, 110, 0.48);
-      background: rgba(245, 215, 110, 0.07);
-    }
-    .ferramenta-item input {
-      width: auto;
-      accent-color: #d4af37;
-      flex: 0 0 auto;
-    }
-    .ferramenta-nome {
-      color: #f3ead0;
-      font-weight: 900;
-    }
-    .preco-ferramenta {
-      margin-left: auto;
-      color: #f5d76e;
-      font-size: 0.78rem;
-      font-weight: 950;
-      white-space: nowrap;
-      opacity: 0.95;
-    }
     .acoes {
       display: flex;
       flex-wrap: wrap;
@@ -213,7 +199,7 @@
     }
     footer { text-align: center; color: #9c9278; padding: 8px 0 0; font-size: 0.92rem; }
     @media (max-width: 900px) {
-      .grid, .form-grid, .ferramentas-grid { grid-template-columns: 1fr; }
+      .planos-grid, .form-grid { grid-template-columns: 1fr; }
       .campo.full { grid-column: auto; }
     }
   </style>
@@ -223,39 +209,57 @@
     <section class="painel">
       <div class="topo-site"><span class="tag">Sites</span><a href="./index.html" class="botao-voltar-simples">← Voltar</a></div>
       <h1>Monte seu Site</h1>
-      <p class="intro">Escolha o tipo de site, selecione as ferramentas desejadas e envie tudo direto para o WhatsApp da Ph Creative.</p>
+      <p class="intro">Agora os valores são por site pronto. Escolha o modelo que combina com sua necessidade e envie o pedido direto para o WhatsApp da Ph Creative.</p>
 
-      <div class="grid" id="opcoesSite">
-        <article class="card" data-servico="Site profissional"><span>01</span><h3>Site profissional</h3><p>Para apresentar empresa, serviços, contatos e identidade da marca.</p></article>
-        <article class="card" data-servico="Landing page"><span>02</span><h3>Landing page</h3><p>Página direta para vender, divulgar ou captar clientes pelo WhatsApp.</p></article>
-        <article class="card" data-servico="Site catálogo"><span>03</span><h3>Site catálogo</h3><p>Vitrine digital para produtos, modelos, serviços ou portfólio da marca.</p></article>
+      <div class="planos-grid" id="opcoesSite">
+        <article class="plano-card" data-servico="Site simples" data-preco="A partir de R$ 300">
+          <div class="plano-topo"><span>01</span><strong class="preco-plano">R$ 300+</strong></div>
+          <h3>Site simples</h3>
+          <p>Para quem precisa de uma presença básica na internet, com ferramentas simples e visual organizado.</p>
+          <div class="inclui">Inclui: estrutura, visual simples, responsivo e botão de WhatsApp.</div>
+        </article>
+
+        <article class="plano-card" data-servico="Landing page" data-preco="A partir de R$ 450">
+          <div class="plano-topo"><span>02</span><strong class="preco-plano">R$ 450+</strong></div>
+          <h3>Landing page</h3>
+          <p>Página direta para vender, divulgar um serviço ou levar o cliente para o WhatsApp.</p>
+          <div class="inclui">Inclui: chamada principal, seções de venda, responsivo e CTA.</div>
+        </article>
+
+        <article class="plano-card" data-servico="Site profissional" data-preco="A partir de R$ 650">
+          <div class="plano-topo"><span>03</span><strong class="preco-plano">R$ 650+</strong></div>
+          <h3>Site profissional</h3>
+          <p>Para empresa, profissional autônomo ou marca que quer uma apresentação mais completa.</p>
+          <div class="inclui">Inclui: páginas/seções principais, identidade visual, responsivo e WhatsApp.</div>
+        </article>
+
+        <article class="plano-card" data-servico="Site catálogo" data-preco="A partir de R$ 750">
+          <div class="plano-topo"><span>04</span><strong class="preco-plano">R$ 750+</strong></div>
+          <h3>Site catálogo</h3>
+          <p>Vitrine digital para mostrar produtos, modelos, serviços, artes ou portfólio.</p>
+          <div class="inclui">Inclui: cards de produtos, galeria, botões de pedido e organização visual.</div>
+        </article>
+
+        <article class="plano-card" data-servico="Loja online básica" data-preco="A partir de R$ 900">
+          <div class="plano-topo"><span>05</span><strong class="preco-plano">R$ 900+</strong></div>
+          <h3>Loja online básica</h3>
+          <p>Para vender produtos ou modelos com carrinho simples e envio do pedido pelo WhatsApp.</p>
+          <div class="inclui">Inclui: vitrine, carrinho simples, pedido automático e responsivo.</div>
+        </article>
+
+        <article class="plano-card" data-servico="Site completo" data-preco="A partir de R$ 1.200">
+          <div class="plano-topo"><span>06</span><strong class="preco-plano">R$ 1.200+</strong></div>
+          <h3>Site completo</h3>
+          <p>Projeto mais elaborado, com mais seções, animações, recursos extras e acabamento premium.</p>
+          <div class="inclui">Inclui: design avançado, animações, catálogo/recursos extras e suporte inicial.</div>
+        </article>
       </div>
 
       <div class="form-grid">
         <div class="campo"><label for="nomeMarca">Nome da marca</label><input id="nomeMarca" type="text" placeholder="Exemplo: Ph Creative"></div>
-        <div class="campo"><label for="tipoSite">Tipo de site</label><select id="tipoSite"><option value="Não informado">Selecione</option><option>Site profissional</option><option>Landing page</option><option>Site catálogo</option><option>Loja online</option><option>Outro</option></select></div>
+        <div class="campo"><label for="tipoSite">Tipo de site</label><select id="tipoSite"><option value="Não informado" data-preco="Não informado">Selecione</option><option data-preco="A partir de R$ 300">Site simples</option><option data-preco="A partir de R$ 450">Landing page</option><option data-preco="A partir de R$ 650">Site profissional</option><option data-preco="A partir de R$ 750">Site catálogo</option><option data-preco="A partir de R$ 900">Loja online básica</option><option data-preco="A partir de R$ 1.200">Site completo</option><option data-preco="A combinar">Outro</option></select></div>
         <div class="campo"><label for="prazoCliente">Prazo desejado</label><input id="prazoCliente" type="text" placeholder="Exemplo: até 7 dias"></div>
         <div class="campo"><label for="estiloSite">Estilo visual</label><input id="estiloSite" type="text" placeholder="Exemplo: moderno, escuro, dourado"></div>
-        <div class="campo full">
-          <span class="label-ferramentas">Ferramentas que deseja no site</span>
-          <div class="ferramentas-grid">
-            <label class="ferramenta-item"><input type="checkbox" data-nome="HTML" data-preco="R$ 100"><span class="ferramenta-nome">HTML</span><span class="preco-ferramenta">R$ 100</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="CSS" data-preco="R$ 120"><span class="ferramenta-nome">CSS</span><span class="preco-ferramenta">R$ 120</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="JavaScript" data-preco="R$ 180"><span class="ferramenta-nome">JavaScript</span><span class="preco-ferramenta">R$ 180</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Design responsivo" data-preco="R$ 120"><span class="ferramenta-nome">Design responsivo</span><span class="preco-ferramenta">R$ 120</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="WhatsApp automático" data-preco="R$ 120"><span class="ferramenta-nome">WhatsApp automático</span><span class="preco-ferramenta">R$ 120</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Formulário" data-preco="R$ 150"><span class="ferramenta-nome">Formulário</span><span class="preco-ferramenta">R$ 150</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Galeria de fotos" data-preco="R$ 100"><span class="ferramenta-nome">Galeria de fotos</span><span class="preco-ferramenta">R$ 100</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Animações" data-preco="R$ 120"><span class="ferramenta-nome">Animações</span><span class="preco-ferramenta">R$ 120</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="SEO básico" data-preco="R$ 120"><span class="ferramenta-nome">SEO básico</span><span class="preco-ferramenta">R$ 120</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Carrinho" data-preco="R$ 220"><span class="ferramenta-nome">Carrinho</span><span class="preco-ferramenta">R$ 220</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Catálogo de produtos" data-preco="R$ 180"><span class="ferramenta-nome">Catálogo</span><span class="preco-ferramenta">R$ 180</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Firebase" data-preco="R$ 250"><span class="ferramenta-nome">Firebase</span><span class="preco-ferramenta">R$ 250</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Contador de acessos" data-preco="R$ 100"><span class="ferramenta-nome">Contador de acessos</span><span class="preco-ferramenta">R$ 100</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Área de comentários" data-preco="R$ 180"><span class="ferramenta-nome">Comentários</span><span class="preco-ferramenta">R$ 180</span></label>
-            <label class="ferramenta-item"><input type="checkbox" data-nome="Publicação no GitHub Pages" data-preco="R$ 100"><span class="ferramenta-nome">Publicação</span><span class="preco-ferramenta">R$ 100</span></label>
-          </div>
-        </div>
         <div class="campo full"><label for="descricaoProjeto">Como você quer o site?</label><textarea id="descricaoProjeto" placeholder="Explique as páginas, cores, referências, objetivo do site e detalhes importantes."></textarea></div>
       </div>
 
@@ -270,7 +274,8 @@
   <script>
     const numeroWhatsApp = "5521984150295";
     let servicoSelecionado = "";
-    const cards = document.querySelectorAll(".card");
+    let precoSelecionado = "";
+    const cards = document.querySelectorAll(".plano-card");
     const tipoSite = document.getElementById("tipoSite");
 
     cards.forEach((card) => {
@@ -278,19 +283,25 @@
         cards.forEach((item) => item.classList.remove("ativo"));
         card.classList.add("ativo");
         servicoSelecionado = card.dataset.servico;
+        precoSelecionado = card.dataset.preco;
         tipoSite.value = servicoSelecionado;
       });
+    });
+
+    tipoSite.addEventListener("change", () => {
+      servicoSelecionado = tipoSite.value;
+      precoSelecionado = tipoSite.options[tipoSite.selectedIndex].dataset.preco || "A combinar";
+      cards.forEach((card) => card.classList.toggle("ativo", card.dataset.servico === servicoSelecionado));
     });
 
     document.getElementById("btnWhatsApp").addEventListener("click", () => {
       const nome = document.getElementById("nomeMarca").value.trim() || "Não informado";
       const tipo = servicoSelecionado || tipoSite.value || "Não informado";
+      const preco = precoSelecionado || tipoSite.options[tipoSite.selectedIndex].dataset.preco || "Não informado";
       const prazo = document.getElementById("prazoCliente").value.trim() || "Não informado";
       const estilo = document.getElementById("estiloSite").value.trim() || "Não informado";
-      const ferramentasSelecionadas = Array.from(document.querySelectorAll(".ferramentas-grid input:checked")).map((item) => `${item.dataset.nome} (${item.dataset.preco})`);
-      const ferramentas = ferramentasSelecionadas.length ? ferramentasSelecionadas.join(", ") : "Não informado";
       const descricao = document.getElementById("descricaoProjeto").value.trim() || "Não informado";
-      const mensagem = encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nTipo de site: ${tipo}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\nEstilo visual: ${estilo}\nFerramentas desejadas: ${ferramentas}\n\nDescrição:\n${descricao}`);
+      const mensagem = encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nTipo de site: ${tipo}\nValor: ${preco}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\nEstilo visual: ${estilo}\n\nDescrição:\n${descricao}`);
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank", "noopener,noreferrer");
     });
   </script>
