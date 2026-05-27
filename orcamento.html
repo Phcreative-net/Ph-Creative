@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Monte seu Site | PH Creative</title>
-  <meta name="description" content="Solicite um site profissional com a PH Creative de forma direta e organizada pelo WhatsApp." />
+  <title>Monte seu Site | Ph Creative</title>
+  <meta name="description" content="Solicite um site profissional com a Ph Creative de forma direta e organizada pelo WhatsApp." />
   <meta name="theme-color" content="#050507" />
   <style>
     * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -41,10 +41,16 @@
       box-shadow: 0 28px 80px rgba(0, 0, 0, 0.46);
       margin-bottom: 24px;
     }
+    .topo-site {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 14px;
+    }
     .tag {
       display: inline-flex;
       width: max-content;
-      margin-bottom: 14px;
       padding: 8px 12px;
       border-radius: 999px;
       border: 1px solid rgba(245, 215, 110, 0.28);
@@ -54,6 +60,26 @@
       letter-spacing: 0.14em;
       text-transform: uppercase;
       background: rgba(245, 215, 110, 0.06);
+    }
+    .botao-voltar-simples {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 35px;
+      padding: 8px 13px;
+      border-radius: 999px;
+      border: 1px solid rgba(245, 215, 110, 0.24);
+      background: rgba(255,255,255,0.035);
+      color: #f5d76e;
+      font-size: 0.82rem;
+      font-weight: 900;
+      text-decoration: none;
+      transition: 0.22s ease;
+    }
+    .botao-voltar-simples:hover {
+      background: rgba(245, 215, 110, 0.12);
+      border-color: rgba(245, 215, 110, 0.46);
+      transform: translateY(-1px);
     }
     h1 {
       max-width: 780px;
@@ -135,6 +161,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      min-height: 50px;
       padding: 12px 13px;
       border: 1px solid rgba(245, 215, 110, 0.18);
       border-radius: 16px;
@@ -150,6 +177,19 @@
     .ferramenta-item input {
       width: auto;
       accent-color: #d4af37;
+      flex: 0 0 auto;
+    }
+    .ferramenta-nome {
+      color: #f3ead0;
+      font-weight: 900;
+    }
+    .preco-ferramenta {
+      margin-left: auto;
+      color: #f5d76e;
+      font-size: 0.78rem;
+      font-weight: 950;
+      white-space: nowrap;
+      opacity: 0.95;
     }
     .acoes {
       display: flex;
@@ -171,11 +211,6 @@
       text-decoration: none;
       cursor: pointer;
     }
-    .btn-secundario {
-      border: 1px solid rgba(245, 215, 110, 0.25);
-      background: rgba(255,255,255,0.04);
-      color: #f5d76e;
-    }
     footer { text-align: center; color: #9c9278; padding: 8px 0 0; font-size: 0.92rem; }
     @media (max-width: 900px) {
       .grid, .form-grid, .ferramentas-grid { grid-template-columns: 1fr; }
@@ -186,9 +221,9 @@
 <body>
   <main class="page">
     <section class="painel">
-      <span class="tag">Sites</span>
+      <div class="topo-site"><span class="tag">Sites</span><a href="./index.html" class="botao-voltar-simples">← Voltar</a></div>
       <h1>Monte seu Site</h1>
-      <p class="intro">Escolha o tipo de site, selecione as ferramentas desejadas e envie tudo direto para o WhatsApp da PH Creative.</p>
+      <p class="intro">Escolha o tipo de site, selecione as ferramentas desejadas e envie tudo direto para o WhatsApp da Ph Creative.</p>
 
       <div class="grid" id="opcoesSite">
         <article class="card" data-servico="Site profissional"><span>01</span><h3>Site profissional</h3><p>Para apresentar empresa, serviços, contatos e identidade da marca.</p></article>
@@ -197,22 +232,28 @@
       </div>
 
       <div class="form-grid">
-        <div class="campo"><label for="nomeMarca">Nome da marca</label><input id="nomeMarca" type="text" placeholder="Exemplo: PH Creative"></div>
+        <div class="campo"><label for="nomeMarca">Nome da marca</label><input id="nomeMarca" type="text" placeholder="Exemplo: Ph Creative"></div>
         <div class="campo"><label for="tipoSite">Tipo de site</label><select id="tipoSite"><option value="Não informado">Selecione</option><option>Site profissional</option><option>Landing page</option><option>Site catálogo</option><option>Loja online</option><option>Outro</option></select></div>
         <div class="campo"><label for="prazoCliente">Prazo desejado</label><input id="prazoCliente" type="text" placeholder="Exemplo: até 7 dias"></div>
         <div class="campo"><label for="estiloSite">Estilo visual</label><input id="estiloSite" type="text" placeholder="Exemplo: moderno, escuro, dourado"></div>
         <div class="campo full">
           <span class="label-ferramentas">Ferramentas que deseja no site</span>
           <div class="ferramentas-grid">
-            <label class="ferramenta-item"><input type="checkbox" value="HTML"> HTML</label>
-            <label class="ferramenta-item"><input type="checkbox" value="CSS"> CSS</label>
-            <label class="ferramenta-item"><input type="checkbox" value="JavaScript"> JavaScript</label>
-            <label class="ferramenta-item"><input type="checkbox" value="WhatsApp automático"> WhatsApp automático</label>
-            <label class="ferramenta-item"><input type="checkbox" value="Formulário"> Formulário</label>
-            <label class="ferramenta-item"><input type="checkbox" value="Carrinho"> Carrinho</label>
-            <label class="ferramenta-item"><input type="checkbox" value="Firebase"> Firebase</label>
-            <label class="ferramenta-item"><input type="checkbox" value="Animações"> Animações</label>
-            <label class="ferramenta-item"><input type="checkbox" value="Design responsivo"> Design responsivo</label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="HTML" data-preco="R$ 100"><span class="ferramenta-nome">HTML</span><span class="preco-ferramenta">R$ 100</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="CSS" data-preco="R$ 120"><span class="ferramenta-nome">CSS</span><span class="preco-ferramenta">R$ 120</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="JavaScript" data-preco="R$ 180"><span class="ferramenta-nome">JavaScript</span><span class="preco-ferramenta">R$ 180</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Design responsivo" data-preco="R$ 120"><span class="ferramenta-nome">Design responsivo</span><span class="preco-ferramenta">R$ 120</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="WhatsApp automático" data-preco="R$ 120"><span class="ferramenta-nome">WhatsApp automático</span><span class="preco-ferramenta">R$ 120</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Formulário" data-preco="R$ 150"><span class="ferramenta-nome">Formulário</span><span class="preco-ferramenta">R$ 150</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Galeria de fotos" data-preco="R$ 100"><span class="ferramenta-nome">Galeria de fotos</span><span class="preco-ferramenta">R$ 100</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Animações" data-preco="R$ 120"><span class="ferramenta-nome">Animações</span><span class="preco-ferramenta">R$ 120</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="SEO básico" data-preco="R$ 120"><span class="ferramenta-nome">SEO básico</span><span class="preco-ferramenta">R$ 120</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Carrinho" data-preco="R$ 220"><span class="ferramenta-nome">Carrinho</span><span class="preco-ferramenta">R$ 220</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Catálogo de produtos" data-preco="R$ 180"><span class="ferramenta-nome">Catálogo</span><span class="preco-ferramenta">R$ 180</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Firebase" data-preco="R$ 250"><span class="ferramenta-nome">Firebase</span><span class="preco-ferramenta">R$ 250</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Contador de acessos" data-preco="R$ 100"><span class="ferramenta-nome">Contador de acessos</span><span class="preco-ferramenta">R$ 100</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Área de comentários" data-preco="R$ 180"><span class="ferramenta-nome">Comentários</span><span class="preco-ferramenta">R$ 180</span></label>
+            <label class="ferramenta-item"><input type="checkbox" data-nome="Publicação no GitHub Pages" data-preco="R$ 100"><span class="ferramenta-nome">Publicação</span><span class="preco-ferramenta">R$ 100</span></label>
           </div>
         </div>
         <div class="campo full"><label for="descricaoProjeto">Como você quer o site?</label><textarea id="descricaoProjeto" placeholder="Explique as páginas, cores, referências, objetivo do site e detalhes importantes."></textarea></div>
@@ -220,11 +261,10 @@
 
       <div class="acoes">
         <button class="btn" type="button" id="btnWhatsApp">Enviar no WhatsApp</button>
-        <a class="btn btn-secundario" href="./index.html">Voltar</a>
       </div>
     </section>
 
-    <footer><p>&copy; 2026 PH Creative. Todos os direitos reservados.</p></footer>
+    <footer><p>&copy; 2026 Ph Creative. Todos os direitos reservados.</p></footer>
   </main>
 
   <script>
@@ -247,10 +287,10 @@
       const tipo = servicoSelecionado || tipoSite.value || "Não informado";
       const prazo = document.getElementById("prazoCliente").value.trim() || "Não informado";
       const estilo = document.getElementById("estiloSite").value.trim() || "Não informado";
-      const ferramentasSelecionadas = Array.from(document.querySelectorAll(".ferramentas-grid input:checked")).map((item) => item.value);
+      const ferramentasSelecionadas = Array.from(document.querySelectorAll(".ferramentas-grid input:checked")).map((item) => `${item.dataset.nome} (${item.dataset.preco})`);
       const ferramentas = ferramentasSelecionadas.length ? ferramentasSelecionadas.join(", ") : "Não informado";
       const descricao = document.getElementById("descricaoProjeto").value.trim() || "Não informado";
-      const mensagem = encodeURIComponent(`Olá, quero montar um site com a PH Creative.\n\nTipo de site: ${tipo}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\nEstilo visual: ${estilo}\nFerramentas desejadas: ${ferramentas}\n\nDescrição:\n${descricao}`);
+      const mensagem = encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nTipo de site: ${tipo}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\nEstilo visual: ${estilo}\nFerramentas desejadas: ${ferramentas}\n\nDescrição:\n${descricao}`);
       window.open(`https://wa.me/${numeroWhatsApp}?text=${mensagem}`, "_blank", "noopener,noreferrer");
     });
   </script>
