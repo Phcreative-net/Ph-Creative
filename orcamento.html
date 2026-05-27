@@ -51,25 +51,71 @@
   <script>
     const numeroWhatsApp="5521984150295";
     const descricao=document.getElementById("descricaoSite"),nomeMarca=document.getElementById("nomeMarca"),prazoCliente=document.getElementById("prazoCliente"),resultado=document.getElementById("resultado"),categoriaResultado=document.getElementById("categoriaResultado"),precoResultado=document.getElementById("precoResultado"),textoResultado=document.getElementById("textoResultado"),itensDetectados=document.getElementById("itensDetectados"),btnWhatsApp=document.getElementById("btnWhatsApp");
-    const simples=["pessoal","biografia","links","link","simples","básico","basico","apresentação","apresentacao","contato","whatsapp","landing","produto","divulgar"];
-    const medio=["catálogo","catalogo","portfólio","portfolio","galeria","produtos","serviços","servicos","vitrine","artes","modelos","cardápio","cardapio","loja básica","loja basica","carrinho simples"];
-    const avancado=["completo","profissional","premium","empresa","empresarial","animação","animacao","animações","animacoes","sistema","login","painel","firebase","banco de dados","comentários","comentarios","cadastro","pagamento","ecommerce","e-commerce","muitas páginas","varias paginas","várias páginas"];
-    function possui(texto,palavras){return palavras.some(p=>texto.includes(p));}
+
+    const regras=[
+      {nivel:1,peso:1,item:"apresentação simples",palavras:["pessoal","biografia","link","links","simples","básico","basico","apresentação","apresentacao","contato","whatsapp","telefone","instagram","redes sociais","uma pagina","uma página","curriculo","currículo"]},
+      {nivel:1,peso:2,item:"landing page",palavras:["landing","vender um produto","divulgar","promoção","promocao","captar cliente","chamada","conversão","conversao","serviço único","servico unico","produto único","produto unico"]},
+      {nivel:2,peso:4,item:"catálogo / vitrine",palavras:["catálogo","catalogo","produtos","produto","vitrine","cardápio","cardapio","menu","preços","precos","modelos","lista de produtos","fotos dos produtos","galeria","serviços","servicos","artes","imagens"]},
+      {nivel:2,peso:4,item:"portfólio",palavras:["portfólio","portfolio","projetos","trabalhos","galeria de projetos","mostrar meus trabalhos","habilidades","experiência","experiencia"]},
+      {nivel:2,peso:5,item:"loja com carrinho simples",palavras:["loja","loja online","loja virtual","carrinho","carrinho simples","pedido pelo whatsapp","comprar pelo whatsapp","adicionar ao carrinho","checkout whatsapp"]},
+      {nivel:3,peso:7,item:"site profissional",palavras:["profissional","completo","premium","alto padrão","alto padrao","empresa grande","empresarial","institucional completo","marca grande","pessoa famosa","famoso","influencer","autoridade","presença premium","presenca premium"]},
+      {nivel:3,peso:8,item:"recursos avançados",palavras:["sistema","login","painel","admin","administrador","cadastro","cliente entra","área do cliente","area do cliente","banco de dados","firebase","comentários","comentarios","avaliações","avaliacoes","pagamento","pix","cartão","cartao","ecommerce","e-commerce","estoque","cupom","frete","api","dashboard"]},
+      {nivel:3,peso:5,item:"animações e acabamento premium",palavras:["animação","animacao","animações","animacoes","efeito","efeitos","cinematográfico","cinematografico","3d","parallax","muito moderno","super moderno","design avançado","design avancado"]},
+      {nivel:3,peso:4,item:"muitas páginas",palavras:["muitas páginas","muitas paginas","várias páginas","varias paginas","mais de 5 páginas","mais de 5 paginas","home sobre serviços contato","home, sobre, serviços, contato","blog","notícias","noticias"]}
+    ];
+
+    function normalizar(texto){return texto.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"");}
+    function contem(texto,palavra){return texto.includes(normalizar(palavra));}
+
     function calcular(){
-      const texto=descricao.value.trim(); if(!texto){descricao.focus();return;}
-      const normalizado=texto.toLowerCase(); let nivel=1; const detectados=[];
-      if(possui(normalizado,simples)) detectados.push("site simples");
-      if(possui(normalizado,medio)){nivel=Math.max(nivel,2);detectados.push("catálogo / portfólio / loja básica");}
-      if(possui(normalizado,avancado)){nivel=Math.max(nivel,3);detectados.push("site profissional");}
-      if(normalizado.length>260){nivel=Math.max(nivel,2);detectados.push("descrição detalhada");}
-      if(normalizado.length>520){nivel=Math.max(nivel,3);detectados.push("projeto grande");}
-      const dados={1:{categoria:"Site simples",preco:"R$ 300",texto:"Indicado para página pessoal, landing page, apresentação simples, links, contato e WhatsApp."},2:{categoria:"Site intermediário",preco:"R$ 600",texto:"Indicado para catálogo, portfólio, vitrine de produtos, serviços, galeria e carrinho simples pelo WhatsApp."},3:{categoria:"Site profissional",preco:"R$ 900",texto:"Indicado para projeto completo, empresa, marca premium, mais seções, animações e recursos avançados."}}[nivel];
-      categoriaResultado.innerText=dados.categoria; precoResultado.innerText=dados.preco; textoResultado.innerText=dados.texto; itensDetectados.innerHTML="";
+      const texto=descricao.value.trim();
+      if(!texto){descricao.focus();return;}
+
+      const normalizado=normalizar(texto);
+      let pontos=0;
+      let nivelMaisAlto=1;
+      const detectados=[];
+      const palavrasUnicas=new Set(normalizado.split(/\s+/).filter(Boolean));
+
+      regras.forEach(regra=>{
+        const achou=regra.palavras.some(palavra=>contem(normalizado,palavra));
+        if(achou){
+          pontos+=regra.peso;
+          nivelMaisAlto=Math.max(nivelMaisAlto,regra.nivel);
+          detectados.push(regra.item);
+        }
+      });
+
+      if(palavrasUnicas.size>35){pontos+=2;detectados.push("descrição detalhada");}
+      if(palavrasUnicas.size>70){pontos+=4;nivelMaisAlto=Math.max(nivelMaisAlto,3);detectados.push("projeto grande");}
+      if((normalizado.match(/,/g)||[]).length>=4){pontos+=2;detectados.push("várias necessidades");}
+
+      let nivel=1;
+      if(pontos>=6 || nivelMaisAlto>=2) nivel=2;
+      if(pontos>=13 || nivelMaisAlto>=3) nivel=3;
+
+      const dados={
+        1:{categoria:"Site simples",preco:"R$ 300",texto:"Indicado para página pessoal, landing page simples, apresentação, links, contato e WhatsApp."},
+        2:{categoria:"Site intermediário",preco:"R$ 600",texto:"Indicado para catálogo, portfólio, vitrine de produtos, serviços, galeria e carrinho simples pelo WhatsApp."},
+        3:{categoria:"Site profissional",preco:"R$ 900",texto:"Indicado para projeto completo, empresa, marca premium, mais páginas, animações, sistema ou recursos avançados."}
+      }[nivel];
+
+      categoriaResultado.innerText=dados.categoria;
+      precoResultado.innerText=dados.preco;
+      textoResultado.innerText=`${dados.texto} Pontuação do assistente: ${pontos}.`;
+      itensDetectados.innerHTML="";
       [...new Set(detectados.length?detectados:["análise geral"])].forEach(item=>{const chip=document.createElement("span");chip.className="chip";chip.innerText=item;itensDetectados.appendChild(chip);});
-      const nome=nomeMarca.value.trim()||"Não informado",prazo=prazoCliente.value.trim()||"Não informado",mensagem=encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nResultado do assistente:\nTipo: ${dados.categoria}\nValor estimado: ${dados.preco}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\n\nDescrição do projeto:\n${texto}`);
-      btnWhatsApp.href=`https://wa.me/${numeroWhatsApp}?text=${mensagem}`; resultado.classList.add("mostrar"); resultado.scrollIntoView({behavior:"smooth",block:"nearest"});
+
+      const nome=nomeMarca.value.trim()||"Não informado";
+      const prazo=prazoCliente.value.trim()||"Não informado";
+      const mensagem=encodeURIComponent(`Olá, quero montar um site com a Ph Creative.\n\nResultado do assistente:\nTipo: ${dados.categoria}\nValor estimado: ${dados.preco}\nPontuação: ${pontos}\nNome da marca: ${nome}\nPrazo desejado: ${prazo}\n\nDescrição do projeto:\n${texto}`);
+      btnWhatsApp.href=`https://wa.me/${numeroWhatsApp}?text=${mensagem}`;
+      resultado.classList.add("mostrar");
+      resultado.scrollIntoView({behavior:"smooth",block:"nearest"});
     }
+
     document.getElementById("btnCalcular").addEventListener("click",calcular);
+    descricao.addEventListener("keydown",(evento)=>{if((evento.ctrlKey||evento.metaKey)&&evento.key==="Enter")calcular();});
     document.getElementById("btnLimpar").addEventListener("click",()=>{descricao.value="";nomeMarca.value="";prazoCliente.value="";resultado.classList.remove("mostrar");descricao.focus();});
   </script>
 </body>
