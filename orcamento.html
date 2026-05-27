@@ -26,14 +26,14 @@
     <section class="painel">
       <div class="topo-site"><span class="tag">Sites</span><a href="./index.html" class="botao-voltar-simples">← Voltar</a></div>
       <h1>Monte seu Site</h1>
-      <p class="intro">Descreva a ideia do seu site. O assistente inteligente lê as palavras do cliente, soma os recursos encontrados e calcula um valor mais específico.</p>
+      <p class="intro">Descreva a ideia do seu site. O assistente inteligente lê o texto, entende o tipo de projeto e calcula o valor de acordo com o que o cliente pediu.</p>
 
       <div class="assistente-box">
         <div class="linha-campos">
           <div class="campo"><label for="nomeMarca">Nome da marca</label><input id="nomeMarca" type="text" placeholder="Exemplo: Ph Creative"></div>
           <div class="campo"><label for="prazoCliente">Prazo desejado</label><input id="prazoCliente" type="text" placeholder="Exemplo: até 7 dias"></div>
         </div>
-        <div class="campo"><label for="descricaoSite">Descreva o site que você quer</label><textarea id="descricaoSite" placeholder="Exemplo: Quero um site para minha loja de roupas, com catálogo de produtos, botão de WhatsApp, carrinho simples, visual moderno e cores escuras."></textarea></div>
+        <div class="campo"><label for="descricaoSite">Descreva o site que você quer</label><textarea id="descricaoSite" placeholder="Exemplo: Quero um site para vender meu e-book, com uma página de leitura, botão de WhatsApp e um visual simples."></textarea></div>
         <div class="acoes"><button class="btn" type="button" id="btnCalcular">Calcular preço</button><button class="btn btn-secundario" type="button" id="btnLimpar">Limpar</button></div>
       </div>
 
@@ -53,14 +53,20 @@
     const descricao=document.getElementById("descricaoSite"),nomeMarca=document.getElementById("nomeMarca"),prazoCliente=document.getElementById("prazoCliente"),resultado=document.getElementById("resultado"),categoriaResultado=document.getElementById("categoriaResultado"),precoResultado=document.getElementById("precoResultado"),textoResultado=document.getElementById("textoResultado"),itensDetectados=document.getElementById("itensDetectados"),btnWhatsApp=document.getElementById("btnWhatsApp");
 
     const stopwords=new Set("a o os as um uma uns umas de da do das dos e ou para por com sem em no na nos nas meu minha meus minhas seu sua seus suas que quero queria preciso precisa criar fazer site pagina página ter tenha como sobre mais menos muito pouco algo esse essa isso aquele aquela voce você cliente clientes empresa marca projeto visual design bom boa bonito bonita gostaria".split(" "));
-    const mapaSinonimos={basico:"básico",pagina:"página",catalogo:"catálogo",portfolio:"portfólio",servicos:"serviços",precos:"preços",animacao:"animação",animacoes:"animações",comentarios:"comentários",avaliacoes:"avaliações",cartao:"cartão",noticias:"notícias",experiencia:"experiência",apresentacao:"apresentação",conversao:"conversão",orcamento:"orçamento",localizacao:"localização",endereco:"endereço",horario:"horário",usuario:"usuário",usuarios:"usuários",integracao:"integração",automacao:"automação"};
+    const mapaSinonimos={basico:"básico",pagina:"página",catalogo:"catálogo",portfolio:"portfólio",servicos:"serviços",precos:"preços",animacao:"animação",animacoes:"animações",comentarios:"comentários",avaliacoes:"avaliações",cartao:"cartão",noticias:"notícias",experiencia:"experiência",apresentacao:"apresentação",conversao:"conversão",orcamento:"orçamento",localizacao:"localização",endereco:"endereço",horario:"horário",usuario:"usuário",usuarios:"usuários",integracao:"integração",automacao:"automação",ebook:"e-book"};
 
     const recursos=[
-      {nome:"Base do site",valor:300,nivel:"Site simples",palavras:["pessoal","biografia","curriculo","currículo","apresentação","apresentacao","perfil","contato","whatsapp","instagram","link","links","telefone","redes sociais","simples","básico","basico"]},
-      {nome:"Landing page de venda",valor:80,nivel:"Landing page",palavras:["landing","vender","venda","oferta","divulgar","promoção","promocao","campanha","captar","conversão","conversao","lançamento","lancamento","produto único","produto unico","serviço único","servico unico"]},
+      {nome:"E-book simples / página de texto",valor:150,nivel:"E-book",palavras:["ebook","e-book","livro digital","apostila","texto","textos","escrever","apenas escrever","só escrever","so escrever","página de leitura","pagina de leitura","site de leitura","site de texto","artigo longo","conteúdo escrito","conteudo escrito","material digital","leitura online"]},
+      {nome:"E-book com capa e seções",valor:80,nivel:"E-book organizado",palavras:["capa do ebook","capa do e-book","capítulos","capitulos","sumário","sumario","seções do livro","secoes do livro","download do ebook","baixar ebook","baixar e-book"]},
+      {nome:"Site simples / básico",valor:300,nivel:"Site simples",palavras:["site simples","site básico","site basico","página simples","pagina simples","site pequeno","apresentação simples","apresentacao simples"]},
+      {nome:"Site pessoal",valor:300,nivel:"Site pessoal",palavras:["pessoal","biografia","curriculo","currículo","apresentação","apresentacao","perfil","sobre mim","autônomo","autonomo","profissional autônomo","profissional autonomo"]},
+      {nome:"Links e contato",valor:60,nivel:"Contato",palavras:["contato","whatsapp","instagram","facebook","linkedin","link","links","telefone","redes sociais","botão de whatsapp","botao de whatsapp"]},
+      {nome:"Landing page de venda",valor:300,nivel:"Landing page",palavras:["landing","vender","venda","oferta","divulgar","promoção","promocao","campanha","captar","conversão","conversao","lançamento","lancamento","produto único","produto unico","serviço único","servico unico","página de venda","pagina de venda"]},
+      {nome:"Venda de e-book",valor:120,nivel:"Venda de e-book",palavras:["vender ebook","vender e-book","comprar ebook","comprar e-book","e-book para vender","ebook para vender","página para vender ebook","pagina para vender ebook"]},
+      {nome:"Portfólio simples",valor:350,nivel:"Portfólio",palavras:["portfólio","portfolio","projetos","trabalhos","habilidades","experiência","experiencia","mostrar meus trabalhos","currículo online","curriculo online"]},
+      {nome:"Portfólio com galeria",valor:180,nivel:"Portfólio completo",palavras:["galeria de projetos","fotos dos projetos","cards de projetos","projetos organizados","trabalhos organizados","antes e depois"]},
       {nome:"Catálogo / vitrine",valor:250,nivel:"Site catálogo",palavras:["catálogo","catalogo","vitrine","produtos","produto","lista de produtos","fotos dos produtos","serviços","servicos","preços","precos","modelos","cardápio","cardapio","menu","artes","imagens"]},
-      {nome:"Portfólio",valor:220,nivel:"Portfólio",palavras:["portfólio","portfolio","projetos","trabalhos","habilidades","experiência","experiencia","galeria de projetos","mostrar meus trabalhos","currículo online","curriculo online"]},
-      {nome:"Galeria de fotos",valor:120,nivel:"Galeria",palavras:["galeria","fotos","imagens","album","álbum","antes e depois","carrossel","carrosel"]},
+      {nome:"Galeria de fotos",valor:120,nivel:"Galeria",palavras:["galeria","fotos","imagens","album","álbum","carrossel","carrosel"]},
       {nome:"Loja online básica",valor:260,nivel:"Loja online",palavras:["loja","loja online","loja virtual","comprar","compra","vender produtos","ecommerce simples"]},
       {nome:"Carrinho simples",valor:180,nivel:"Carrinho",palavras:["carrinho","adicionar ao carrinho","pedido pelo whatsapp","checkout whatsapp","enviar pedido","comprar pelo whatsapp"]},
       {nome:"Formulário",valor:120,nivel:"Formulário",palavras:["formulário","formulario","orçamento","orcamento","mensagem","email","fale conosco","solicitar orçamento","solicitar orcamento"]},
@@ -83,7 +89,7 @@
     function contem(texto,palavra){return texto.includes(normalizar(palavra));}
     function tokenizar(texto){return normalizar(texto).replace(/[^a-z0-9\s]/g," ").split(/\s+/).filter(p=>p.length>2&&!stopwords.has(p)).map(p=>mapaSinonimos[p]||p);}
     function moeda(valor){return valor.toLocaleString("pt-BR",{style:"currency",currency:"BRL",maximumFractionDigits:0});}
-    function arredondar50(valor){return Math.round(valor/50)*50;}
+    function arredondar10(valor){return Math.round(valor/10)*10;}
 
     function calcular(){
       const texto=descricao.value.trim();
@@ -106,20 +112,22 @@
         }
       });
 
-      if(total===0){total=300;detectados.push("Base do site +R$ 300");niveis.push("Site simples");}
+      if(total===0){total=300;detectados.push("Análise geral / site básico +R$ 300");niveis.push("Site básico");}
       if(palavrasCliente.length>22){total+=80;detectados.push("Descrição detalhada +R$ 80");}
       if(palavrasCliente.length>45){total+=180;detectados.push("Projeto grande +R$ 180");}
       if((texto.match(/,|;|\n/g)||[]).length>=3){total+=80;detectados.push("Várias necessidades +R$ 80");}
 
-      total=Math.max(300,arredondar50(total));
-      let categoria="Site simples";
+      total=Math.max(120,arredondar10(total));
+      let categoria="Projeto simples";
+      if(total<300) categoria="E-book / página simples";
+      if(total>=300) categoria="Site simples";
       if(total>=550) categoria="Site intermediário";
       if(total>=850) categoria="Site profissional";
       if(total>=1300) categoria="Projeto completo avançado";
 
       categoriaResultado.innerText=categoria;
       precoResultado.innerText=moeda(total);
-      textoResultado.innerText=`Preço calculado por recursos encontrados, não por valor fixo. O assistente encontrou ${encontrados.length} sinais no texto, analisou ${palavrasCliente.length} palavras importantes e calculou ${moeda(total)}.`;
+      textoResultado.innerText=`Preço calculado por recursos encontrados. O assistente encontrou ${encontrados.length} sinais no texto, analisou ${palavrasCliente.length} palavras importantes e calculou ${moeda(total)} de acordo com o que foi pedido.`;
       itensDetectados.innerHTML="";
       detectados.forEach(item=>{const chip=document.createElement("span");chip.className="chip valor";chip.innerText=item;itensDetectados.appendChild(chip);});
       [...new Set(niveis)].forEach(item=>{const chip=document.createElement("span");chip.className="chip";chip.innerText=item;itensDetectados.appendChild(chip);});
