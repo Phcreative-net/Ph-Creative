@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel de Acessos | PH Creative</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="theme-color" content="#050507" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      background: radial-gradient(circle at top left, rgba(245,215,110,.16), transparent 34%), linear-gradient(180deg, #050507, #09090d 55%, #050507);
+      color: #f7f2df;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .page { width: min(1120px, calc(100% - 28px)); margin: 0 auto; padding: clamp(28px, 6vw, 64px) 0 44px; }
+    .topo { display: flex; justify-content: space-between; gap: 18px; align-items: flex-start; flex-wrap: wrap; margin-bottom: 24px; }
+    .tag { display: inline-flex; padding: 8px 12px; border-radius: 999px; border: 1px solid rgba(245,215,110,.28); color: #f5d76e; font-size: .76rem; font-weight: 950; letter-spacing: .12em; text-transform: uppercase; background: rgba(245,215,110,.06); }
+    h1 { margin: 14px 0 10px; font-size: clamp(2.2rem, 6vw, 4.8rem); line-height: .98; letter-spacing: -.06em; }
+    p { color: #cfc6a8; line-height: 1.65; }
+    a { color: #f5d76e; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 11px 16px; border-radius: 999px; border: 1px solid rgba(245,215,110,.26); color: #f5d76e; text-decoration: none; font-weight: 900; background: rgba(255,255,255,.04); }
+    .grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; margin: 26px 0; }
+    .card { border: 1px solid rgba(245,215,110,.22); border-radius: 24px; padding: 22px; background: rgba(5,5,7,.72); box-shadow: 0 24px 70px rgba(0,0,0,.32); }
+    .card span { display: block; color: #a99d77; font-weight: 900; text-transform: uppercase; font-size: .76rem; letter-spacing: .09em; margin-bottom: 8px; }
+    .numero { color: #fff1a6; font-size: clamp(2.1rem, 5vw, 3.4rem); font-weight: 950; line-height: 1; }
+    .painel { border: 1px solid rgba(245,215,110,.22); border-radius: 28px; overflow: hidden; background: rgba(5,5,7,.70); box-shadow: 0 28px 80px rgba(0,0,0,.38); }
+    .painel h2 { margin: 0; padding: 20px 22px; color: #f5d76e; border-bottom: 1px solid rgba(245,215,110,.16); }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { padding: 14px 16px; border-bottom: 1px solid rgba(255,255,255,.08); text-align: left; vertical-align: top; }
+    th { color: #f5d76e; font-size: .82rem; text-transform: uppercase; letter-spacing: .08em; background: rgba(245,215,110,.05); }
+    td { color: #efe7ce; font-size: .94rem; }
+    .muted { color: #aaa083; }
+    .erro { margin-top: 18px; padding: 16px; border-radius: 18px; border: 1px solid rgba(255,190,90,.35); color: #ffdf9a; background: rgba(255,190,90,.08); display: none; }
+    @media(max-width: 760px) { .grid { grid-template-columns: 1fr; } table, thead, tbody, tr, th, td { display: block; } thead { display: none; } td { padding: 10px 16px; } tr { border-bottom: 1px solid rgba(255,255,255,.1); } }
+  </style>
+</head>
+<body>
+  <main class="page">
+    <div class="topo">
+      <div>
+        <span class="tag">PH Creative</span>
+        <h1>Painel de acessos</h1>
+        <p>Veja quando alguém entrou no site ou clicou em algum link importante. Os dados aparecem em tempo real quando o Firestore permite leitura.</p>
+      </div>
+      <a class="btn" href="./index.html">← Voltar ao site</a>
+    </div>
+
+    <section class="grid" aria-label="Resumo de acessos">
+      <div class="card"><span>Total de acessos</span><div class="numero" id="totalVisitas">0</div></div>
+      <div class="card"><span>Total de cliques</span><div class="numero" id="totalCliques">0</div></div>
+      <div class="card"><span>Eventos carregados</span><div class="numero" id="totalEventos">0</div></div>
+    </section>
+
+    <section class="painel">
+      <h2>Últimos eventos</h2>
+      <table>
+        <thead><tr><th>Quando</th><th>Tipo</th><th>O que aconteceu</th><th>Página</th></tr></thead>
+        <tbody id="listaEventos"><tr><td colspan="4" class="muted">Carregando eventos...</td></tr></tbody>
+      </table>
+    </section>
+
+    <div class="erro" id="erroPainel"></div>
+  </main>
+
+  <script type="module">
+    import { initializeApp, getApps } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-app.js";
+    import { getFirestore, doc, onSnapshot, collection, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/10.12.5/firebase-firestore.js";
+
+    const SITE_ID = "site-oficial";
+    const firebaseConfig = {
+      apiKey: "AIzaSyCGaAMXH6JZvkxTjOQswClherBNpO8OlyY",
+      authDomain: "ph-creative.firebaseapp.com",
+      projectId: "ph-creative",
+      storageBucket: "ph-creative.firebasestorage.app",
+      messagingSenderId: "838725389820",
+      appId: "1:838725389820:web:e361e5c021ae6593277679"
+    };
+
+    const app = getApps().length ? getApps()[0] : initializeApp(firebaseConfig);
+    const db = getFirestore(app);
+    const totalVisitas = document.getElementById("totalVisitas");
+    const totalCliques = document.getElementById("totalCliques");
+    const totalEventos = document.getElementById("totalEventos");
+    const listaEventos = document.getElementById("listaEventos");
+    const erroPainel = document.getElementById("erroPainel");
+
+    function numero(valor) { return (Number(valor) || 0).toLocaleString("pt-BR"); }
+    function escapar(valor) {
+      return String(valor || "").replace(/[&<>'"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "'": "&#39;", '"': "&quot;" }[c]));
+    }
+    function quando(data) {
+      const d = data?.toDate ? data.toDate() : data ? new Date(data) : null;
+      if (!d || Number.isNaN(d.getTime())) return "agora/sem data";
+      return d.toLocaleString("pt-BR", { dateStyle: "short", timeStyle: "short" });
+    }
+    function resumo(evento) {
+      if (evento.tipo === "visita") return `Entrou no site por ${escapar(evento.dispositivo || "dispositivo")}`;
+      const d = evento.detalhes || {};
+      const alvo = d.whatsapp ? "WhatsApp" : (d.href || d.rotulo || "link/botão");
+      return `Clicou em ${escapar(d.rotulo || alvo)}`;
+    }
+
+    onSnapshot(doc(db, "contadores", SITE_ID), (snap) => {
+      const d = snap.exists() ? snap.data() : {};
+      totalVisitas.textContent = numero(d.total ?? d.visitas ?? 0);
+      totalCliques.textContent = numero(d.cliques ?? 0);
+    }, (erro) => mostrarErro(erro));
+
+    const q = query(collection(db, "analytics_eventos"), where("siteId", "==", SITE_ID), orderBy("criadoEm", "desc"), limit(50));
+    onSnapshot(q, (snap) => {
+      totalEventos.textContent = numero(snap.size);
+      if (!snap.size) {
+        listaEventos.innerHTML = '<tr><td colspan="4" class="muted">Nenhum evento registrado ainda.</td></tr>';
+        return;
+      }
+      listaEventos.innerHTML = snap.docs.map((docSnap) => {
+        const e = docSnap.data();
+        return `<tr><td>${escapar(quando(e.criadoEm || e.criadoEmLocal))}</td><td>${escapar(e.tipo || "evento")}</td><td>${resumo(e)}</td><td>${escapar(e.caminho || e.url || "-")}</td></tr>`;
+      }).join("");
+    }, (erro) => mostrarErro(erro));
+
+    function mostrarErro(erro) {
+      console.warn(erro);
+      erroPainel.style.display = "block";
+      erroPainel.innerHTML = "Não consegui carregar os dados do painel. Verifique no Firebase se o Firestore está ativado e se as regras permitem leitura/escrita para este site.";
+    }
+  </script>
+</body>
+</html>
