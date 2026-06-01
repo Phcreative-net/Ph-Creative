@@ -1,5 +1,5 @@
 /* PH Creative — veias douradas e brilho premium
-   Este arquivo NÃO usa a imagem enviada como capa. Ele cria apenas os efeitos de luz. */
+   Este arquivo NÃO usa imagem literal como capa. Ele cria apenas linhas, brilho e atmosfera. */
 
 :root {
   --ph-veia-fina: rgba(245, 215, 110, 0.30);
@@ -51,7 +51,7 @@ body::after {
   animation: phVeiasRespirar 10s ease-in-out infinite alternate;
 }
 
-/* Home: mantém sua foto lateral e coloca as veias/brilho por cima do fundo, sem usar a imagem do catálogo como capa. */
+/* Home: remove qualquer foto literal e deixa somente fundo escuro + veias douradas. */
 .entrada-site {
   background:
     radial-gradient(circle at 76% 28%, rgba(245, 215, 110, 0.14), transparent 28%),
@@ -73,9 +73,10 @@ body::after {
 }
 
 .entrada-site::after {
-  right: 0 !important;
-  opacity: 0.78 !important;
-  filter: brightness(0.54) contrast(1.16) saturate(0.98) !important;
+  display: none !important;
+  content: none !important;
+  background: none !important;
+  background-image: none !important;
 }
 
 .animacao-fundo::before,
