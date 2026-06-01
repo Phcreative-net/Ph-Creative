@@ -51,15 +51,16 @@ body::after {
   animation: phVeiasRespirar 10s ease-in-out infinite alternate;
 }
 
-/* Home: remove qualquer foto literal e deixa somente fundo escuro + veias douradas. */
-.entrada-site {
+/* Home: remove qualquer foto literal e deixa somente fundo escuro + veias douradas.
+   Usei seletor mais forte porque o index.html possui um CSS interno depois deste arquivo. */
+html body .entrada-site {
   background:
     radial-gradient(circle at 76% 28%, rgba(245, 215, 110, 0.14), transparent 28%),
     radial-gradient(circle at 20% 24%, rgba(212, 175, 55, 0.12), transparent 32%),
     linear-gradient(180deg, #050507 0%, #090806 58%, #030303 100%) !important;
 }
 
-.entrada-site::before {
+html body .entrada-site::before {
   background-image: none !important;
   width: 100% !important;
   opacity: 0.78 !important;
@@ -72,7 +73,7 @@ body::after {
     radial-gradient(circle at 50% 22%, rgba(245,215,110,.14), transparent 26%) !important;
 }
 
-.entrada-site::after {
+html body .entrada-site::after {
   display: none !important;
   content: none !important;
   background: none !important;
@@ -175,6 +176,6 @@ body::after {
 
 @media (max-width: 760px) {
   body::after { opacity: 0.46; }
-  .entrada-site::before { display: block !important; }
-  .entrada-site::after { display: none !important; }
+  html body .entrada-site::before { display: block !important; }
+  html body .entrada-site::after { display: none !important; }
 }
