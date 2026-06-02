@@ -1,6 +1,6 @@
-/* PH Creative — correção: conteúdo visível + capa cinematográfica */
+/* PH Creative — correção de capa quebrada */
 body{background:#050507!important;overflow-x:hidden!important;color:#f5f5f5!important}
-.entrada-site{min-height:100vh!important;position:relative!important;overflow:hidden!important;background:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.48)),url('./assets/hero-ph-final.webp') center top/cover no-repeat!important}
+.entrada-site{min-height:100vh!important;position:relative!important;overflow:hidden!important;background-image:linear-gradient(180deg,rgba(0,0,0,.18),rgba(0,0,0,.50)),url('./assets/hero-ph-final.webp?v=3'),url('./assets/foto-centro-ph.webp'),radial-gradient(circle at 50% 22%,rgba(245,215,110,.18),transparent 35%),linear-gradient(180deg,#050507,#030303)!important;background-position:center top,center top,center center,center,center!important;background-size:cover,cover,cover,cover,cover!important;background-repeat:no-repeat!important}
 .entrada-site::before,.entrada-site::after{display:none!important;content:none!important;background:none!important;background-image:none!important}
 .animacao-fundo{display:none!important}
 .conteudo-entrada{position:relative!important;z-index:4!important;width:min(980px,100%)!important;max-width:980px!important;text-align:center!important;display:grid!important;gap:34px!important;background:rgba(5,5,7,.18)!important;border-radius:34px!important;padding:clamp(18px,3vw,30px)!important;backdrop-filter:blur(2px)!important}
@@ -13,4 +13,4 @@ body{background:#050507!important;overflow-x:hidden!important;color:#f5f5f5!impo
 .opcao-card p{color:#cfc6a8!important}
 footer{display:block!important;background:#030303!important}
 .whatsapp-flutuante{z-index:20!important}
-@media(max-width:760px){.entrada-site{background-position:center top!important}.opcoes-site{grid-template-columns:1fr!important}.conteudo-entrada{background:rgba(5,5,7,.52)!important}}
+@media(max-width:760px){.entrada-site{background-position:center top,center top,center center,center,center!important}.opcoes-site{grid-template-columns:1fr!important}.conteudo-entrada{background:rgba(5,5,7,.52)!important}}
